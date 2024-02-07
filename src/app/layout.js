@@ -2,6 +2,13 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
+import { Exo_2 } from "next/font/google";
+
+const exo = Exo_2({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,10 +19,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <>
+    <div className={exo.className}>
       <Nav />
       {children}
       <Footer />
-    </>
+    </div>
   );
 }
