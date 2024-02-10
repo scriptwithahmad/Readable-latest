@@ -1,4 +1,4 @@
-import blogs from "@/models/blogs";
+import blogsModal from "@/models/blogs";
 import dbConnect from "@/config/dbConnect";
 
 export default async function handler(req, res) {
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "POST":
       try {
-        const blog = await blogs.create(req.body);
+        const blog = await blogsModal.create(req.body);
         res.status(201).json({
           success: true,
           blog,
@@ -23,10 +23,12 @@ export default async function handler(req, res) {
 
     case "GET":
       try {
-        const blog = await blogs.find();
+        const blogs = await blogsModal
+          .find({})
+          .populate("author", "name email");
         res.status(200).json({
           success: true,
-          blog,
+          blogs,
         });
       } catch (error) {
         console.log(error);
