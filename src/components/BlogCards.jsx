@@ -42,10 +42,10 @@ const BlogCards = () => {
             Recent Posts:
           </h1>
           <section className=" flex items-center gap-12">
-            <div className="w-1/2">
+            <div className="w-1/2 h-[450px]">
               <img
                 alt="Blog Image Here"
-                src="/images/blog1.png"
+                src="https://media.licdn.com/dms/image/sync/D4D27AQFk6_cet1g0Uw/articleshare-shrink_800/0/1706816792180?e=1708174800&v=beta&t=J3EV-I5IesSg_JG-bbbeckyITYKn56d8ogEDerPU_hc"
                 className=" h-full w-full object-cover"
               ></img>
             </div>
@@ -72,13 +72,11 @@ const BlogCards = () => {
               {/* sub Blogs 2nd ----------- */}
               <div className=" mt-6 flex items-center gap-4">
                 <div className=" w-40">
-                  <Image
-                    width={300}
-                    height={300}
+                  <img
                     alt="Blog Image Here"
-                    src={"/images/blog2.png"}
+                    src="https://img.freepik.com/premium-vector/time-management-paperwork-deadline-working-efficient-organization-3d-icon-realistic-vector_92753-13405.jpg?w=740"
                     className=" h-full w-full object-cover"
-                  ></Image>
+                  ></img>
                 </div>
                 <div>
                   <div className="flex items-center gap-3 mb-2">
