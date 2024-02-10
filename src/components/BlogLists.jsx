@@ -27,9 +27,13 @@ const BlogLists = () => {
                 </span>
               </div>
               <div className="my-2">
-                <h1 className="text-2xl font-semibold text-gray-800 leading-[1.2]">
+                <h1 className="text-2xl font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
                   Important Features to look for in Web Development Services
                 </h1>
+                <p className="text-sm mt-2 text-gray-500 line-clamp-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Autem, alias? Minus ex quisquam dignissimos obcaecati.
+                </p>
                 <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
                   Read More
                   <i className="fa-solid fa-arrow-right"></i>
@@ -50,15 +54,19 @@ const BlogLists = () => {
             </div>
             <div className=" border-b-4 pb-1 border-[#2386ffc2]">
               <div className="flex items-center justify-between mt-3">
-                <h3 className="accentColor text-sm">Development</h3>
+                <h3 className="accentColor text-sm">Data Science / DevOps</h3>
                 <span className="text-slate-600 flex items-center gap-2 text-sm">
                   <i className="fa-regular fa-clock text-sm"></i>2hr ago
                 </span>
               </div>
               <div className="my-2">
-                <h1 className="text-2xl font-semibold text-gray-800 leading-[1.2]">
+                <h1 className="text-2xl font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
                   Important Features to look for in Web Development Services
                 </h1>
+                <p className="text-sm mt-2 text-gray-500 line-clamp-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Autem, alias? Minus ex quisquam dignissimos obcaecati.
+                </p>
                 <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
                   Read More
                   <i className="fa-solid fa-arrow-right"></i>
@@ -79,15 +87,19 @@ const BlogLists = () => {
             </div>
             <div className=" border-b-4 pb-1 border-[#2386ff6d]">
               <div className="flex items-center justify-between mt-3">
-                <h3 className="accentColor text-sm">Development</h3>
+                <h3 className="accentColor text-sm">Technology</h3>
                 <span className="text-slate-600 flex items-center gap-2 text-sm">
                   <i className="fa-regular fa-clock text-sm"></i>2hr ago
                 </span>
               </div>
               <div className="my-2">
-                <h1 className="text-2xl font-semibold text-gray-800 leading-[1.2]">
+                <h1 className="text-2xl font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
                   Important Features to look for in Web Development Services
                 </h1>
+                <p className="text-sm mt-2 text-gray-500 line-clamp-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Autem, alias? Minus ex quisquam dignissimos obcaecati.
+                </p>
                 <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
                   Read More
                   <i className="fa-solid fa-arrow-right"></i>
