@@ -83,11 +83,11 @@ const BlogCards = () => {
                   ></Image>
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="  accentColor">Digital Marketing</h3>
-                    <pre className=" text-slate-500">.</pre>
-                    <span className="text-slate-600 flex items-center gap-1">
-                      <i className="fa-regular fa-clock text-[15px]"></i>2hr ago
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="accentColor text-sm">Digital Marketing</h3>
+                    <pre className=" text-slate-400 text-sm">-</pre>
+                    <span className="text-slate-500 flex items-center gap-1 text-sm">
+                      <i className="fa-regular fa-clock text-sm"></i>2hr ago
                     </span>
                   </div>
                   <h1 className=" text-slate-700 text-2xl font-semibold">

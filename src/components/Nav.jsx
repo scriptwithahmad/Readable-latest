@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Merienda } from "next/font/google";
@@ -9,12 +10,36 @@ const Meriend = Merienda({
 });
 
 const Nav = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <nav className="pt-5 pb-4">
+      <nav
+        className={`pt-5 pb-4 z-50 ${
+          scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
+        }`}
+      >
         <div className="standardWidth flex items-center justify-between">
           <div className=" w-[130px]">
-            <h2 id="logo" className={Meriend.className}>Readable</h2>
+            <h2 id="logo" className={Meriend.className}>
+              Readable
+            </h2>
           </div>
           <div className="flex items-center gap-6">
             <ul>
