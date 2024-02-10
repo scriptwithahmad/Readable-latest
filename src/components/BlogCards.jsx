@@ -43,13 +43,11 @@ const BlogCards = () => {
           </h1>
           <section className=" flex items-center gap-12">
             <div className="w-1/2">
-              <Image
-                width={400}
-                height={400}
+              <img
                 alt="Blog Image Here"
-                src={"/images/blog1.png"}
+                src="/images/blog1.png"
                 className=" h-full w-full object-cover"
-              ></Image>
+              ></img>
             </div>
             <div className="w-1/2">
               <div className=" border-b-4 border-[#2386ffb8]">
