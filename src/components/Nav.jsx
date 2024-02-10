@@ -1,6 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Merienda } from "next/font/google";
+
+const Meriend = Merienda({
+  weight: "800",
+  subsets: ["latin"],
+});
 
 const Nav = () => {
   return (
@@ -8,13 +14,7 @@ const Nav = () => {
       <nav className="pt-5 pb-4">
         <div className="standardWidth flex items-center justify-between">
           <div className=" w-[130px]">
-            <Image
-              width={300}
-              height={300}
-              alt="logo here"
-              src="/images/logo.png"
-              className=" h-full w-full mix-blend-multiply"
-            />
+            <h2 id="logo" className={Meriend.className}>Readable</h2>
           </div>
           <div className="flex items-center gap-6">
             <ul>
@@ -25,7 +25,7 @@ const Nav = () => {
                 <Link href={"/"}>Blogs</Link>
               </li>
             </ul>
-            <button className="btn">Let's Talk</button>
+            <button className="btn px-5 py-2">Let's Talk 👋</button>
           </div>
         </div>
       </nav>
