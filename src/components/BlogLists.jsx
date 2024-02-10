@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const BlogLists = () => {
   return (
     <>
@@ -11,13 +9,11 @@ const BlogLists = () => {
           {/* Card 1 ------ */}
           <div>
             <div className="w-full h-[320px]">
-              <Image
-                width={400}
-                height={400}
+              <img
                 alt="Blog Image Here"
-                src={"/images/blog3.png"}
+                src="https://img.freepik.com/premium-vector/time-management-paperwork-deadline-working-efficient-organization-3d-icon-realistic-vector_92753-13405.jpg?w=740"
                 className=" h-full w-full object-cover"
-              ></Image>
+              ></img>
             </div>
             <div className=" border-b-4 pb-1 border-[#2386ff6d]">
               <div className="flex items-center justify-between mt-3">
@@ -44,17 +40,15 @@ const BlogLists = () => {
           {/* Card 2 ------ */}
           <div>
             <div className="w-full h-[320px]">
-              <Image
-                width={400}
-                height={400}
+              <img
                 alt="Blog Image Here"
-                src={"/images/blog2.png"}
+                src="https://media.licdn.com/dms/image/sync/D4D27AQFk6_cet1g0Uw/articleshare-shrink_800/0/1706816792180?e=1708174800&v=beta&t=J3EV-I5IesSg_JG-bbbeckyITYKn56d8ogEDerPU_hc"
                 className=" h-full w-full object-cover"
-              ></Image>
+              ></img>
             </div>
-            <div className=" border-b-4 pb-1 border-[#2386ffc2]">
+            <div className=" border-b-4 pb-1 border-[#2386ff6d]">
               <div className="flex items-center justify-between mt-3">
-                <h3 className="accentColor text-sm">Data Science / DevOps</h3>
+                <h3 className="accentColor text-sm">Technology</h3>
                 <span className="text-slate-600 flex items-center gap-2 text-sm">
                   <i className="fa-regular fa-clock text-sm"></i>2hr ago
                 </span>
@@ -77,17 +71,15 @@ const BlogLists = () => {
           {/* Card 3 ------ */}
           <div>
             <div className="w-full h-[320px]">
-              <Image
-                width={400}
-                height={400}
+              <img
                 alt="Blog Image Here"
-                src={"/images/blog1.png"}
+                src="https://img.freepik.com/premium-vector/time-management-paperwork-deadline-working-efficient-organization-3d-icon-realistic-vector_92753-13405.jpg?w=740"
                 className=" h-full w-full object-cover"
-              ></Image>
+              ></img>
             </div>
-            <div className=" border-b-4 pb-1 border-[#2386ff6d]">
+            <div className=" border-b-4 pb-1 border-[#2386ffc2]">
               <div className="flex items-center justify-between mt-3">
-                <h3 className="accentColor text-sm">Technology</h3>
+                <h3 className="accentColor text-sm">Data Science / DevOps</h3>
                 <span className="text-slate-600 flex items-center gap-2 text-sm">
                   <i className="fa-regular fa-clock text-sm"></i>2hr ago
                 </span>
