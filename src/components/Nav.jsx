@@ -50,7 +50,7 @@ const Nav = () => {
                 <Link href={"/"}>Blogs</Link>
               </li>
             </ul>
-            <button className="btn px-5 py-2">Let's Talk 👋</button>
+            <button className="btn px-5 py-2">Let&apos;s Talk 👋</button>
           </div>
         </div>
       </nav>
