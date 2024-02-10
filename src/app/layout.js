@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div className={exo.className}>
+    <div className={inter.className}>
       <Nav />
       {children}
       <Footer />

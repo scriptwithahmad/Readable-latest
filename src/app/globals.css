@@ -3,13 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --body-bg: #f6f6ff;
+  --body-text: #1e293b;
+  --standard-width: 1200px;
+  --accent-color: #0077ff;
+}
+
+body {
+  color: var(--body-text);
+  background: var(--body-bg);
+}
+
+.standardWidth {
+  margin: auto;
+  width: var(--standard-width);
+}
+
+h1 {
+  color: #0e011c;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Global Button Design ----------- */
+.btn {
+  transition: all 0.3s ease-in-out;
+  font-family: "Dosis", sans-serif;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  padding: 7px 20px;
+  border-radius: 50px;
+  box-shadow: 0 20px 30px -6px #61aaee80;
+  background-image: linear-gradient(
+    135deg,
+    #5ca7fcbe 0%,
+    var(--accent-color) 100%
+  );
+}
+
+.btn:hover {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.btn:active {
+  opacity: 0.5;
 }
