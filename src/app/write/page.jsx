@@ -1,18 +1,16 @@
 "use client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 // import mongoose from "mongoose";
 
-const page = () => {
-  const router = useRouter();
+const Page = () => {
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
 
-//   const userId = "65c8f4e6b170a4e621626fc2";
-//   const authorObjectId = mongoose.Types.ObjectId(userId);
+  //   const userId = "65c8f4e6b170a4e621626fc2";
+  //   const authorObjectId = mongoose.Types.ObjectId(userId);
 
-  const [FormData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     slug: "",
     subTitle: "",
@@ -24,7 +22,7 @@ const page = () => {
   });
 
   const changeHandler = (e) => {
-    setFormData({ ...FormData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const HandleSubmit = async (e) => {
@@ -33,7 +31,7 @@ const page = () => {
     try {
       setLoading(true);
 
-      const uplaod = await axios.post("/api/blog", FormData);
+      const uplaod = await axios.post("/api/blog", formData);
 
       console.log(uplaod);
 
@@ -113,7 +111,7 @@ const page = () => {
                             id="title"
                             name="title"
                             autoComplete="off"
-                            value={FormData.title}
+                            value={formData.title}
                             onChange={changeHandler}
                             placeholder="Enter Blog Title"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
@@ -130,7 +128,7 @@ const page = () => {
                             name="subTitle"
                             autoComplete="off"
                             onChange={changeHandler}
-                            value={FormData.subTitle}
+                            value={formData.subTitle}
                             placeholder="Enter Sub Title"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                           ></input>
@@ -146,7 +144,7 @@ const page = () => {
                             name="avatarAlt"
                             autoComplete="off"
                             onChange={changeHandler}
-                            value={FormData.avatarAlt}
+                            value={formData.avatarAlt}
                             placeholder="Enter avatarAlt"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                           ></input>
@@ -164,7 +162,7 @@ const page = () => {
                             name="metaDesc"
                             autoComplete="off"
                             onChange={changeHandler}
-                            value={FormData.metaDesc}
+                            value={formData.metaDesc}
                             placeholder="Enter Meta Description"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                           ></input>
@@ -180,7 +178,7 @@ const page = () => {
                             // name="author"
                             autoComplete="off"
                             // onChange={changeHandler}
-                            // value={FormData.author}
+                            // value={formData.author}
                             // value={authorObjectId}
                             placeholder="Enter Author ID"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
@@ -200,7 +198,7 @@ const page = () => {
                             id="category"
                             name="category"
                             onChange={changeHandler}
-                            value={FormData.category}
+                            value={formData.category}
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                           >
                             <option value="">Select Blog Category</option>
@@ -236,4 +234,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
