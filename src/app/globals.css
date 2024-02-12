@@ -16,7 +16,7 @@ body {
 
 .standardWidth {
   margin: auto;
-  width: var(--standard-width);
+  max-width: var(--standard-width);
 }
 
 h1 {
@@ -36,7 +36,7 @@ h1 {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
 
-#logo{
+#logo {
   font-size: 24px;
   color: #0077ff;
 }
@@ -69,7 +69,6 @@ h1 {
 .btn:active {
   opacity: 0.5;
 }
-
 
 /* Blog Wiret page CSS ======================== */
 .errDiv {
@@ -110,9 +109,9 @@ h1 {
   line-height: 1.2;
 }
 .sign_In_Heading p {
-    color: gray;
+  color: gray;
   font-weight: normal;
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .sign_In_Lower {
   width: 42%;
@@ -215,7 +214,7 @@ h1 {
   transition: 0.3s all ease-in-out;
 }
 
-.signInSubmitBtn:hover{
+.signInSubmitBtn:hover {
   background-color: #0f1a35;
 }
 

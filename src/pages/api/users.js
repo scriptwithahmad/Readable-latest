@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
     case "GET":
       try {
-        const user = await User.find({}).populate("posts", "title content");
+        const user = await User.find();
         res.status(200).json({
           success: true,
           user,

@@ -33,21 +33,18 @@ const blogSchema = new mongoose.Schema(
       required: [true, "Meta Description is Required!"],
       trim: true,
     },
-    avatar: {
-      type: String,
-      // required: [true, "Avatar is Required!"],
-      trim: true,
+    featuredImage: {
+      url: {
+        type: String,
+      },
+      altText: {
+        type: String,
+      },
     },
-    avatarAlt: {
-      type: String,
-      required: [true, "Avatar Alternate Text is Required!"],
-      trim: true,
-    },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
-      required: true,
-    },
+    // author: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "users",
+    // },
   },
   { timestamps: true }
 );
