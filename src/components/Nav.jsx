@@ -31,7 +31,7 @@ const Nav = () => {
   return (
     <>
       <nav
-        className={`pt-5 pb-4 z-50 ${
+        className={`pt-5 pb-4 z-50 px-4 md:px-0 ${
           scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
         }`}
       >
@@ -42,7 +42,7 @@ const Nav = () => {
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <ul>
+            <ul className="hidden">
               <li className="flex items-center gap-6 text-slate-700 text-lg">
                 <Link href={"/"}>Home</Link>
                 <Link href={"/"}>About</Link>

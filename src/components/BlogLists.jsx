@@ -1,7 +1,7 @@
 const BlogLists = () => {
   return (
     <>
-      <div className="standardWidth">
+      <div className="standardWidth px-3 lg:px-0">
         <h1 className=" border-l-4 border-[#2386FF] pl-4 mt-24 mb-8 text-2xl font-semibold">
           Must Read Articles :
         </h1>

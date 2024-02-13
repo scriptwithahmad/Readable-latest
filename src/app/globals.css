@@ -36,9 +36,38 @@ h1 {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
 
+.globalHeroText {
+  font-size: clamp(1.5625rem, 0.6466rem + 3.4483vw, 3.75rem);
+}
+.globalBlogCardText {
+  font-size: clamp(1rem, 0.6721rem + 1.6143vw, 2.125rem);
+}
+
+
 #logo {
   font-size: 24px;
   color: #0077ff;
+}
+
+/* Scrolls in Hero Filter section */
+
+.heroFilterSection {
+  --sb-track-color: #ffffff;
+  --sb-thumb-color: #f5f5f5;
+  --sb-size: 3px;
+}
+
+.heroFilterSection::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.heroFilterSection::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+}
+
+.heroFilterSection::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 8px;
 }
 
 /* Global Button Design ----------- */
