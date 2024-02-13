@@ -2,14 +2,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-// import mongoose from "mongoose";
 
 const Page = () => {
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  //   const userId = "65c8f4e6b170a4e621626fc2";
-  //   const authorObjectId = mongoose.Types.ObjectId(userId);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -27,7 +23,9 @@ const Page = () => {
   });
 
   const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData({ ...formData, [name]: value });
   };
 
   // Cloudinary States -----------------------/
@@ -71,13 +69,9 @@ const Page = () => {
       };
       var res = await axios.post(`/api/blog`, submitionData);
 
-      console.log(res);
-
-      if (res) {
-        toast.success(res.data.message);
+      if (res.data.success) {
         toast.success("Blog Submitted 😎");
       }
-
       setIsError("");
       setFormData({
         title: "",
@@ -88,6 +82,10 @@ const Page = () => {
         metaDesc: "",
         metaDesc: "",
         author: "",
+        featuredImage: {
+          url: "",
+          altText: "",
+        },
       });
     } catch (error) {
       console.log(error);
@@ -107,37 +105,44 @@ const Page = () => {
       <div className=" px-[15px] pt-[50px] pb-[140px]">
         <div className="signIn_Outer_Div">
           <div className="sign_In_Shape">
-            <img src="image/sign/man-3.png" alt="Image Here" className="man1" />
-            <img src="image/sign/man-2.png" alt="Image Here" className="man2" />
             <img
-              src="image/sign/circle.png"
+              src="images/sign/man-3.png"
+              alt="Image Here"
+              className="man1"
+            />
+            <img
+              src="images/sign/man-2.png"
+              alt="Image Here"
+              className="man2"
+            />
+            <img
               alt="Image Here"
               className="circle"
+              src="images/sign/circle.png"
             />
             <img
-              src="image/sign/zigzag.png"
               alt="Image Here"
               className="zigzag wavey"
+              src="images/sign/zigzag.png"
             />
-            <img src="image/sign/dot.png" alt="Image Here" className="dot" />
+            <img src="images/sign/dot.png" alt="Image Here" className="dot" />
             <img
-              src="image/sign/sign-up.png"
               alt="Image Here"
               className="sign_Up"
+              src="images/sign/sign-up.png"
             />
             <img
-              src="image/sign/flower.png"
               alt="Image Here"
-              className="flower"
+              src="images/sign/flower.png"
+              className="flower animate-pulse"
             />
           </div>
           <div className="sign_In_Inner">
             <div className="sign_In_Heading">
-              <h2>English Test Prepartion Form</h2>
-              <p>Sign Up Form For IELTS Online Prepartion</p>
+              <h2>Write Blog</h2>
             </div>
             <div className=" w-full  md:w-[90%] lg:w-[50%] ">
-              <div className=" bg-white  p-[20px]   lg:p-[50px] enrollNow ">
+              <div className=" bg-white rounded-lg p-[20px] lg:p-[50px] enrollNow ">
                 <div className="sign_In_Form">
                   <form onSubmit={HandleSubmit}>
                     <div className=" grid grid-cols-1">
@@ -168,29 +173,6 @@ const Page = () => {
                             onChange={changeHandler}
                             value={formData.subTitle}
                             placeholder="Enter Sub Title"
-                            className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
-                          ></input>
-                          <i className="fa-solid fa-signature"></i>
-                        </div>
-                      </div>
-                      {/* avatarAlt -------------------------- */}
-                      <div className="sign_In_Input_Outer">
-                        <label htmlFor="avatarAlt">Image Alt Text</label>
-                        <div className="sign_In_Input">
-                          <input
-                            id="avatarAlt"
-                            autoComplete="off"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                featuredImage: {
-                                  ...formData.featuredImage,
-                                  altText: e.target.value,
-                                },
-                              })
-                            }
-                            value={formData.featuredImage.altText}
-                            placeholder="Enter avatarAlt"
                             className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                           ></input>
                           <i className="fa-solid fa-signature"></i>
@@ -259,7 +241,7 @@ const Page = () => {
 
                     <div className="relative mb-6">
                       {/* Image Input */}
-                      <div>
+                      <div className=" relative">
                         <input
                           type="file"
                           name="photo"
@@ -288,6 +270,8 @@ const Page = () => {
                                 alt="image here"
                               />
 
+                              <i className="fa-regular fa-trash-can absolute top-8 right-8 text-red-500 bg-gray-50 shadow-2xl p-2 rounded-full"></i>
+
                               <div className="relative bg-white">
                                 <input
                                   required
@@ -302,8 +286,7 @@ const Page = () => {
                                     })
                                   }
                                   type="text"
-                                  placeholder=""
-                                  value={formData.featuredImage.altText}
+                                  value={formData.featuredImage?.altText}
                                   className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                                 />
                                 <label

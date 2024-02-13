@@ -84,7 +84,6 @@ h1 {
 }
 
 .signIn_Outer_Div {
-  padding: 50px 15px;
   position: relative;
   z-index: 1;
 }
@@ -267,12 +266,12 @@ h1 {
   }
   .sign_Up {
     left: 33%;
-    top: 26%;
+    top: 20%;
     opacity: 0.06;
     max-width: 100%;
   }
   .flower {
-    right: 24%;
+    right: 23%;
     bottom: 13%;
   }
 }
