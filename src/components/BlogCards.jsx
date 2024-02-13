@@ -1,6 +1,19 @@
 import React from "react";
+import { format, render, cancel, register } from "timeago.js";
 
-const BlogCards = () => {
+async function getData() {
+  const res = await fetch("https://readable-blog-eight.vercel.app/api/blog");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+const BlogCards = async () => {
+  const data = await getData();
+
   return (
     <>
       <main className="standardWidth px-3 lg:px-0">
@@ -40,61 +53,71 @@ const BlogCards = () => {
           <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">
             Recent Posts:
           </h1>
-          <section className=" flex md:flex-row flex-col items-center gap-5 lg:gap-12">
-            <div className="lg:w-1/2 lg:h-[450px]  h-[260px] w-full md:w-[300px]">
-              <img
-                alt="Blog Image Here"
-                className="h-full w-full object-cover"
-                src="https://media.licdn.com/dms/image/sync/D4D27AQFk6_cet1g0Uw/articleshare-shrink_800/0/1706816792180?e=1708174800&v=beta&t=J3EV-I5IesSg_JG-bbbeckyITYKn56d8ogEDerPU_hc"
-              ></img>
-            </div>
-            <div className=" w-full md:w-1/2">
-              <div className=" border-b-2 lg:border-b-4 border-[#2386ffb8]">
-                <div className="flex items-center gap-2 text-sm lg:text-base">
-                  <h3 className="  accentColor">Development</h3>
-                  <pre className=" text-slate-500">.</pre>
-                  <span className="text-slate-600 flex items-center gap-1">
-                    <i className="fa-regular fa-clock lg:text-[15px]"></i>2hr
-                    ago
-                  </span>
-                </div>
-                <div>
-                  <h1 className="globalBlogCardText font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
-                    Important Features to look for in Web Development Services
-                  </h1>
-                  <button className="btn flex items-center justify-center gap-2 mb-3 lg:mb-8 px-3 text-sm lg:test-base lg:px-5 py-1.5 lg:py-3">
-                    Read More
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-
-              {/* sub Blogs 2nd ----------- */}
-              <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
-                <div className=" w-36 md:w-48 lg:w-40">
+          {data?.blogs?.slice(0, 1).map((v, i) => {
+            return (
+              <section
+                key={i}
+                className=" flex md:flex-row flex-col items-center gap-5 lg:gap-12"
+              >
+                <div className="lg:w-1/2 lg:h-[450px]  h-[260px] w-full md:w-[300px]">
                   <img
-                    alt="Blog Image Here"
-                    className=" h-full w-full object-cover"
-                    src="https://img.freepik.com/premium-vector/time-management-paperwork-deadline-working-efficient-organization-3d-icon-realistic-vector_92753-13405.jpg?w=740"
+                    src={v?.featuredImage?.url}
+                    alt={v?.featuredImage?.altText}
+                    className="h-full w-full object-cover"
                   ></img>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1 lg:mb-2">
-                    <h3 className="accentColor text-[11px] lg:text-sm">
-                      Digital Marketing
-                    </h3>
-                    <pre className=" text-slate-400  text-[11px] lg:text-sm">-</pre>
-                    <span className="text-slate-500 flex items-center gap-1  text-[11px] lg:text-sm">
-                      <i className="fa-regular fa-clock  text-[11px] lg:text-sm"></i>2hr ago
-                    </span>
+                <div className=" w-full md:w-1/2">
+                  <div className=" border-b-2 lg:border-b-4 border-[#2386ffb8]">
+                    <div className="flex items-center gap-2 text-sm lg:text-base">
+                      <h3 className="  accentColor">{v?.category}</h3>
+                      <pre className=" text-slate-500">.</pre>
+                      <span className="text-slate-500 flex items-center gap-1">
+                        <i className="fa-regular fa-clock lg:text-[15px]"></i>
+                        {format(new Date(v.createdAt), "en_US")}
+                      </span>
+                    </div>
+                    <div>
+                      <h1 className="globalBlogCardText font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
+                        {v?.title}
+                      </h1>
+                      <button className="btn flex items-center justify-center gap-2 mb-3 lg:mb-8 px-3 text-sm lg:test-base lg:px-5 py-1.5 lg:py-3">
+                        Read More
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <h1 className="line-clamp-2 text-slate-700 text-sm md:text-base lg:text-2xl font-semibold">
-                    Digital Marketing in Pakistan: Who to Expect in 2024?
-                  </h1>
+
+                  {/* sub Blogs 2nd ----------- */}
+                  <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
+                    <div className=" w-36 md:w-48 lg:w-40">
+                      <img
+                        className=" h-full w-full object-cover"
+                        src={data?.blogs[1]?.featuredImage?.url}
+                        alt={data?.blogs[1]?.featuredImage?.altText}
+                      ></img>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1 lg:mb-2">
+                        <h3 className="accentColor text-[11px] lg:text-sm">
+                          {data?.blogs[1]?.category}
+                        </h3>
+                        <pre className=" text-slate-400  text-[11px] lg:text-sm">
+                          -
+                        </pre>
+                        <span className="text-slate-500 flex items-center gap-1  text-[11px] lg:text-sm">
+                          <i className="fa-regular fa-clock  text-[11px] lg:text-sm"></i>
+                          {format(new Date(data?.blogs[1]?.createdAt), "en_US")}
+                        </span>
+                      </div>
+                      <h1 className="line-clamp-2 text-slate-700 text-sm md:text-base lg:text-2xl font-semibold">
+                        {data?.blogs[1]?.title}
+                      </h1>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </section>
+              </section>
+            );
+          })}
         </div>
       </main>
     </>

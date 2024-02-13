@@ -5,6 +5,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {
+
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -73,6 +74,7 @@ const Page = () => {
       if (res.data.success) {
         toast.success("Blog Submitted 😎");
       }
+      setTempImage("");
       setIsError("");
       setFormData({
         title: "",
@@ -89,7 +91,8 @@ const Page = () => {
         },
       });
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data?.message);
+      setIsError("");
       if (error?.response?.data?.message) {
         setIsError(error?.response?.data?.message);
       } else {
@@ -238,7 +241,7 @@ const Page = () => {
                       </div>
                     </div>
 
-                    {/* Editor */}
+                    {/* Editor for Desription --------------------- */}
                     <div className=" mb-6">
                       <Editor
                         apiKey="z5f7ugf635wz96udas9dzbjlugsi9xxx6oxnnb6aw83hdkdk"
@@ -280,7 +283,6 @@ const Page = () => {
                     </div>
 
                     {/* Featured Image  -------------------------- */}
-
                     <div className="relative mb-6">
                       {/* Image Input */}
                       <div className=" relative">
@@ -316,7 +318,6 @@ const Page = () => {
 
                               <div className="relative bg-white">
                                 <input
-                                  required
                                   id="alt"
                                   onChange={(e) =>
                                     setFormData({

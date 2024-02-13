@@ -42,7 +42,7 @@ const Nav = () => {
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <ul className="hidden">
+            <ul className="hidden md:block">
               <li className="flex items-center gap-6 text-slate-700 text-lg">
                 <Link href={"/"}>Home</Link>
                 <Link href={"/"}>About</Link>
