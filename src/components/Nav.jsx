@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Merienda } from "next/font/google";
 
 const Meriend = Merienda({
@@ -47,7 +46,7 @@ const Nav = () => {
                 <Link href={"/"}>Home</Link>
                 <Link href={"/"}>About</Link>
                 <Link href={"/"}>Services</Link>
-                <Link href={"/"}>Blogs</Link>
+                <Link href={"/write"}>Write</Link>
               </li>
             </ul>
             <button className="btn px-5 py-2">Let&apos;s Talk 👋</button>
