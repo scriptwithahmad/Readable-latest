@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       try {
         const blogs = await blogsModal
           .find({})
-          .populate("author");
+          // .populate("author");
         res.status(200).json({
           success: true,
           blogs,

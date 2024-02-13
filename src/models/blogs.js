@@ -41,10 +41,10 @@ const blogSchema = new mongoose.Schema(
         type: String,
       },
     },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
-    },
+    // author: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "users",
+    // },
   },
   { timestamps: true }
 );

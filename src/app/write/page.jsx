@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {
@@ -235,6 +236,47 @@ const Page = () => {
                           </select>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Editor */}
+                    <div className=" mb-6">
+                      <Editor
+                        apiKey="z5f7ugf635wz96udas9dzbjlugsi9xxx6oxnnb6aw83hdkdk"
+                        value={formData.desc}
+                        onEditorChange={(content) =>
+                          setFormData({ ...formData, desc: content })
+                        }
+                        init={{
+                          height: 500,
+                          menubar: false,
+                          plugins: [
+                            "advlist",
+                            "autolink",
+                            "lists",
+                            "link",
+                            "image",
+                            "charmap",
+                            "preview",
+                            "anchor",
+                            "searchreplace",
+                            "visualblocks",
+                            "code",
+                            "fullscreen",
+                            "insertdatetime",
+                            "media",
+                            "table",
+                            "code",
+                            "help",
+                            "wordcount",
+                          ],
+                          toolbar:
+                            "undo redo blocks " +
+                            "bullist numlist " +
+                            "table image removeformat code fullscreen",
+                          content_style:
+                            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                        }}
+                      />
                     </div>
 
                     {/* Featured Image  -------------------------- */}
