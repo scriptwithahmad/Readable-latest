@@ -24,7 +24,7 @@ const BlogLists = async () => {
           {/* Card Map Here ------ */}
           {data?.blogs?.map((v, i) => {
             return (
-              <div>
+              <div key={i}>
                 <div className="w-full h-[320px]">
                   <img
                     src={v?.featuredImage?.url}
