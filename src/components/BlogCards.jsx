@@ -1,8 +1,18 @@
-import React from "react";
 import { format, render, cancel, register } from "timeago.js";
 
+// Fetch Blog Data here ---------------
 async function getData() {
   const res = await fetch("https://readable-blog-eight.vercel.app/api/blog");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+// Fetch Blog Category ----------------
+async function getCatgoryData() {
+  const res = await fetch("http://localhost:3000/api/category");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -13,31 +23,42 @@ async function getData() {
 
 const BlogCards = async () => {
   const data = await getData();
+  const category = await getCatgoryData();
+  const total = category?.getcat?.length;
 
   return (
     <>
       <main className="standardWidth px-3 lg:px-0">
         {/* Tabs --------- */}
         <div className="flex md:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
-          <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full overflow-x-auto pb-4">
-            <button className="globalShadow bg-[#2386FF] px-2.5 md:px-6 rounded-full py-1.5 text-white text-xs md:text-base">
-              All
-            </button>
-            <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
+          <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full md:overflow-x-visible overflow-x-auto pb-4">
+            {/* <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
               Development
-            </button>
-            <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
-              Digital Marketing
-            </button>
-            <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
-              Cloud And DevOps
-            </button>
-            <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
-              Technology
-            </button>
-            <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
-              Bussiness
-            </button>
+            </button> */}
+            {category?.getcat?.map((data, index) => {
+              return (
+                <button
+                  key={index}
+                  style={{
+                    color: data?.name == "All" ? "#fff" : null,
+                    background: data?.name == "All" ? "#2386FF" : null,
+                    boxShadow: data?.name == "All" ? "globalShadow" : "none",
+                  }}
+                  className={` hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base`}
+                >
+                  {data?.name == "All" ? (
+                    <div className="flex items-center gap-1">
+                      <h2>{data?.name}</h2>
+                      <span className=" h-5 w-5 flex items-center justify-center  bg-white text-xs text-blue-500 rounded-full">
+                        {total}
+                      </span>
+                    </div>
+                  ) : (
+                    data?.name
+                  )}
+                </button>
+              );
+            })}
           </div>
           <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
             <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
@@ -48,6 +69,7 @@ const BlogCards = async () => {
             />
           </div>
         </div>
+
         {/* Cards Starts Here --------- */}
         <div className="px-3 lg:px-0">
           <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">

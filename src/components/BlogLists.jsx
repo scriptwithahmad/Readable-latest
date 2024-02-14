@@ -41,12 +41,13 @@ const BlogLists = async () => {
                     </span>
                   </div>
                   <div className="my-2">
-                    <h1 className="text-2xl font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
+                    <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
                       {v?.title}
                     </h1>
-                    <p className="text-sm mt-2 text-gray-500 line-clamp-2">
-                      {v?.desc}
-                    </p>
+                    <main
+                      dangerouslySetInnerHTML={{ __html: v?.desc }}
+                      className="text-sm mt-2 text-gray-500 line-clamp-2"
+                    ></main>
                     <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
                       Read More
                       <i className="fa-solid fa-arrow-right"></i>

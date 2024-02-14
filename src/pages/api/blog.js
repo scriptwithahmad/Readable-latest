@@ -48,11 +48,28 @@ export default async function handler(req, res) {
 
     case "GET":
       try {
+        var match = {};
+
+        if (req.query.keyword) {
+          match.$or = [
+            { title: new RegExp(req.query.keyword, "i") },
+            { category: new RegExp(req.query.keyword, "i") },
+          ];
+        }
+
         const blogs = await blogsModal
-          .find({})
-          // .populate("author");
+          .find(match, {
+            subTitle: false,
+            metaDesc: false,
+          })
+          .sort({ createdAt: -1 });
+
+        const total = await blogsModal.find(match).count();
+
+        // .populate("author");
         res.status(200).json({
           success: true,
+          total,
           blogs,
         });
       } catch (error) {
