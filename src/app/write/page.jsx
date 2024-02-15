@@ -5,7 +5,6 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {
-
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
 

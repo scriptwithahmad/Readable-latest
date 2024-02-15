@@ -2,7 +2,7 @@ import { format, render, cancel, register } from "timeago.js";
 
 // Fetch Blog Data here ---------------
 async function getData() {
-  const res = await fetch("https://readable-blog-eight.vercel.app/api/blog");
+  const res = await fetch("http://localhost:3000/api/blog");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -23,6 +23,7 @@ async function getCatgoryData() {
 
 const BlogCards = async () => {
   const data = await getData();
+  // console.log(data.message.data);
   const category = await getCatgoryData();
   const total = category?.getcat?.length;
 
@@ -32,9 +33,6 @@ const BlogCards = async () => {
         {/* Tabs --------- */}
         <div className="flex md:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full md:overflow-x-visible overflow-x-auto pb-4">
-            {/* <button className=" text-slate-600 px-2.5 md:px-6 rounded-full py-1.5 hover:bg-[#eeeeee8c] text-xs md:text-base whitespace-nowrap">
-              Development
-            </button> */}
             {category?.getcat?.map((data, index) => {
               return (
                 <button
@@ -75,7 +73,7 @@ const BlogCards = async () => {
           <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">
             Recent Posts:
           </h1>
-          {data?.blogs?.slice(0, 1).map((v, i) => {
+          {data?.message?.data?.slice(0, 1).map((v, i) => {
             return (
               <section
                 key={i}
@@ -108,31 +106,33 @@ const BlogCards = async () => {
                       </button>
                     </div>
                   </div>
-
-                  {/* sub Blogs 2nd ----------- */}
+                  {/* Sub DIv Here -------- */}
                   <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
                     <div className=" w-36 md:w-48 lg:w-40">
                       <img
                         className=" h-full w-full object-cover"
-                        src={data?.blogs[1]?.featuredImage?.url}
-                        alt={data?.blogs[1]?.featuredImage?.altText}
+                        src={data?.message?.data[1]?.featuredImage?.url}
+                        alt={data?.message?.data[1]?.featuredImage?.altText}
                       ></img>
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1 lg:mb-2">
                         <h3 className="accentColor text-[11px] lg:text-sm">
-                          {data?.blogs[1]?.category}
+                          {data?.message?.data[1]?.category}
                         </h3>
                         <pre className=" text-slate-400  text-[11px] lg:text-sm">
                           -
                         </pre>
                         <span className="text-slate-500 flex items-center gap-1  text-[11px] lg:text-sm">
                           <i className="fa-regular fa-clock  text-[11px] lg:text-sm"></i>
-                          {format(new Date(data?.blogs[1]?.createdAt), "en_US")}
+                          {format(
+                            new Date(data?.message?.data[1]?.createdAt),
+                            "en_US"
+                          )}
                         </span>
                       </div>
                       <h1 className="line-clamp-2 text-slate-700 text-sm md:text-base lg:text-2xl font-semibold">
-                        {data?.blogs[1]?.title}
+                        {data?.message?.data[1]?.title}
                       </h1>
                     </div>
                   </div>
