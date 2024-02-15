@@ -28,7 +28,7 @@ export default async function handler(req, res) {
           })
           .limit(limit)
           .skip(skip)
-          .sort({ createdAt: -1 });
+          .sort({ createdAt: 1 });
         const total = await blogsModal.find(match).count();
 
         var starting = total ? skip + 1 : 0;

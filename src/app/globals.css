@@ -12,6 +12,7 @@
 body {
   color: var(--body-text);
   background: var(--body-bg);
+  scroll-behavior: smooth;
 }
 
 .standardWidth {
@@ -42,7 +43,6 @@ h1 {
 .globalBlogCardText {
   font-size: clamp(1rem, 0.6721rem + 1.6143vw, 2.125rem);
 }
-
 
 #logo {
   font-size: 24px;
@@ -376,5 +376,44 @@ h1 {
   }
   .sign_In_Lower {
     width: 100%;
+  }
+}
+
+.lineOfContent {
+  position: relative;
+}
+
+.lineCreated::before {
+  content: "";
+  border-radius: 16px;
+  position: absolute;
+  bottom: 43.5%;
+  left: 0;
+  height: 3px;
+  width: 45%;
+  background: #3a92fe;
+}
+
+@media screen and (max-width: 1224px) {
+  .lineCreated::before {
+    bottom: 41.5%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .lineCreated::before {
+    height: 2px;
+    bottom: 51.5%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .lineCreated::before {
+    height: 2px;
+    bottom: 54%;
+  }
+}
+@media screen and (max-width: 375px) {
+  .lineCreated::before {
+    height: 2px;
+    bottom: 51.5%;
   }
 }
