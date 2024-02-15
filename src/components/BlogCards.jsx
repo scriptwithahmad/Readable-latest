@@ -2,7 +2,7 @@ import { format, render, cancel, register } from "timeago.js";
 
 // Fetch Blog Data here ---------------
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/blog");
+  const res = await fetch("https://readable-blog-eight.vercel.app/api/blog");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -18,13 +18,11 @@ async function getCatgoryData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
   return res.json();
 }
 
 const BlogCards = async () => {
   const data = await getData();
-  // console.log(data.message.data);
   const category = await getCatgoryData();
   const total = category?.getcat?.length;
 
@@ -74,7 +72,7 @@ const BlogCards = async () => {
           <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">
             Recent Posts:
           </h1>
-          {data?.message?.data?.slice(0, 1).map((v, i) => {
+          {data?.blogs?.slice(0, 1).map((v, i) => {
             return (
               <section
                 key={i}

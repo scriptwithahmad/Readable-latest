@@ -45,43 +45,45 @@ const BlogLists = () => {
   return (
     <>
       {/* seraching Tabs --------- */}
-      <div className="flex md:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
-        <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full md:overflow-x-visible overflow-x-auto pb-4">
-          {categoryData?.map((data, index) => {
-            return (
-              <button
-                key={index}
-                style={{
-                  color: data?.name == "All" ? "#fff" : null,
-                  background: data?.name == "All" ? "#2386FF" : null,
-                  boxShadow: data?.name == "All" ? "globalShadow" : "none",
-                }}
-                className={` hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base`}
-              >
-                {data?.name == "All" ? (
-                  <div className="flex items-center gap-1">
-                    <h2>{data?.name}</h2>
-                    <span className=" h-5 w-5 flex items-center justify-center  bg-white text-xs text-blue-500 rounded-full">
-                      {total}
-                    </span>
-                  </div>
-                ) : (
-                  data?.name
-                )}
-              </button>
-            );
-          })}
-        </div>
-        <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
-          <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
-          <input
-            type="search"
-            name="keyword"
-            placeholder="Search"
-            value={filterByName.keyword}
-            onChange={searchInputHanler}
-            className=" bg-transparent outline-none py-1 text-sm w-[180px]"
-          />
+      <div className="standardWidth">
+        <div className="my-8 flex md:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
+          <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full md:overflow-x-visible overflow-x-auto pb-4">
+            {categoryData?.map((data, index) => {
+              return (
+                <button
+                  key={index}
+                  style={{
+                    color: data?.name == "All" ? "#fff" : null,
+                    background: data?.name == "All" ? "#2386FF" : null,
+                    boxShadow: data?.name == "All" ? "globalShadow" : "none",
+                  }}
+                  className={` hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base`}
+                >
+                  {data?.name == "All" ? (
+                    <div className="flex items-center gap-1">
+                      <h2>{data?.name}</h2>
+                      <span className=" h-5 w-5 flex items-center justify-center  bg-white text-xs text-blue-500 rounded-full">
+                        {total}
+                      </span>
+                    </div>
+                  ) : (
+                    data?.name
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
+            <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
+            <input
+              type="search"
+              name="keyword"
+              value={filterByName.keyword}
+              onChange={searchInputHanler}
+              placeholder="eg: Blog, Category..."
+              className=" bg-transparent outline-none py-1 text-sm w-[180px]"
+            />
+          </div>
         </div>
       </div>
 
