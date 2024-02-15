@@ -4,6 +4,7 @@ import queryString from "query-string";
 import { useQuery } from "react-query";
 import { format, render, cancel, register } from "timeago.js";
 import axios from "axios";
+import Link from "next/link";
 
 const BlogLists = () => {
   const [filterByName, setFilterByName] = useState({
@@ -71,9 +72,9 @@ const BlogLists = () => {
   return (
     <>
       {/* seraching Tabs ------------------------------------------------- */}
-      <div className="standardWidth px-3 lg:px-0">
-        <div className="my-8 flex md:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
-          <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full md:overflow-x-visible overflow-x-auto pb-4">
+      <div className="standardWidth px-3 2xl:px-0">
+        <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
+          <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
             {categoryData?.map((data, index) => {
               return (
                 <button
@@ -115,8 +116,7 @@ const BlogLists = () => {
       </div>
 
       {/* BLog Card start here -------------------------------------------------- */}
-
-      <div className="px-3 lg:px-0 standardWidth">
+      <div className="px-3 2xl:px-0 standardWidth">
         <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">
           Recent Posts:
         </h1>
@@ -135,22 +135,26 @@ const BlogLists = () => {
               </div>
               <div className=" w-full md:w-1/2 lineOfContent">
                 <div className="lineCreated border-b-2 lg:border-b-4 border-blue-200">
-                  <div className="flex items-center gap-2 text-sm lg:text-base">
-                    <h3 className="  accentColor">{v?.category}</h3>
-                    <pre className=" text-slate-500">.</pre>
-                    <span className="text-slate-500 flex items-center gap-1">
-                      <i className="fa-regular fa-clock lg:text-[15px]"></i>
+                  <div className="flex items-center gap-2">
+                    <h3 className="  accentColor text-xs md:text-sm">{v?.category}</h3>
+                    <pre className=" text-slate-400 text-xs md:text-sm">-</pre>
+                    <span className="text-slate-500 flex items-center gap-1 text-xs md:text-sm">
+                      <i className="fa-regular text-gray-400 fa-clock lg:text-[15px]"></i>
                       {format(new Date(v.createdAt), "en_US")}
                     </span>
                   </div>
                   <div>
-                    <h1 className="globalBlogCardText font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
-                      {v?.title}
-                    </h1>
-                    <button className="btn flex items-center justify-center gap-2 mb-3 lg:mb-8 px-3 text-sm lg:test-base lg:px-5 py-1.5 lg:py-3">
-                      Read More
-                      <i className="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <Link href={`/blog/${v.slug}`}>
+                      <h1 className="globalBlogCardText hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] my-2 lg:my-4">
+                        {v?.title}
+                      </h1>
+                    </Link>
+                    <Link href={`/blog/${v.slug}`}>
+                      <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
+                        Read More
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -175,9 +179,17 @@ const BlogLists = () => {
                         {format(new Date(blogCard[1]?.createdAt), "en_US")}
                       </span>
                     </div>
-                    <h1 className="line-clamp-2 text-slate-700 text-sm md:text-base lg:text-2xl font-semibold">
-                      {blogCard[1]?.title}
-                    </h1>
+                    <Link href={`/blog/${blogCard[1].slug}`}>
+                      <h1 className="line-clamp-2 text-slate-700 hover:text-slate-800 cursor-pointer text-sm md:text-base lg:text-2xl font-semibold">
+                        {blogCard[1]?.title}
+                      </h1>
+                    </Link>
+                    <Link href={`/blog/${blogCard[1].slug}`}>
+                      <button className="btn flex items-center justify-center gap-1 md:text-sm text-xs my-2 px-3 py-1">
+                        Read More
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -188,7 +200,7 @@ const BlogLists = () => {
 
       {/* BLog Card ends ------------------------------------------------- */}
 
-      <div className="standardWidth px-3 lg:px-0">
+      <div className="standardWidth px-3 2xl:px-0">
         <h1 className=" border-l-4 border-[#2386FF] pl-4 mt-24 mb-8 text-2xl font-semibold">
           Must Read Articles :
         </h1>
@@ -213,17 +225,21 @@ const BlogLists = () => {
                     </span>
                   </div>
                   <div className="my-2">
-                    <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
-                      {v?.title}
-                    </h1>
+                    <Link href={`/blog/${v.slug}`}>
+                      <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
+                        {v?.title}
+                      </h1>
+                    </Link>
                     <main
                       dangerouslySetInnerHTML={{ __html: v?.desc }}
                       className="text-sm mt-2 text-gray-500 line-clamp-2"
                     ></main>
-                    <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
-                      Read More
-                      <i className="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <Link href={`/blog/${v.slug}`}>
+                      <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
+                        Read More
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

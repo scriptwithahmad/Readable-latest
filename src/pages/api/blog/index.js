@@ -22,13 +22,12 @@ export default async function handler(req, res) {
 
         const items = await blogsModal
           .find(match, {
-            desc: false,
             metaTitle: false,
             metaDesc: false,
           })
           .limit(limit)
           .skip(skip)
-          .sort({ createdAt: 1 });
+          .sort({ createdAt: -1 });
         const total = await blogsModal.find(match).count();
 
         var starting = total ? skip + 1 : 0;

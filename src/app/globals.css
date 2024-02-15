@@ -387,22 +387,22 @@ h1 {
   content: "";
   border-radius: 16px;
   position: absolute;
-  bottom: 43.5%;
+  bottom: 41.9%;
   left: 0;
   height: 3px;
   width: 45%;
   background: #3a92fe;
 }
 
-@media screen and (max-width: 1224px) {
+@media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 41.5%;
+    bottom: 37.4%;
   }
 }
 @media screen and (max-width: 768px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 51.5%;
+    bottom: 47.3%;
   }
 }
 @media screen and (max-width: 425px) {
@@ -414,6 +414,6 @@ h1 {
 @media screen and (max-width: 375px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 51.5%;
+    bottom: 47.2%;
   }
 }

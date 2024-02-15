@@ -1,8 +1,8 @@
 const Header = async () => {
   return (
     <>
-      <main className="standardWidth px-3 lg:px-0">
-        <div className=" my-20">
+      <main className="standardWidth px-3 2xl:px-0">
+        <div className="my-8 md:my-20">
           <div className="flex items-center gap-2">
             <h3 className=" text-slate-600 text-xs md:text-base">Home</h3>
             <pre className=" text-slate-500 text-xs md:text-base">.</pre>
