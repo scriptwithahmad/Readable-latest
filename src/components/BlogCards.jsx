@@ -10,6 +10,7 @@ async function getData() {
 
   return res.json();
 }
+
 // Fetch Blog Category ----------------
 async function getCatgoryData() {
   const res = await fetch("http://localhost:3000/api/category");
