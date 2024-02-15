@@ -16,7 +16,7 @@ const BlogLists = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `/api/blog?${queryString.stringify(filterByName)}`
+        `/api/blogs?${queryString.stringify(filterByName)}`
       );
       // console.log(res.data.message.data)
       return res.data.message.data;
@@ -60,7 +60,7 @@ const BlogLists = () => {
   const [blogCard, setBlogCard] = useState([]);
 
   const fetchBlogCard = async () => {
-    var res = await axios.get("/api/blog");
+    var res = await axios.get("/api/blogs");
     setBlogCard(res.data.message.data);
     return res.data.message.data;
   };

@@ -4,12 +4,12 @@ import Image from "next/image";
 import { format, render, cancel, register } from "timeago.js";
 
 const getSingleBlog = async (slug) => {
-  const { data } = await axios.get(`http://localhost:3000/api/blog/${slug}`);
+  const { data } = await axios.get(`http://localhost:3000/api/blogs/${slug}`);
   return data.singleBlog;
 };
 
 const getRecentBlogs = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/blog/?limit=6");
+  const { data } = await axios.get("http://localhost:3000/api/blogs/?limit=6");
   return data.message;
 };
 

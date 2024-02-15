@@ -68,7 +68,7 @@ const Page = () => {
         ...formData,
         featuredImage: { ...formData.featuredImage, url: imgUrl },
       };
-      var res = await axios.post(`/api/blog`, submitionData);
+      var res = await axios.post(`/api/blogs`, submitionData);
 
       if (res.data.success) {
         toast.success("Blog Submitted 😎");
