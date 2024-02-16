@@ -1,43 +1,73 @@
+"use client";
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import { useQuery } from "react-query";
+import queryString from "query-string";
+import React, { useEffect, useState } from "react";
+import { format, render, cancel, register } from "timeago.js";
 
 const page = () => {
+  const [filterByName, setFilterByName] = useState({
+    keyword: "",
+    page: 1,
+  });
+
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["blog", filterByName],
+    async () => {
+      var res = await axios.get(
+        `/api/blogs?${queryString.stringify(filterByName)}`
+      );
+      return res.data.message.data;
+    }
+  );
+
   return (
-    <div className=" max-w-[800px] m-auto py-5">
-      <h1 className="globalBlogCardText font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
-        How to stream data over HTTP using Node and Fetch API
+    <div className="standardWidth px-3 2xl:px-0">
+      <h1 className=" border-l-4 border-[#2386FF] pl-4 mt-24 mb-8 text-2xl font-semibold">
+        Must Read Articles :
       </h1>
-
-      {/* Author Here ---------------------------- */}
-      <div className=" flex items-center gap-2 my-8">
-        <div className=" h-12 w-12 rounded-full">
-          <img
-            alt="Image here"
-            className=" h-full w-full object-cover rounded-full"
-            src="https://miro.medium.com/v2/resize:fill:88:88/1*wZUTkEo2bOKA8xyaQI8Bcg.png"
-          />
-        </div>
-        <div>
-          <h3 className="text-sm text-gray-700 font-bold">Muhammad Ahmad</h3>
-          <span className="text-xs text-gray-600">Education</span>
-        </div>
-      </div>
-
-      <div className="w-full h-[500px] mt-8">
-        <img
-          className=" w-full h-full object-cover"
-          src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1707829966/blog-image/blog1_sdxzzz.png"
-          alt="image here"
-        />
-      </div>
-      {/* Description ------------------------------ */}
-      <div className=" my-8">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eius
-          repudiandae possimus quos natus culpa tempora architecto nihil
-          consequatur, neque commodi excepturi tempore quisquam molestias
-          voluptatum accusantium. Eaque, laudantium nemo?
-        </p>
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Card Map Here ------ */}
+        {data?.map((v, i) => {
+          return (
+            <div key={i}>
+              <div className="w-full h-[320px]">
+                <img
+                  src={v?.featuredImage?.url}
+                  alt={v?.featuredImage?.altText}
+                  className=" h-full w-full object-cover"
+                ></img>
+              </div>
+              <div className="border-b-4 pb-1 border-[#2386ff6d]">
+                <div className="flex items-center justify-between mt-3">
+                  <h3 className="accentColor text-sm">{v?.category}</h3>
+                  <span className="text-slate-600 flex items-center gap-2 text-sm">
+                    <i className="fa-regular fa-clock text-sm"></i>
+                    {format(new Date(v.createdAt), "en_US")}
+                  </span>
+                </div>
+                <div className="my-2">
+                  <Link href={`/blog/${v.slug}`}>
+                    <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
+                      {v?.title}
+                    </h1>
+                  </Link>
+                  <main
+                    dangerouslySetInnerHTML={{ __html: v?.desc }}
+                    className="text-sm mt-2 text-gray-500 line-clamp-2"
+                  ></main>
+                  <Link href={`/blog/${v.slug}`}>
+                    <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
+                      Read More
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -2,15 +2,41 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: String,
-    email: String,
+    fullName: {
+      type: String,
+      trim: true,
+      required: [true, "User Name Required"],
+    },
+    email: {
+      type: String,
+      trim: true,
+      required: [true, "User Name Required"],
+    },
+    username: {
+      type: String,
+      trim: true,
+      required: [true, "User Name Required"],
+    },
+    password: {
+      type: String,
+      required: [true, "Password Required!"],
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      required: [true, "Is Admin Field is Required!"],
+    },
+    photo: {
+      type: String,
+      required: false,
+    },
     posts: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "blogs",
-      required: true,
+      required: false,
     },
   },
-  
+
   { timestamps: true }
 );
 
