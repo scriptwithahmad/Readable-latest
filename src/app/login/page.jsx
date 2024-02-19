@@ -102,12 +102,11 @@ export default function Login() {
           </form>
           {/* accout Info ----------------------- */}
           <p className="mt-8 text-center text-sm text-gray-500">
-            Don't Have an Accout /
+            Dont Have an Accout /
             <a
               href="/register"
               className="leading-6 text-orange-500 hover:text-orange-600"
             >
-              {" "}
               Sigin Up
             </a>
           </p>

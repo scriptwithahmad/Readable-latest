@@ -6,7 +6,7 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
-const page = () => {
+const Page = () => {
   const [filterByName, setFilterByName] = useState({
     keyword: "",
     page: 1,
@@ -73,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
