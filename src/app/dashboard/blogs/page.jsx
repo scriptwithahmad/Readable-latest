@@ -14,7 +14,7 @@ const tableHeader = [
   { lable: "Actions", align: "center" },
 ];
 
-const index = () => {
+const Page = () => {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -249,4 +249,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Page;
