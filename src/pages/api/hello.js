@@ -7,41 +7,36 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
       try {
-        var match = {};
+        // var match = {};
 
-        const page = req.query.page || 1;
-        const limit = req.query.limit || 5;
-        const skip = (page - 1) * limit;
+        // const page = req.query.page || 1;
+        // const limit = req.query.limit || 5;
+        // const skip = (page - 1) * limit;
 
-        if (req.query.keyword) {
-          match.$or = [
-            { title: new RegExp(req.query.keyword, "i") },
-            { category: new RegExp(req.query.keyword, "i") },
-          ];
-        }
+        // if (req.query.keyword) {
+        //   match.$or = [
+        //     { title: new RegExp(req.query.keyword, "i") },
+        //     { category: new RegExp(req.query.keyword, "i") },
+        //   ];
+        // }
 
-        const items = await blogsModal
-          .find(match, {
-            metaTitle: false,
-            metaDesc: false,
-          })
-          .populate("author", "fullName email photo")
-          .limit(limit)
-          .skip(skip)
-          .sort({ createdAt: -1 });
-        const total = await blogsModal.find(match).count();
+        // const items = await blogsModal
+        //   .find(match, {
+        //     metaTitle: false,
+        //     metaDesc: false,
+        //   })
+        //   .populate("author", "fullName email photo")
+        //   .limit(limit)
+        //   .skip(skip)
+        //   .sort({ createdAt: -1 });
+        const total = await blogsModal.find();
 
-        var starting = total ? skip + 1 : 0;
-        var ending =
-          starting + limit - 1 > total ? total : starting + limit - 1;
+        
 
         res.status(200).json({
           success: true,
           message: {
-            data: items,
-            count: total,
-            starting,
-            ending,
+            data: total,
           },
         });
       } catch (error) {
