@@ -29,14 +29,14 @@ export default async function handler(req, res) {
         //   .limit(limit)
         //   .skip(skip)
         //   .sort({ createdAt: -1 });
-        const total = await blogsModal.find();
+    
 
         
 
         res.status(200).json({
           success: true,
           message: {
-            data: total,
+            data: "hi",
           },
         });
       } catch (error) {
