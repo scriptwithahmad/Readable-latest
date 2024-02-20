@@ -186,10 +186,10 @@ const Nav = () => {
                 />
                 <div className="leading-3">
                   <p className="text-[14px] capitalize font-medium">
-                    {user.fullname}
+                    {user.fullName}
                   </p>
                   <span className="text-[11px] cursor-pointer text-red-500 hover:text-red-600">
-                    {user.role}
+                    {user.isAdmin ? "Admin" : "User"}
                   </span>
                 </div>
 

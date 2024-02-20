@@ -16,7 +16,7 @@ const Page = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `/api/blogs?${queryString.stringify(filterByName)}`
+        `/api/get-blogs?${queryString.stringify(filterByName)}`
       );
       return res.data.message.data;
     }
