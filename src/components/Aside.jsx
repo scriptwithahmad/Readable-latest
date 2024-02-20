@@ -8,19 +8,9 @@ var adminNavLinks = [
   { href: "/dashboard", lable: "Dashboard", icon: "fa-solid fa-chart-simple" },
   { href: "/dashboard/category", lable: "Category", icon: "fa-solid fa-list" },
   {
-    href: "/dashboard/products",
-    lable: "Product",
+    href: "/dashboard/blogs",
+    lable: "Blogs",
     icon: "fa-solid fa-headphones-simple",
-  },
-  {
-    href: "/dashboard/users",
-    lable: "Users",
-    icon: "fa-regular fa-user",
-  },
-  {
-    href: "/dashboard/orders",
-    lable: "Orders",
-    icon: "fa-regular fa-calendar",
   },
 ];
 
