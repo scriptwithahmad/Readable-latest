@@ -8,7 +8,9 @@ export default async function handler(req, res) {
     //-------------- GET POST --------------//
     case "GET":
       try {
-        const singleBlog = await BlogModel.findOne({ slug: req.query.slug });
+        const singleBlog = await BlogModel.findOne({
+          slug: req.query.slug,
+        }).populate("author", "fullName email photo");
         res.status(200).json({
           success: true,
           singleBlog,
@@ -45,6 +47,7 @@ export default async function handler(req, res) {
           );
 
           res.status(200).json({
+            success: true,
             updateBlog,
           });
         }

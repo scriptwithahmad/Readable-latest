@@ -43,10 +43,10 @@ const blogSchema = new mongoose.Schema(
         required: [true, "Image Alternate Text Required!"],
       },
     },
-    // author: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "users",
-    // },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
   },
   { timestamps: true }
 );

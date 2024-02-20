@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Merienda } from "next/font/google";
+import { AuthContext } from "@/context/AuthContext";
+import React, { useContext, useEffect, useState } from "react";
 
 const Meriend = Merienda({
   weight: "800",
@@ -9,6 +10,7 @@ const Meriend = Merienda({
 });
 
 const Nav = () => {
+  var { user } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -36,16 +38,16 @@ const Nav = () => {
       >
         <div className="standardWidth flex items-center justify-between">
           <div className=" w-[130px]">
-            <h2 id="logo" className={Meriend.className}>
+            <Link href={"/"} id="logo" className={Meriend.className}>
               Readable
-            </h2>
+            </Link>
           </div>
           <div className="flex items-center gap-6">
             <ul className="hidden md:block">
               <li className="flex items-center gap-6 text-slate-700 text-lg">
                 <Link href={"/"}>Home</Link>
-                <Link href={"/"}>About</Link>
-                <Link href={"/"}>Services</Link>
+                <Link href={"/blog"}>Blog</Link>
+                <Link href={"/login"}>Login</Link>
                 <Link href={"/write"}>Write</Link>
               </li>
             </ul>

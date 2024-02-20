@@ -25,6 +25,7 @@ export default async function handler(req, res) {
             metaTitle: false,
             metaDesc: false,
           })
+          .populate("author", "fullName email photo")
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });

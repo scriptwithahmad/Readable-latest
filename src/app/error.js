@@ -1,25 +1,18 @@
 "use client";
-
 import { useEffect } from "react";
 
 export default function Error({ error, reset }) {
+  console.log(error.message);
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
+    console.error(error.message);
   }, [error]);
 
   return (
-    <div>
+    <div className="standardWidth py-4">
       <h2>Something went wrong!</h2>
-      <span>Error Page Trigger</span>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <p>Error Page Trigger</p>
+      <button className="border" onClick={() => reset()}>Try again</button>
     </div>
   );
 }

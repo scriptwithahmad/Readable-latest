@@ -387,7 +387,7 @@ h1 {
   content: "";
   border-radius: 16px;
   position: absolute;
-  bottom: 41.9%;
+  bottom: 42.3%;
   left: 0;
   height: 3px;
   width: 45%;
@@ -396,24 +396,24 @@ h1 {
 
 @media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 37.4%;
+    bottom: 43.6%;
   }
 }
 @media screen and (max-width: 768px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 47.3%;
+    bottom: 45%;
   }
 }
 @media screen and (max-width: 425px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 54%;
+    bottom: 51.5%;
   }
 }
 @media screen and (max-width: 375px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 47.2%;
+    bottom: 47.8%;
   }
 }

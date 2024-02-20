@@ -1,17 +1,15 @@
 "use client";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Toaster, toast } from "react-hot-toast";
-import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
-const Page = () => {
-  // User Auth
-  var { user } = useContext(AuthContext);
-  console.log(user?._id);
-
+const Page = ({ params }) => {
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -27,6 +25,19 @@ const Page = () => {
       altText: "",
     },
   });
+
+  useEffect(() => {
+    const fetchSingleBlog = async () => {
+      const res = await axios.get(`/api/blogs/${params.slug}`);
+
+      setFormData(
+        res?.data?.singleBlog
+        // title:res?.data?.singleBlog?.title
+      );
+    };
+
+    fetchSingleBlog();
+  }, []);
 
   const changeHandler = (e) => {
     const name = e.target.name;
@@ -71,30 +82,34 @@ const Page = () => {
 
       var submitionData = {
         ...formData,
-        author: user._id,
         featuredImage: { ...formData.featuredImage, url: imgUrl },
       };
-      var res = await axios.post(`/api/blogs`, submitionData);
+      var res = await axios.put(`/api/blogs/${params.slug}`, submitionData);
+
+      console.log(res.data.success);
 
       if (res.data.success) {
-        toast.success("Blog Submitted 😎");
+        toast.success("Blog Updated 😎");
       }
-      setTempImage("");
-      setIsError("");
-      setFormData({
-        title: "",
-        slug: "",
-        subTitle: "",
-        category: "",
-        desc: "",
-        metaDesc: "",
-        metaDesc: "",
-        author: "",
-        featuredImage: {
-          url: "",
-          altText: "",
-        },
-      });
+      setTimeout(() => {
+        router.back();
+        setTempImage("");
+        setIsError("");
+        setFormData({
+          title: "",
+          slug: "",
+          subTitle: "",
+          category: "",
+          desc: "",
+          metaDesc: "",
+          metaDesc: "",
+          author: "",
+          featuredImage: {
+            url: "",
+            altText: "",
+          },
+        });
+      }, 1500);
     } catch (error) {
       toast.error(error?.response?.data?.message);
       setIsError("");
@@ -115,40 +130,40 @@ const Page = () => {
         <div className="signIn_Outer_Div">
           <div className="sign_In_Shape">
             <img
-              src="images/sign/man-3.png"
               alt="Image Here"
               className="man1"
+              src="/images/sign/man-3.png"
             />
             <img
-              src="images/sign/man-2.png"
+              src="/images/sign/man-2.png"
               alt="Image Here"
               className="man2"
             />
             <img
               alt="Image Here"
               className="circle"
-              src="images/sign/circle.png"
+              src="/images/sign/circle.png"
             />
             <img
               alt="Image Here"
               className="zigzag wavey"
-              src="images/sign/zigzag.png"
+              src="/images/sign/zigzag.png"
             />
-            <img src="images/sign/dot.png" alt="Image Here" className="dot" />
+            <img src="/images/sign/dot.png" alt="Image Here" className="dot" />
             <img
               alt="Image Here"
               className="sign_Up"
-              src="images/sign/sign-up.png"
+              src="/images/sign/sign-up.png"
             />
             <img
               alt="Image Here"
-              src="images/sign/flower.png"
+              src="/images/sign/flower.png"
               className="flower animate-pulse"
             />
           </div>
           <div className="sign_In_Inner">
             <div className="sign_In_Heading">
-              <h2>Write Blog</h2>
+              <h2>Update Blog</h2>
             </div>
             <div className=" w-full  md:w-[90%] lg:w-[50%] ">
               <div className=" bg-white rounded-lg p-[20px] lg:p-[50px] enrollNow ">
@@ -205,23 +220,6 @@ const Page = () => {
                           <i className="fa-solid fa-envelope"></i>
                         </div>
                       </div>
-                      {/* Author ID Here -------------------------- */}
-                      {/* <div className="sign_In_Input_Outer">
-                        <label htmlFor="author">Author ID</label>
-                        <div className="sign_In_Input">
-                          <input
-                            id="author"
-                            // name="author"
-                            autoComplete="off"
-                            // onChange={changeHandler}
-                            // value={formData.author}
-                            // value={authorObjectId}
-                            placeholder="Enter Author ID"
-                            className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
-                          ></input>
-                          <i class="fa-solid fa-user"></i>
-                        </div>
-                      </div> */}
                     </div>
 
                     {/* Main Div -------------------------------------- */}
@@ -319,7 +317,17 @@ const Page = () => {
                                 alt="image here"
                               />
 
-                              <i className="fa-regular fa-trash-can absolute top-8 right-8 text-red-500 bg-gray-50 shadow-2xl p-2 rounded-full"></i>
+                              <i
+                                onClick={() =>
+                                  formData?.featuredImage
+                                    ? setFormData({
+                                        ...formData,
+                                        featuredImage: null,
+                                      })
+                                    : setTempImage(null)
+                                }
+                                className="fa-regular fa-trash-can absolute top-8 right-8 text-red-500 bg-gray-50 shadow-2xl p-2 rounded-full"
+                              ></i>
 
                               <div className="relative bg-white">
                                 <input

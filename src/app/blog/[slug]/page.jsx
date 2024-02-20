@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getSingleBlog = async (slug) => {
@@ -16,10 +17,9 @@ const getRecentBlogs = async () => {
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
   const recentBlog = await getRecentBlogs();
-
   return (
     <>
-      <div className=" max-w-[800px] m-auto py-0 px-3 2xl:px-0">
+      <div className=" max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-4">
         <h1 className=" text-2xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
           {blog?.title}
         </h1>
@@ -29,12 +29,17 @@ const page = async ({ params }) => {
           <div className=" h-12 w-12 rounded-full">
             <img
               alt="Image here"
-              src={blog.featuredImage.url}
-              className=" h-full w-full object-cover rounded-full"
+              className=" h-full w-full object-cover rounded-full border border-gray-100"
+              src={
+                blog?.author?.photo ||
+                "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
+              }
             />
           </div>
           <div>
-            <h3 className="text-sm text-gray-700 font-bold">Muhammad Ahmad</h3>
+            <h3 className="text-sm text-gray-700 font-bold">
+              {blog?.author?.fullName}
+            </h3>
             <span className="text-xs text-gray-600">{blog.category}</span>
           </div>
         </div>
