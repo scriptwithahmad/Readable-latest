@@ -5,12 +5,12 @@ import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getSingleBlog = async (slug) => {
-  const { data } = await axios.get(`http://localhost:3000/api/blogs/${slug}`);
+  const { data } = await axios.get(`/api/blogs/${slug}`);
   return data.singleBlog;
 };
 
 const getRecentBlogs = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/blogs/?limit=6");
+  const { data } = await axios.get("/api/blogs/?limit=3");
   return data.message;
 };
 
