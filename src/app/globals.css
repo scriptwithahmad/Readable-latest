@@ -121,8 +121,6 @@ h1 {
   z-index: -1;
 }
 .sign_In_Inner {
-  padding-top: 50px;
-  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -417,7 +415,3 @@ h1 {
     bottom: 47.8%;
   }
 }
-
-
-
-

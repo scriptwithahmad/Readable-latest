@@ -1,12 +1,17 @@
-import Link from "next/link";
-import React, { useContext, useState } from "react";
-import { AuthContext } from "@/context/AuthContext";
 import axios from "axios";
+import Link from "next/link";
+import { Merienda } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/context/AuthContext";
+import React, { useContext, useState } from "react";
+
+const Meriend = Merienda({
+  weight: "800",
+  subsets: ["latin"],
+});
 
 const Dnav = () => {
   const router = useRouter();
-
   const { user } = useContext(AuthContext);
 
   const handleLogout = async () => {
@@ -32,12 +37,8 @@ const Dnav = () => {
               className="fa-solid fa-bars-staggered text-gray-500 text-lg"
             ></i>
             <div className="flex items-center">
-              <Link href="/" className="flex-none">
-                <img
-                  width={20}
-                  src="/ulogo.png"
-                  className="mx-auto w-[100px] mt-2"
-                />
+              <Link href={"/"} id="logo" className={Meriend.className}>
+                Readable
               </Link>
             </div>
           </div>

@@ -9,6 +9,7 @@ import { format, render, cancel, register } from "timeago.js";
 
 const tableHeader = [
   { lable: "Name", align: "left" },
+  { lable: "Author", align: "left" },
   { lable: "Category", align: "left" },
   { lable: "Actions", align: "center" },
 ];
@@ -55,7 +56,7 @@ const index = () => {
   const delPost = async (slug) => {
     try {
       if (window.confirm("Do you wnat to Delete this Product") === true) {
-        const res = await fetch(`/api/products/${slug}`, {
+        const res = await fetch(`/api/blogs/${slug}`, {
           method: "DELETE",
         });
         if (
@@ -158,15 +159,32 @@ const index = () => {
                         </div>
                       </div>
                     </td>
+                    <td>
+                      <div className=" flex items-center">
+                        <div className="w-8 h-8 mr-3 border border-gray-100 rounded-full overflow-hidden">
+                          <img
+                            alt="Image Here"
+                            src={v.author?.photo}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-0.5">
+                          <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
+                            {v.author.fullName}
+                          </h2>
+                        </div>
+                      </div>
+                    </td>
                     <td className="px-6 py-2"> {v.category} </td>
                     <td className="px-6 py-2 text-lg text-center">
-                      <Link href={`/product/${v.slug}`}>
+                      <Link href={`/blog/${v.slug}`}>
                         <i
                           title="View"
                           className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
                         ></i>
                       </Link>
-                      <Link href={`products/edit-product/${v.slug}`}>
+                      <Link href={`/dashboard/blogs/edit-blog/${v.slug}`}>
                         <i
                           title="Edit"
                           className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"

@@ -63,7 +63,6 @@ const Page = () => {
                       <i className="fa-solid fa-arrow-right"></i>
                     </button>
                   </Link>
-                  <Link href={`/edit-blog/${v.slug}`}>Edit</Link>
                 </div>
               </div>
             </div>

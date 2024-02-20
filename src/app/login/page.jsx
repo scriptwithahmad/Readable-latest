@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
@@ -16,6 +17,8 @@ export default function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const router = useRouter()
+
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -26,10 +29,9 @@ export default function Login() {
           "Content-Type": "application/json",
         },
       });
-      console.log(loginUser);
       toast.success("User Logged In");
       setTimeout(() => {
-        window.location.reload();
+        router.back();
       }, 1000);
     } catch (error) {
       if (error?.response?.data?.message) {
@@ -67,7 +69,7 @@ export default function Login() {
                   onChange={routehandler}
                   autoComplete="username"
                   value={formData.username}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 focus:outline-none"
                 />
               </div>
             </div>
@@ -86,7 +88,7 @@ export default function Login() {
                   type="password"
                   onChange={routehandler}
                   value={formData.password}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 focus:outline-none"
                 />
               </div>
             </div>
