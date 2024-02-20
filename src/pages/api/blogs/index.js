@@ -45,7 +45,7 @@ export default async function handler(req, res) {
           },
         });
       } catch (error) {
-        res.status(500).json({
+        res.status(404).json({
           success: false,
           message: "Something Went Wrong!",
         });
