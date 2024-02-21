@@ -5,20 +5,27 @@ import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getSingleBlog = async (slug) => {
-  const { data } = await axios.get(`/api/get-blogs/${slug}`);
+  const { data } = await axios.get(
+    `http://localhost:3000/api/get-blogs/${slug}`
+  );
+
   return data.singleBlog;
 };
 
 const getRecentBlogs = async () => {
-  const { data } = await axios.get("/api/get-blogs/?limit=3");
+  const { data } = await axios.get(
+    "http://localhost:3000/api/get-blogs/?limit=3"
+  );
   return data.message;
 };
 
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
   const recentBlog = await getRecentBlogs();
+
   return (
     <>
+      {/* Single Page Here */}
       <div className=" max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-4">
         <h1 className=" text-2xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
           {blog?.title}
@@ -60,8 +67,7 @@ const page = async ({ params }) => {
         </div>
       </div>
 
-      {/* BLog Card ends ------------------------------------------------- */}
-
+      {/* Recent Blos ------------------------------------------------- */}
       <div className="max-w-[800px] m-auto px-3 2xl:px-0">
         <h1 className=" border-l-4 border-[#2386FF] pl-4 mt-24 mb-8 text-2xl font-semibold">
           Recent Articles :

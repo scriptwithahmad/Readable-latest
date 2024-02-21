@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 async function getBlogs() {
-  var res = await axios.get("/api/get-blogs");
+  var res = await axios.get("/api/blogs");
   return res.data.message.data;
 }
 

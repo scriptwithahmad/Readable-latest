@@ -1,74 +1,17 @@
-// "use client";
-// import Link from "next/link";
+import axios from "axios";
+import Link from "next/link";
+import Image from "next/image";
 import { Merienda } from "next/font/google";
-// import { AuthContext } from "@/context/AuthContext";
-// import React, { useContext, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { toast, Toaster } from "react-hot-toast";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext, useEffect, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const Meriend = Merienda({
   weight: "800",
   subsets: ["latin"],
 });
-
-// const Nav = () => {
-//   var { user } = useContext(AuthContext);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (window.scrollY > 20) {
-//         setScrolled(true);
-//       } else {
-//         setScrolled(false);
-//       }
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, []);
-
-//   return (
-//     <>
-//       <nav
-//         className={`pt-5 pb-4 z-50 px-4 2xl:px-0 ${
-//           scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
-//         }`}
-//       >
-//         <div className="standardWidth flex items-center justify-between">
-//           <div className=" w-[130px]">
-//             <Link href={"/"} id="logo" className={Meriend.className}>
-//               Readable
-//             </Link>
-//           </div>
-//           <div className="flex items-center gap-6">
-//             <ul className="hidden md:block">
-//               <li className="flex items-center gap-6 text-slate-700 text-lg">
-//                 <Link href={"/"}>Home</Link>
-//                 <Link href={"/blog"}>Blog</Link>
-//                 <Link href={"/login"}>Login</Link>
-//                 <Link href={"/write"}>Write</Link>
-//               </li>
-//             </ul>
-//             <button className="btn px-5 py-2">Let&apos;s Talk 👋</button>
-//           </div>
-//         </div>
-//       </nav>
-//     </>
-//   );
-// };
-
-// export default Nav;
-
-import axios from "axios";
-import Link from "next/link";
-import Image from "next/image";
-import { toast, Toaster } from "react-hot-toast";
-import { useContext, useState } from "react";
-import { usePathname } from "next/navigation";
-import OutsideClickHandler from "react-outside-click-handler";
-import { AuthContext } from "@/context/AuthContext";
 
 const navLinks = [
   { text: "Home", route: "/" },
@@ -100,12 +43,34 @@ const Nav = () => {
     }
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <Toaster />
       {/* ===================== Navbar For Desktop ==========================================  */}
-      <div className="bg-white z-50 drop-shadow-lg py-3 sticky top-0 backdrop-blur-3xl">
-        <nav className="flex items-center justify-between max-w-[1200px] m-auto px-4 lg:px-0">
+      <div
+        className={`pt-5 pb-4 z-50 px-4 2xl:px-0 ${
+          scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
+        }`}
+      >
+        <nav className="standardWidth flex items-center justify-between px-4 lg:px-0">
           {/* ===================== Navbar Image Here ==========================================  */}
           <div className=" w-24 h-auto">
             <Link href={"/"} id="logo" className={Meriend.className}>
@@ -199,21 +164,13 @@ const Nav = () => {
                 >
                   <ul className="px-4 py-5">
                     <li className="flex flex-col gap-2">
-                      {user?.role == "admin" ? (
-                        <Link
-                          className="text-xs text-gray-600 hover:text-orange-600 flex items-center gap-2"
-                          href="/dashboard"
-                        >
-                          <i className="fa-solid fa-chart-simple"></i> Dashboard
-                        </Link>
-                      ) : (
-                        <Link
-                          className="text-xs text-gray-600 hover:text-orange-600 flex items-center gap-2"
-                          href="/dashboard/user-portal"
-                        >
-                          <i className="fa-solid fa-chart-simple"></i> Dashboard
-                        </Link>
-                      )}
+                      <Link
+                        className="text-xs text-gray-600 hover:text-orange-600 flex items-center gap-2"
+                        href="/dashboard"
+                      >
+                        <i className="fa-solid fa-chart-simple"></i> Dashboard
+                      </Link>
+
                       <button
                         onClick={handleLogout}
                         className="text-xs text-gray-600 hover:text-red-600 flex items-center gap-2"

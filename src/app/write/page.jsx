@@ -74,7 +74,7 @@ const Page = () => {
         author: user._id,
         featuredImage: { ...formData.featuredImage, url: imgUrl },
       };
-      var res = await axios.post(`/api/get-blogs`, submitionData);
+      var res = await axios.post(`/api/blogs`, submitionData);
 
       if (res.data.success) {
         toast.success("Blog Submitted 😎");

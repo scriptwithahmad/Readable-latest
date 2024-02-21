@@ -27,7 +27,7 @@ const Page = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `/api/get-blogs?${queryString.stringify(filterByName)}`
+        `/api/blogs?${queryString.stringify(filterByName)}`
       );
       return res.data.message.data;
     }
@@ -56,7 +56,7 @@ const Page = () => {
   const delPost = async (slug) => {
     try {
       if (window.confirm("Do you wnat to Delete this Product") === true) {
-        const res = await fetch(`/api/get-blogs/${slug}`, {
+        const res = await fetch(`/api/blogs/${slug}`, {
           method: "DELETE",
         });
         if (
