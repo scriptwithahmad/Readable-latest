@@ -28,12 +28,9 @@ const Page = ({ params }) => {
 
   useEffect(() => {
     const fetchSingleBlog = async () => {
-      const res = await axios.get(`/api/blogs/${params.slug}`);
+      const res = await axios.get(`/api/get-blogs/${params.slug}`);
 
-      setFormData(
-        res?.data?.singleBlog
-        // title:res?.data?.singleBlog?.title
-      );
+      setFormData(res?.data?.singleBlog);
     };
 
     fetchSingleBlog();
@@ -84,7 +81,7 @@ const Page = ({ params }) => {
         ...formData,
         featuredImage: { ...formData.featuredImage, url: imgUrl },
       };
-      var res = await axios.put(`/api/blogs/${params.slug}`, submitionData);
+      var res = await axios.put(`/api/get-blogs/${params.slug}`, submitionData);
 
       console.log(res.data.success);
 

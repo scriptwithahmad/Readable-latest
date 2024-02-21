@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
@@ -8,7 +8,6 @@ import { AuthContext } from "@/context/AuthContext";
 const Page = () => {
   // User Auth
   var { user } = useContext(AuthContext);
-  console.log(user?._id);
 
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -108,6 +107,22 @@ const Page = () => {
     }
   };
 
+  const [categories, setCategories] = useState([]);
+  console.log(categories);
+
+  const fetchCatgories = async () => {
+    try {
+      const { data } = await axios.get("/api/category");
+      setCategories(data.getcat);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCatgories();
+  }, []);
+
   return (
     <>
       <Toaster />
@@ -197,23 +212,6 @@ const Page = () => {
                         <i className="fa-solid fa-envelope"></i>
                       </div>
                     </div>
-                    {/* Author ID Here -------------------------- */}
-                    {/* <div className="sign_In_Input_Outer">
-                        <label htmlFor="author">Author ID</label>
-                        <div className="sign_In_Input">
-                          <input
-                            id="author"
-                            // name="author"
-                            autoComplete="off"
-                            // onChange={changeHandler}
-                            // value={formData.author}
-                            // value={authorObjectId}
-                            placeholder="Enter Author ID"
-                            className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
-                          ></input>
-                          <i class="fa-solid fa-user"></i>
-                        </div>
-                      </div> */}
                   </div>
 
                   {/* Main Div -------------------------------------- */}
@@ -230,9 +228,13 @@ const Page = () => {
                           className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                         >
                           <option value="">Select Blog Category</option>
-                          <option value="News">News</option>
-                          <option value="Education">Education</option>
-                          <option value="Technology">Technology</option>
+                          {categories.map((category, index) => {
+                            return (
+                              <option key={index} value={category?.name}>
+                                {category?.name}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>

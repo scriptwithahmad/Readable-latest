@@ -1,12 +1,11 @@
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
-    `http://localhost:3000/api/get-blogs/${slug}`
+    `https://readable-latest-msbs.vercel.app/api/get-blogs/${slug}`
   );
 
   return data.singleBlog;
