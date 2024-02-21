@@ -21,6 +21,7 @@ const getSingleBlog = async (slug) => {
 
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
+  console.log(blog);
   // const recentBlog = await getRecentBlogs();
 
   return (
