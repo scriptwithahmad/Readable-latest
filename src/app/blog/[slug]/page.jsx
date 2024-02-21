@@ -11,16 +11,17 @@ const getSingleBlog = async (slug) => {
   return data.singleBlog;
 };
 
-const getRecentBlogs = async () => {
-  const { data } = await axios.get(
-    "http://localhost:3000/api/get-blogs/?limit=3"
-  );
-  return data.message;
-};
+// const getRecentBlogs = async () => {
+//   const { data } = await axios.get(
+//     "http://localhost:3000/api/get-blogs/?limit=3"
+//     "https://readable-latest-msbs.vercel.app/api/get-blogs/?limit=3"
+//   );
+//   return data.message;
+// };
 
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
-  const recentBlog = await getRecentBlogs();
+  // const recentBlog = await getRecentBlogs();
 
   return (
     <>
@@ -73,7 +74,7 @@ const page = async ({ params }) => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {recentBlog.data?.map((v, i) => {
+          {/* {recentBlog.data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[180px]">
@@ -111,7 +112,7 @@ const page = async ({ params }) => {
                 </div>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
     </>
