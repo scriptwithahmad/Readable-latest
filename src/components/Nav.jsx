@@ -89,13 +89,13 @@ const Nav = () => {
                   ) && (
                     <li
                       key={links.route}
-                      className="text-[#777] relative z-20 font-light hover:text-slate-700 transition duration-200 hidden lg:block"
+                      className="text-slate-500 relative z-10 hover:text-slate-700 transition duration-200 hidden lg:block"
                     >
                       <Link
                         href={links.route}
                         className={
                           router === links.route
-                            ? "relative before:absolute before:-bottom-1 font-medium text-orange-500"
+                            ? "relative before:absolute before:-bottom-1 text-[#0077ff]"
                             : ""
                         }
                       >

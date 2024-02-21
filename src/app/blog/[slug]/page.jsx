@@ -11,18 +11,18 @@ const getSingleBlog = async (slug) => {
   return data.singleBlog;
 };
 
-// const getRecentBlogs = async () => {
-//   const { data } = await axios.get(
-//     "http://localhost:3000/api/get-blogs/?limit=3"
-//     "https://readable-latest-msbs.vercel.app/api/get-blogs/?limit=3"
-//   );
-//   return data.message;
-// };
+const getRecentBlogs = async () => {
+  const { data } = await axios.get(
+    // "http://localhost:3000/api/get-blogs/?limit=3"
+    "https://readable-latest-msbs.vercel.app/api/get-blogs/?limit=3"
+  );
+  return data.message;
+};
 
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
   console.log(blog);
-  // const recentBlog = await getRecentBlogs();
+  const recentBlog = await getRecentBlogs();
 
   return (
     <>
