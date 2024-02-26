@@ -1,19 +1,30 @@
 import axios from "axios";
 import Link from "next/link";
 import { Suspense } from "react";
-import { format, render, cancel, register } from "timeago.js"; 
+import { format, render, cancel, register } from "timeago.js";
 
 const getBlogs = async () => {
-  const { data } = await axios.get(
-    `https://readable-latest-msbs.vercel.app/api/get-blogs`
+  const res = await fetch(
+    "https://readable-latest-msbs.vercel.app/api/get-blogs"
   );
 
-  return data.message.data;
+  const data = await res.json()
+  return data.message;
 };
+
+const getBlogsCategories = async () => {
+  const res  = await fetch(
+    "https://readable-latest-msbs.vercel.app/api/category"
+  );
+  const data = await res.json()
+  return data.getcat;
+};
+
+
 
 const BlogLists = async () => {
   const blogs = await getBlogs();
-  console.log(blogs);
+  const categoryData = await getBlogsCategories();
 
   return (
     <>
@@ -21,7 +32,7 @@ const BlogLists = async () => {
       <div className="standardWidth px-3 2xl:px-0">
         <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
-            {/* {categoryData?.map((data, index) => {
+            {categoryData?.map((data, index) => {
               return (
                 <button
                   key={index}
@@ -44,7 +55,7 @@ const BlogLists = async () => {
                   )}
                 </button>
               );
-            })} */}
+            })}
           </div>
           <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
             <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
@@ -71,7 +82,7 @@ const BlogLists = async () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {/* {data?.map((v, i) => {
+          {blogs?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[320px]">
@@ -109,7 +120,7 @@ const BlogLists = async () => {
                 </div>
               </div>
             );
-          })} */}
+          })}
         </div>
       </div>
     </>

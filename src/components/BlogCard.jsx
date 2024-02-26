@@ -7,12 +7,11 @@ const getBlogs = async () => {
   const { data } = await axios.get(
     "https://readable-latest-msbs.vercel.app/api/get-blogs"
   );
-  return data.message;
+  return data.message.data;
 };
 
 const BlogCard = async () => {
   const blogCard = await getBlogs();
-  // console.log(blogCard)
 
   return (
     <>
