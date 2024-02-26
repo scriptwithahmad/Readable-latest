@@ -1,63 +1,19 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import queryString from "query-string";
-import { useQuery } from "react-query";
-import { format, render, cancel, register } from "timeago.js";
 import axios from "axios";
 import Link from "next/link";
-import BlogCard from "./BlogCard";
+import { Suspense } from "react";
+import { format, render, cancel, register } from "timeago.js"; 
 
-const BlogLists = () => {
-  const [filterByName, setFilterByName] = useState({
-    keyword: "",
-    page: 1,
-  });
-
-  const { data, isLoading, isError, refetch } = useQuery(
-    ["blog", filterByName],
-    async () => {
-      var res = await axios.get(
-        `/api/get-blogs?${queryString.stringify(
-          filterByName
-        )}`
-      );
-      return res.data.message.data;
-    }
+const getBlogs = async () => {
+  const { data } = await axios.get(
+    `https://readable-latest-msbs.vercel.app/api/get-blogs`
   );
 
+  return data.message.data;
+};
 
-  // Category Map Fucntion and Stats Start here -----------
-  const [categoryData, setCategoryData] = useState([]);
-  const total = categoryData?.length;
-
-  const fetchBlogCategory = async () => {
-    var res = await axios.get("/api/category");
-    setCategoryData(res.data.getcat);
-    return res.data.getcat;
-  };
-
-  useEffect(() => {
-    fetchBlogCategory();
-  }, []);
-
-  // Input Hadler For Searching by Name ------------------------------------------/
-  const searchInputHanler = (e) => {
-    const { name, value } = e.target;
-    setFilterByName({ ...filterByName, page: 1, [name]: value });
-  };
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  // Handle key press events
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      refetch();
-      setScrollPosition(600);
-    }
-  };
-
-  useEffect(() => {
-    window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-  }, [scrollPosition]);
+const BlogLists = async () => {
+  const blogs = await getBlogs();
+  console.log(blogs);
 
   return (
     <>
@@ -65,7 +21,7 @@ const BlogLists = () => {
       <div className="standardWidth px-3 2xl:px-0">
         <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
-            {categoryData?.map((data, index) => {
+            {/* {categoryData?.map((data, index) => {
               return (
                 <button
                   key={index}
@@ -88,16 +44,16 @@ const BlogLists = () => {
                   )}
                 </button>
               );
-            })}
+            })} */}
           </div>
           <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
             <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
             <input
               type="search"
-              name="keyword"
-              value={filterByName.keyword}
-              onChange={searchInputHanler}
-              onKeyDown={handleKeyPress}
+              // name="keyword"
+              // value={filterByName.keyword}
+              // onChange={searchInputHanler}
+              // onKeyDown={handleKeyPress}
               placeholder="eg: Blog, Category..."
               className="bg-transparent outline-none py-1 text-sm w-[180px]"
             />
@@ -115,7 +71,7 @@ const BlogLists = () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {data?.map((v, i) => {
+          {/* {data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[320px]">
@@ -153,7 +109,7 @@ const BlogLists = () => {
                 </div>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
     </>
