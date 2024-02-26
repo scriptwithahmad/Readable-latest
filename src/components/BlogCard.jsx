@@ -7,13 +7,11 @@ const getBlogs = async () => {
   const { data } = await axios.get(
     "https://readable-latest-msbs.vercel.app/api/get-blogs"
   );
-
-    console.log(data)
   return data.message;
 };
 
 const BlogCard = async () => {
-  // const blogCard = await getBlogs();
+  const blogCard = await getBlogs();
   // console.log(blogCard)
 
   return (
@@ -24,7 +22,7 @@ const BlogCard = async () => {
           <h1 className="border-l-4 border-[#2386FF] pl-4 mt-16 mb-8 text-2xl font-semibold">
             Recent Posts:
           </h1>
-          {/* {blogCard?.slice(0, 1).map((v, i) => {
+          {blogCard?.slice(0, 1).map((v, i) => {
             return (
               <section
                 key={i}
@@ -103,7 +101,7 @@ const BlogCard = async () => {
                 </div>
               </section>
             );
-          })} */}
+          })}
         </div>
       </Suspense>
     </>
