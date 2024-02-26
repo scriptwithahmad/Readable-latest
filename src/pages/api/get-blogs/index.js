@@ -20,8 +20,8 @@ export default async function handler(req, res) {
 
     const items = await blogsModal
       .find(match, {
-        metaTitle: false,
-        metaDesc: false,
+        metaTitle: 0,
+        metaDesc: 0,
       })
       .populate("author", "fullName email photo")
       .limit(limit)

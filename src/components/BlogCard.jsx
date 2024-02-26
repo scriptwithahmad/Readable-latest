@@ -3,10 +3,13 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
-async function getBlogs() {
-  var res = await axios.get("/api/blogs");
-  return res.data.message.data;
-}
+const getBlogs = async () => {
+  const { data } = await axios.get(
+    `https://readable-latest-msbs.vercel.app/api/get-blogs`
+  );
+
+  return data.message.data;
+};
 
 const BlogCard = async () => {
   const blogCard = await getBlogs();

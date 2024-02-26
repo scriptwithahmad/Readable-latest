@@ -108,7 +108,6 @@ const Page = () => {
   };
 
   const [categories, setCategories] = useState([]);
-  console.log(categories);
 
   const fetchCatgories = async () => {
     try {
@@ -129,27 +128,27 @@ const Page = () => {
 
       <div className="signIn_Outer_Div my-8">
         <div className="sign_In_Shape">
-          <img src="images/sign/man-3.png" alt="Image Here" className="man1" />
-          <img src="images/sign/man-2.png" alt="Image Here" className="man2" />
+          <img src="/images/sign/man-3.png" alt="Image Here" className="man1" />
+          <img src="/images/sign/man-2.png" alt="Image Here" className="man2" />
           <img
             alt="Image Here"
             className="circle"
-            src="images/sign/circle.png"
+            src="/images/sign/circle.png"
           />
           <img
             alt="Image Here"
             className="zigzag wavey"
-            src="images/sign/zigzag.png"
+            src="/images/sign/zigzag.png"
           />
           <img src="images/sign/dot.png" alt="Image Here" className="dot" />
           <img
             alt="Image Here"
             className="sign_Up"
-            src="images/sign/sign-up.png"
+            src="/images/sign/sign-up.png"
           />
           <img
             alt="Image Here"
-            src="images/sign/flower.png"
+            src="/images/sign/flower.png"
             className="flower animate-pulse"
           />
         </div>

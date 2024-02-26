@@ -16,13 +16,12 @@ const Page = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `https://readable-latest-msbs.vercel.app/api/get-blogs?${queryString.stringify(
-          filterByName
-        )}`
+        `/api/get-blogs?${queryString.stringify(filterByName)}`
       );
       return res.data.message.data;
     }
   );
+
 
   return (
     <div className="standardWidth px-3 2xl:px-0">
