@@ -12,7 +12,7 @@ const notFound = () => {
               </div>
 
               <div>
-                <h3 className="">Look like you're lost</h3>
+                <h3 className="">Look like your are lost</h3>
 
                 <p className=" mb-">
                   the page you are looking for not avaible!
