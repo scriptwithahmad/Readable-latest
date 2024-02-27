@@ -12,7 +12,9 @@ export default function Error({ error, reset }) {
     <div className="standardWidth py-4">
       <h2>Something went wrong!</h2>
       <p>Error Page Trigger</p>
-      <button className="border" onClick={() => reset()}>Try again</button>
+      <button className="border" onClick={() => window.location.reload()}>
+        Try again
+      </button>
     </div>
   );
 }

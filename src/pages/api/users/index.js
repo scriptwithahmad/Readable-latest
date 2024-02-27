@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       break;
     case "GET":
       try {
-        const user = await usersModel.find();
+        const user = await usersModel.find().populate("posts");
         res.status(200).json({
           success: true,
           user,

@@ -4,9 +4,7 @@ import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getBlogs = async () => {
-  const { data } = await axios.get(
-    "https://readable-latest-msbs.vercel.app/api/get-blogs"
-  );
+  const { data } = await axios.get("http://localhost:3000/api/get-blogs");
   return data.message.data;
 };
 
@@ -50,10 +48,11 @@ const BlogCard = async () => {
                     </div>
                     <div>
                       <Link href={`/blog/${v.slug}`}>
-                        <h1 className="globalBlogCardText hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] my-2 lg:my-4">
+                        <h1 className="globalBlogCardText hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4">
                           {v?.title}
                         </h1>
                       </Link>
+
                       <Link href={`/blog/${v.slug}`}>
                         <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
                           Read More

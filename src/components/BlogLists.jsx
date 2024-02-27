@@ -2,28 +2,24 @@ import axios from "axios";
 import Link from "next/link";
 import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
+import BlogCard from "./BlogCard";
 
 const getBlogs = async () => {
-  const res = await fetch(
-    "https://readable-latest-msbs.vercel.app/api/get-blogs"
-  );
+  const res = await fetch("http://localhost:3000/api/get-blogs");
 
-  const data = await res.json()
+  const data = await res.json();
   return data.message;
 };
 
 const getBlogsCategories = async () => {
-  const res  = await fetch(
-    "https://readable-latest-msbs.vercel.app/api/category"
-  );
-  const data = await res.json()
+  const res = await fetch("http://localhost:3000/api/category");
+  const data = await res.json();
   return data.getcat;
 };
 
-
-
 const BlogLists = async () => {
   const blogs = await getBlogs();
+  // console.log(blogs.data)
   const categoryData = await getBlogsCategories();
 
   return (
@@ -72,7 +68,7 @@ const BlogLists = async () => {
         </div>
       </div>
 
-      {/* <BlogCard /> */}
+      <BlogCard />
 
       {/* BLog Card ends ------------------------------------------------- */}
 
@@ -82,7 +78,7 @@ const BlogLists = async () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {blogs?.map((v, i) => {
+          {blogs?.data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[320px]">

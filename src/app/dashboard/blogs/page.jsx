@@ -27,7 +27,7 @@ const Page = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `https://readable-latest-msbs.vercel.app/api/get-blogs?${queryString.stringify(
+        `/api/get-blogs?${queryString.stringify(
           filterByName
         )}`
       );
