@@ -1,6 +1,6 @@
 import Link from "next/link";
 import BlogCard from "./BlogCard";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
 
 const getBlogs = async () => {
   const res = await fetch(
@@ -38,7 +38,6 @@ const BlogLists = async () => {
                     background: data?.name == "All" ? "#2386FF" : null,
                     boxShadow: data?.name == "All" ? "globalShadow" : "none",
                   }}
-                 
                   className="hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base"
                 >
                   {data?.name == "All" ? (
