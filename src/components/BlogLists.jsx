@@ -5,14 +5,18 @@ import { format, render, cancel, register } from "timeago.js";
 import BlogCard from "./BlogCard";
 
 const getBlogs = async () => {
-  const res = await fetch("http://localhost:3000/api/get-blogs");
+  const res = await fetch(
+    "https://readable-latest-msbs.vercel.app/api/get-blogs"
+  );
 
   const data = await res.json();
   return data.message;
 };
 
 const getBlogsCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/category");
+  const res = await fetch(
+    "https://readable-latest-msbs.vercel.app/api/category"
+  );
   const data = await res.json();
   return data.getcat;
 };

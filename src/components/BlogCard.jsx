@@ -4,7 +4,9 @@ import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
 
 const getBlogs = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/get-blogs");
+  const { data } = await axios.get(
+    "https://readable-latest-msbs.vercel.app/api/get-blogs"
+  );
   return data.message.data;
 };
 
