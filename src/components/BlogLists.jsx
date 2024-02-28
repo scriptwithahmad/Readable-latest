@@ -1,12 +1,10 @@
-import axios from "axios";
 import Link from "next/link";
-import { Suspense } from "react";
-import { format, render, cancel, register } from "timeago.js";
 import BlogCard from "./BlogCard";
+import { format, render, cancel, register } from "timeago.js";
 
 const getBlogs = async () => {
   const res = await fetch(
-    "https://readable-latest-msbs.vercel.app/api/get-blogs"
+    "https://readable-latest-msbs-fskc3pjry-scriptwithahmad.vercel.app/api/get-blogs"
   );
 
   const data = await res.json();
@@ -15,7 +13,7 @@ const getBlogs = async () => {
 
 const getBlogsCategories = async () => {
   const res = await fetch(
-    "https://readable-latest-msbs.vercel.app/api/category"
+    "https://readable-latest-msbs-fskc3pjry-scriptwithahmad.vercel.app/api/category"
   );
   const data = await res.json();
   return data.getcat;
@@ -23,7 +21,6 @@ const getBlogsCategories = async () => {
 
 const BlogLists = async () => {
   const blogs = await getBlogs();
-  // console.log(blogs.data)
   const categoryData = await getBlogsCategories();
 
   return (
@@ -41,7 +38,8 @@ const BlogLists = async () => {
                     background: data?.name == "All" ? "#2386FF" : null,
                     boxShadow: data?.name == "All" ? "globalShadow" : "none",
                   }}
-                  className={` hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base`}
+                 
+                  className="hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base"
                 >
                   {data?.name == "All" ? (
                     <div className="flex items-center gap-1">
