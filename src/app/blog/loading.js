@@ -11,9 +11,9 @@ const loading = () => {
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card Map Here ------ */}
-        {[1, 2, 3].map((v) => {
+        {[1, 2, 3].map((v, i) => {
           return (
-            <div className="w-full h-[320px]">
+            <div key={i + 1} className="w-full h-[320px]">
               <Skeleton className="w-full h-[320px]">
                 <img
                   src={

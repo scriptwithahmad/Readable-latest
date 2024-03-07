@@ -13,10 +13,10 @@ const notFound = () => {
               </div>
 
               <div className=" -translate-y-14">
-                <h3 className="">Seems like you're lost</h3>
+                <h3 className="">Seems like youre lost</h3>
 
                 <p className=" mb-6">
-                  the page you are looking for isn't avaible!
+                  the page you are looking for isnt avaible!
                 </p>
 
                 <Link
