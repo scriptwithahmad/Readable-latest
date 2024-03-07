@@ -1,8 +1,9 @@
+import Link from "next/link";
 import React from "react";
 
 const notFound = () => {
   return (
-    <section class="page_404">
+    <section class="page_404 standardWidth">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 ">
@@ -11,16 +12,19 @@ const notFound = () => {
                 <h1 class="text-center ">404</h1>
               </div>
 
-              <div>
-                <h3 className="">Look like your are lost</h3>
+              <div className=" -translate-y-14">
+                <h3 className="">Seems like you're lost</h3>
 
-                <p className=" mb-">
-                  the page you are looking for not avaible!
+                <p className=" mb-6">
+                  the page you are looking for isn't avaible!
                 </p>
 
-                <a href="" class="link_404 btn px-6 py-3">
+                <Link
+                  href="/"
+                  class="link_404 bg-gradient-to-tr from-[#f3626f] to-[#ff4791] px-6 py-3 rounded-xl text-white"
+                >
                   Go to Home
-                </a>
+                </Link>
               </div>
             </div>
           </div>

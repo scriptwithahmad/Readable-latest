@@ -12,6 +12,7 @@ const getBlogs = async () => {
 
 const BlogCard = async () => {
   const blogCard = await getBlogs();
+  // console.log(blogCard);
 
   return (
     <>

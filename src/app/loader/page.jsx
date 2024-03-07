@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const loading = () => {
+const Page = () => {
   return (
     <>
       <main className="standardWidth px-3 2xl:px-0">
@@ -32,7 +32,6 @@ const loading = () => {
           </div>
         </div>
       </main>
-
       <div className="px-3 2xl:px-0 standardWidth">
         <Skeleton count={1} height={40} width={250} className="mb-4">
           Recent Posts:
@@ -118,4 +117,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default Page;
