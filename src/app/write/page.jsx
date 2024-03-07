@@ -96,12 +96,6 @@ const Page = () => {
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      setIsError("");
-      if (error?.response?.data?.message) {
-        setIsError(error?.response?.data?.message);
-      } else {
-        toast.error("Something went wrong");
-      }
     } finally {
       setLoading(false);
     }

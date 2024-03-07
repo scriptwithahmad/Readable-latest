@@ -53,7 +53,6 @@ export default function RootLayout({ children }) {
                 <Footer />
               </div>
             )}
-            
           </Context>
         </QueryClientProvider>
       </body>

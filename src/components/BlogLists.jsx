@@ -1,26 +1,44 @@
+"use client";
 import axios from "axios";
 import Link from "next/link";
-import { Suspense } from "react";
+import { useQuery } from "react-query";
+import queryString from "query-string";
+import React, { useEffect, useState } from "react";
 import { format, render, cancel, register } from "timeago.js";
-import BlogCard from "./BlogCard";
+// import BlogCard from "./BlogCard";
 
-const getBlogs = async () => {
-  const res = await fetch("http://localhost:3000/api/get-blogs");
+const BlogLists = () => {
+  const [filterByName, setFilterByName] = useState({
+    keyword: "",
+    page: 1,
+  });
 
-  const data = await res.json();
-  return data.message;
-};
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["blog", filterByName],
+    async () => {
+      var res = await axios.get(
+        `https://readable-blogging.vercel.app/api/get-blogs?${queryString.stringify(
+          filterByName
+        )}`
+      );
+      return res.data.message.data;
+    }
+  );
 
-const getBlogsCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/category");
-  const data = await res.json();
-  return data.getcat;
-};
+  const [categories, setCategories] = useState([]);
 
-const BlogLists = async () => {
-  const blogs = await getBlogs();
-  // console.log(blogs.data)
-  const categoryData = await getBlogsCategories();
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get("/api/category");
+      setCategories(data.getcat);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   return (
     <>
@@ -28,7 +46,7 @@ const BlogLists = async () => {
       <div className="standardWidth px-3 2xl:px-0">
         <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
-            {categoryData?.map((data, index) => {
+            {categories?.map((data, index) => {
               return (
                 <button
                   key={index}
@@ -37,7 +55,7 @@ const BlogLists = async () => {
                     background: data?.name == "All" ? "#2386FF" : null,
                     boxShadow: data?.name == "All" ? "globalShadow" : "none",
                   }}
-                  className={` hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base`}
+                  className="hover:bg-[#eeeeee8c] text-slate-500 whitespace-nowrap px-2.5 md:px-6 rounded-full py-1.5 text-xs md:text-base"
                 >
                   {data?.name == "All" ? (
                     <div className="flex items-center gap-1">
@@ -68,7 +86,7 @@ const BlogLists = async () => {
         </div>
       </div>
 
-      <BlogCard />
+      {/* <BlogCard /> */}
 
       {/* BLog Card ends ------------------------------------------------- */}
 
@@ -78,7 +96,7 @@ const BlogLists = async () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {blogs?.data?.map((v, i) => {
+          {data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[320px]">

@@ -1,10 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
 import { Suspense } from "react";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
 
 const getBlogs = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/get-blogs");
+  const { data } = await axios.get(
+    "https://readable-blogging.vercel.app/api/get-blogs"
+  );
   return data.message.data;
 };
 

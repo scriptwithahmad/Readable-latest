@@ -6,7 +6,7 @@ import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
-    `https://readable-latest-msbs.vercel.app/api/get-blogs/${slug}`
+    `https://readable-blogging.vercel.app/api/get-blogs/${slug}`
   );
 
   return data.singleBlog;

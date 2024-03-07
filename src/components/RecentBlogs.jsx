@@ -6,7 +6,7 @@ import { format, render, cancel, register } from "timeago.js";
 
 const getRecentBlogs = async () => {
   const { data } = await axios.get(
-    "https://readable-latest-msbs.vercel.app/api/get-blogs/?limit=3"
+    "https://readable-blogging.vercel.app/api/get-blogs/?limit=3"
   );
   return data.message;
 };
