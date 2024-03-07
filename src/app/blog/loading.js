@@ -13,7 +13,7 @@ const loading = () => {
         {/* Card Map Here ------ */}
         {[1, 2, 3].map((v, i) => {
           return (
-            <div key={i + 1} className="w-full h-[320px]">
+            <div key={i} className="w-full h-[320px]">
               <Skeleton className="w-full h-[320px]">
                 <img
                   src={
