@@ -5,14 +5,13 @@ import { format } from "timeago.js";
 
 const getBlogs = async () => {
   const { data } = await axios.get(
-    "https://readable-latest-msbs-fskc3pjry-scriptwithahmad.vercel.app/api/get-blogs"
+    "https://readable-latest-msbs.vercel.app/api/get-blogs"
   );
   return data.message.data;
 };
 
 const BlogCard = async () => {
   const blogCard = await getBlogs();
-  // console.log(blogCard);
 
   return (
     <>
