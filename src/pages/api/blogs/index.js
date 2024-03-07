@@ -31,8 +31,9 @@ export default async function handler(req, res) {
         }
 
         // Error Handle for Required Fields
-        if (error.message?.split(":")[2]?.split(",")[0]?.trim()) {
+        if (error.message.split(":")[2].split(",")[0].trim()) {
           var errMessage = error.message.split(":")[2].split(",")[0].trim();
+
           return res.status(400).json({
             success: false,
             message: errMessage,

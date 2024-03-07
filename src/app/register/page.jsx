@@ -45,10 +45,15 @@ const Register = () => {
     <>
       <Toaster />
       <div className="flex items-center flex-col px-6 py-12 lg:px-8">
-        <h2 className="my-4 text-slate-700 text-center text-2xl font-bold leading-9 tracking-tight">
-          Sign in to your account
-        </h2>
-        <div className="shadow-2xl border-y-4 border-y-orange-200 rounded-lg px-6 py-8 mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="globalShadow rounded-lg px-6 py-8 mt-2 sm:mx-auto w-[500px]">
+          <div className=" flex items-center gap-2 mb-4">
+            <img
+              alt="Logo Here"
+              className=" w-8"
+              src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1706707781/ulogo_hclp4i.png"
+            />
+            <h2 className="text-slate-700 text-xl font-bold">Readable</h2>
+          </div>
           <form className="space-y-6" onSubmit={submitForm}>
             {/* Full name  ----------------*/}
             <div>

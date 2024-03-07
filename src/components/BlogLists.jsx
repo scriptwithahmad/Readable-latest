@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { format, render, cancel, register } from "timeago.js";
-import BlogCard from "./BlogCard";
+// import BlogCard from "./BlogCard";
 
 const BlogLists = () => {
   const [filterByName, setFilterByName] = useState({
@@ -84,7 +84,7 @@ const BlogLists = () => {
         </div>
       </div>
 
-      <BlogCard />
+      {/* <BlogCard /> */}
 
       {/* BLog Card ends ------------------------------------------------- */}
 

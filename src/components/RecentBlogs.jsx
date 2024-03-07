@@ -5,9 +5,7 @@ import Image from "next/image";
 import { format, render, cancel, register } from "timeago.js";
 
 const getRecentBlogs = async () => {
-  const { data } = await axios.get(
-    "https://readable-latest-msbs.vercel.app/api/get-blogs/?limit=3"
-  );
+  const { data } = await axios.get("/api/get-blogs/?limit=3");
   return data.message;
 };
 
