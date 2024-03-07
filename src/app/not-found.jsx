@@ -14,7 +14,7 @@ const notFound = () => {
               <div>
                 <h3 className="">Look like your are lost</h3>
 
-                <p className=" mb-">
+                <p>
                   the page you are looking for not avaible!
                 </p>
 
