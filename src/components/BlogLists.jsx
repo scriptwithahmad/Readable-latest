@@ -17,7 +17,9 @@ const BlogLists = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `/api/get-blogs?${queryString.stringify(filterByName)}`
+        `https://readable-blogging.vercel.app/api/get-blogs?${queryString.stringify(
+          filterByName
+        )}`
       );
       return res.data.message.data;
     }
