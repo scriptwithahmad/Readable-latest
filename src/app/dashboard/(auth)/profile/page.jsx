@@ -10,7 +10,7 @@ const nunito = Nunito({
   subsets: ["latin"],
 });
 
-const page = () => {
+const Page = () => {
   const { user } = useContext(AuthContext);
 
   const { data, isLoading, isError, refetch } = useQuery(["blog"], async () => {
@@ -145,4 +145,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
