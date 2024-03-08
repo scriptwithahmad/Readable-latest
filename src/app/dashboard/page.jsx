@@ -14,11 +14,9 @@ const jsonData = [
 const Page = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
-  // console.log(data)
 
   const fetchData = async () => {
     const { data } = await axios.get(`/api/get-blogs`);
-    console.log(data.message.data)
     setData(data.message.data);
   };
 

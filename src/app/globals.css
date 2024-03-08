@@ -37,6 +37,10 @@ h1 {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
 
+.globalShadow2 {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 .globalHeroText {
   font-size: clamp(1.5625rem, 0.6466rem + 3.4483vw, 3.75rem);
 }
