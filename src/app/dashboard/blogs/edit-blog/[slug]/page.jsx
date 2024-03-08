@@ -120,6 +120,22 @@ const Page = ({ params }) => {
     }
   };
 
+  // Categories fetch Here -------------------------//
+  const [categories, setCategories] = useState([]);
+
+  const fetchCatgories = async () => {
+    try {
+      const { data } = await axios.get("/api/category");
+      setCategories(data.getcat);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCatgories();
+  }, []);
+
   return (
     <>
       <Toaster />
@@ -197,9 +213,13 @@ const Page = ({ params }) => {
                           className={`w-full mb-4 py-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
                         >
                           <option value="">Select Blog Category</option>
-                          <option value="News">News</option>
-                          <option value="Education">Education</option>
-                          <option value="Technology">Technology</option>
+                          {categories.map((category, index) => {
+                            return (
+                              <option key={index} value={category?.name}>
+                                {category?.name}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>

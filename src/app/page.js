@@ -1,11 +1,15 @@
 import Header from "@/components/Header";
 import BlogLists from "@/components/BlogLists";
+import { Suspense } from "react";
+import BlogListLoader from "@/components/BlogListLoader";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <BlogLists />
+      <Suspense fallback={<BlogListLoader />}>
+        <BlogLists />
+      </Suspense>
     </>
   );
 }
