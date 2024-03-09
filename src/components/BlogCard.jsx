@@ -45,7 +45,7 @@ const BlogCard = async () => {
                   </div>
                   <div>
                     <Link href={`/blog/${v.slug}`}>
-                      <h1 className="globalBlogCardText hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4">
+                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4">
                         {v?.title}
                       </h1>
                     </Link>
@@ -85,7 +85,7 @@ const BlogCard = async () => {
                     </div>
                     <Link href={`/blog/${blogCard?.message?.data[1].slug}`}>
                       <h1 className="line-clamp-2 text-slate-700 hover:text-slate-800 cursor-pointer text-sm md:text-base lg:text-2xl font-semibold">
-                        {blogCard[1]?.title}
+                        {blogCard?.message?.data[1].title}
                       </h1>
                     </Link>
                     <Link href={`/blog/${blogCard?.message?.data[1].slug}`}>

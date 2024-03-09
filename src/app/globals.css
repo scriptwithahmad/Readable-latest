@@ -398,7 +398,7 @@ h1 {
 
 @media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 43.6%;
+    bottom: 44%;
   }
 }
 @media screen and (max-width: 768px) {

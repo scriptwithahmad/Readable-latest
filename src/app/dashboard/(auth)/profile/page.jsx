@@ -122,15 +122,15 @@ const Page = () => {
                         className="bg-white border-b pb-2 border-gray-100"
                       >
                         <td className="py-3">
-                          <h2 className=" font-medium">
+                          <span className=" whitespace-nowrap text-xs">
                             {format(new Date(v.createdAt), "en_US")}
-                          </h2>
+                          </span>
                         </td>
-                        <td className="py-2 px-6">
-                          <h2 className=" font-medium text-sm">{v?.title}</h2>
+                        <td className="py-3 px-4">
+                          <h2 className=" text-sm line-clamp-1">{v?.title}</h2>
                         </td>
-                        <td className="py-2">
-                          <h2 className=" font-medium">{v?.category}</h2>
+                        <td className="py-3">
+                          <h2 className="px-3 py-1 text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">{v?.category}</h2>
                         </td>
                       </tr>
                     );
