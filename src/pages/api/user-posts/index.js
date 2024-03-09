@@ -10,8 +10,6 @@ export default async function handler(req, res) {
     var token = req.cookies.AccessToken;
     var id = (await JWTVerify(token)) || req.query.id;
 
-    console.log(id);
-
     const users = await usersModel.findById(id);
 
     if (!users) {
