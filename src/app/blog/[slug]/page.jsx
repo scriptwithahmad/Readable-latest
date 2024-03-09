@@ -1,3 +1,4 @@
+import Comment from "@/components/Comment";
 import axios from "axios";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -60,9 +61,8 @@ const page = async ({ params }) => {
           </div>
         </div>
       </Suspense>
-      <div className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-4">
-        <span>Post Your Comment</span>
-      </div>
+
+      <Comment />
 
       {/* Recent Blogs -------------------------------------- */}
       {/* <RecentBlogs /> */}
