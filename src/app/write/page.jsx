@@ -254,7 +254,7 @@ const Page = () => {
                     {tags?.length >= 1 && (
                       <div className="border rounded-lg p-4 flex gap-3 flex-wrap overflow-hidden">
                         {tags.map((v, i) => (
-                          <div className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full">
+                          <div key={i} className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full">
                             <h2 className="text-sm text-indigo-600">{v}</h2>
                             <i
                               className="fa-solid fa-x text-xs text-gray-500 hover:text-gray-600 cursor-pointer"

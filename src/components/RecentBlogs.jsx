@@ -13,7 +13,6 @@ const getRecentBlogs = async () => {
 
 const RecentBlogs = async () => {
   const recentBlog = await getRecentBlogs();
-  console.log(recentBlog)
 
   return (
     <>

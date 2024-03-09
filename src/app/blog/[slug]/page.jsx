@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { Suspense } from "react";
 import { format, render, cancel, register } from "timeago.js";
-// import RecentBlogs from "@/components/RecentBlogs";
+import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
@@ -62,7 +62,7 @@ const page = async ({ params }) => {
       </Suspense>
 
       {/* Recent Blogs -------------------------------------- */}
-      {/* <RecentBlogs /> */}
+      <RecentBlogs />
     </>
   );
 };

@@ -88,7 +88,7 @@ const Nav = () => {
                     (links.route === "/register" || links.route === "/login")
                   ) && (
                     <li
-                      key={links.route}
+                      key={i}
                       className="text-slate-500 relative z-10 hover:text-slate-700 transition duration-200 hidden lg:block"
                     >
                       <Link
