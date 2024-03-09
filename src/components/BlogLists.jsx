@@ -1,4 +1,3 @@
-import axios from "axios";
 import Link from "next/link";
 import { format, render, cancel, register } from "timeago.js";
 import BlogCard from "./BlogCard";

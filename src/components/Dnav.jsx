@@ -30,17 +30,19 @@ const Dnav = () => {
   return (
     <>
       <div className="relative">
-        <div className="flex items-center justify-between px-4 py-0">
+        <div className="flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-4">
             <i
               onClick={() => alert("Roko Zara Sabar Karo!")}
               className="fa-solid fa-bars-staggered text-gray-500 text-lg"
             ></i>
-            <div className="flex items-center">
-              <Link href={"/"} id="logo" className={Meriend.className}>
+            <Link href={"/"} className="flex items-center gap-1 cursor-pointer">
+              <img src="/images/logo.png" alt="Image here" className=" w-12" />
+
+              <h1 className={`${Meriend.className} text-indigo-500 text-xl`}>
                 Readable
-              </Link>
-            </div>
+              </h1>
+            </Link>
           </div>
           {/* PROFILE START ============================*/}
           <>
