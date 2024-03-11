@@ -8,7 +8,7 @@ const nunito = Nunito({
 const Page = async ({ params }) => {
   const getUserProfile = async () => {
     const { data } = await axios.get(
-      `http://localhost:3000/api/user-posts?id=${params?.slug}`
+      `https://readable-blogging.vercel.app/api/user-posts?id=${params?.slug}`
     );
     return data?.foundPosts;
   };
