@@ -14,8 +14,7 @@ const getUserProfile = async () => {
 
 const Page = async () => {
   const userDetail = await getUserProfile();
-  const userProfilePosts = userDetail?.length
-  console.log(userProfilePosts)
+  const userProfilePosts = userDetail?.length;
 
   return (
     <>
