@@ -24,8 +24,6 @@ export default async function handler(req, res) {
       .find({ author: id }, { desc: 0, metaDesc: 0, subTitle: 0 })
       .populate("author", "fullName photo email");
 
-    console.log(foundPosts);
-
     if (!foundPosts) {
       res.status(404).json({
         success: false,

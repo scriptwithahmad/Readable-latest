@@ -130,7 +130,7 @@ const Comment = ({ blogID }) => {
                       </div>
                       <Link
                         href={`/profile/${v?.author?._id}`}
-                        class="rounded w-full bg-indigo-500 px-4 py-1 text-sm text-white hover:bg-indigo-600"
+                        className="rounded text-center inline-block w-full bg-indigo-500 px-4 py-1 text-sm text-white hover:bg-indigo-600"
                       >
                         Profile
                       </Link>

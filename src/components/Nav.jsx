@@ -16,7 +16,6 @@ const Meriend = Merienda({
 const navLinks = [
   { text: "Home", route: "/" },
   { text: "blog", route: "/blog" },
-  { text: "Profile", route: "/profile" },
   { text: "Write", route: "/write" },
   { text: "Login", route: "/login" },
   { text: "Register", route: "/register" },
@@ -77,7 +76,7 @@ const Nav = () => {
             <Link href={"/"} className="flex items-center gap-1 cursor-pointer">
               <img src="/images/logo.png" alt="Image here" className=" w-12" />
 
-              <h1 className={`${Meriend.className}`} id="logo" >
+              <h1 className={`${Meriend.className}`} id="logo">
                 Readable
               </h1>
             </Link>

@@ -69,9 +69,9 @@ const Page = () => {
 
         <div className="lg:col-span-2 rounded-lg lg:px-5 px-0">
           {/* Cards Here ------------------------- */}
-          <div className=" grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5">
             {/* Card 01 --------------------------- */}
-            <div className=" bg-white p-4 rounded-lg globalShadow2">
+            <div className="bg-white p-4 rounded-lg globalShadow2">
               <div className=" flex items-center justify-between">
                 <div>
                   <h2 className=" text-slate-700 text-sm">Products</h2>
@@ -83,7 +83,7 @@ const Page = () => {
               </div>
             </div>
             {/* Card 02 --------------------------- */}
-            <div className=" bg-white p-4 rounded-lg globalShadow2">
+            <div className="bg-white p-4 rounded-lg globalShadow2">
               <div className=" flex items-center justify-between">
                 <div>
                   <h2 className=" text-slate-700 text-sm">Blogs</h2>
