@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
       const comments = await commentModel
         .find({ blogPost: blogPostId.blogPost })
-        .populate("author", "fullName email photo")
+        .populate("author", "fullName email photo createdAt")
         .populate("blogPost", "title category");
       return res.status(200).json({ success: true, data: comments });
     } else {

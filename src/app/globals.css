@@ -420,6 +420,18 @@ h1 {
   }
 }
 
+
+/*====================================
+          Not Focus somting like that
+=====================================*/
+.cards .card:hover {
+  transition: all 0.2s linear;
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(2px);
+}
+
 /*====================================
               404 page
 =====================================*/

@@ -16,6 +16,7 @@ const Meriend = Merienda({
 const navLinks = [
   { text: "Home", route: "/" },
   { text: "blog", route: "/blog" },
+  { text: "Profile", route: "/profile" },
   { text: "Write", route: "/write" },
   { text: "Login", route: "/login" },
   { text: "Register", route: "/register" },
