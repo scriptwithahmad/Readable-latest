@@ -14,11 +14,9 @@ const jsonData = [
 const Page = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
-  // console.log(data)
 
   const fetchData = async () => {
     const { data } = await axios.get(`/api/get-blogs`);
-    console.log(data.message.data)
     setData(data.message.data);
   };
 
@@ -27,12 +25,13 @@ const Page = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-white p-4 rounded-lg">
       <h1>Dashboard here</h1>
       <input
-        onChange={(e) => setSearch(e.target.value)}
         type="search"
         placeholder="search here.."
+        onChange={(e) => setSearch(e.target.value)}
+        className="border px-3 py-1.5 my-2 rounded-lg"
       />
 
       <table>

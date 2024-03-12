@@ -30,6 +30,7 @@ export default function Login() {
         },
       });
       toast.success("User Logged In");
+      window.location.reload();
       setTimeout(() => {
         router.back();
       }, 1000);

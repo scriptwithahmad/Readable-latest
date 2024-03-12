@@ -66,15 +66,19 @@ const Nav = () => {
       <Toaster />
       {/* ===================== Navbar For Desktop ==========================================  */}
       <div
-        className={`pt-5 pb-4 z-50 px-4 2xl:px-0 ${
+        className={`pt-5 pb-4 z-50 2xl:px-0 ${
           scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
         }`}
       >
         <nav className="standardWidth flex items-center justify-between px-4 lg:px-0">
           {/* ===================== Navbar Image Here ==========================================  */}
           <div className=" w-24 h-auto">
-            <Link href={"/"} id="logo" className={Meriend.className}>
-              Readable
+            <Link href={"/"} className="flex items-center gap-1 cursor-pointer">
+              <img src="/images/logo.png" alt="Image here" className=" w-12" />
+
+              <h1 className={`${Meriend.className}`} id="logo">
+                Readable
+              </h1>
             </Link>
           </div>
 
@@ -88,7 +92,7 @@ const Nav = () => {
                     (links.route === "/register" || links.route === "/login")
                   ) && (
                     <li
-                      key={links.route}
+                      key={i}
                       className="text-slate-500 relative z-10 hover:text-slate-700 transition duration-200 hidden lg:block"
                     >
                       <Link
@@ -209,7 +213,7 @@ const Nav = () => {
           <div className="flex items-center justify-between">
             <div className="w-[140px]">
               <Link href={"/"} id="logo" className={Meriend.className}>
-                Readable
+                Readables
               </Link>
             </div>
             <i

@@ -37,6 +37,10 @@ h1 {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
 
+.globalShadow2 {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 .globalHeroText {
   font-size: clamp(1.5625rem, 0.6466rem + 3.4483vw, 3.75rem);
 }
@@ -394,7 +398,7 @@ h1 {
 
 @media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 43.6%;
+    bottom: 44%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -412,8 +416,20 @@ h1 {
 @media screen and (max-width: 375px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 47.8%;
+    bottom: 46.4%;
   }
+}
+
+
+/*====================================
+          Not Focus somting like that
+=====================================*/
+.cards .card:hover {
+  transition: all 0.2s linear;
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(2px);
 }
 
 /*====================================

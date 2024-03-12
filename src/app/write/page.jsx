@@ -72,6 +72,7 @@ const Page = () => {
         ...formData,
         author: user._id,
         featuredImage: { ...formData.featuredImage, url: imgUrl },
+        tags: tags,
       };
       var res = await axios.post(`/api/blogs`, submitionData);
 
@@ -101,6 +102,7 @@ const Page = () => {
     }
   };
 
+  // Catgories Fetch here -----------------------/
   const [categories, setCategories] = useState([]);
 
   const fetchCatgories = async () => {
@@ -115,6 +117,33 @@ const Page = () => {
   useEffect(() => {
     fetchCatgories();
   }, []);
+
+  // TAGS FUNCTIONS----------------------/
+  const [data, setdata] = useState();
+  const [tags, setTags] = useState([]);
+
+  // Convert to Tags Funcitonlity -------/
+  const addTag = (e) => {
+    e.preventDefault();
+    var copy = tags;
+    copy.push(data);
+    setTags(copy);
+    setdata("");
+  };
+
+  // Handle KeyDown Funcitons ------------/
+  const handlekeydown = (e) => {
+    if (e.key === "Enter") {
+      addTag(e);
+    }
+  };
+
+  // Handle Photo Delete -----------------/
+  const handleDel = (i) => {
+    const updatetags = [...tags];
+    updatetags.splice(i, 1);
+    setTags(updatetags);
+  };
 
   return (
     <>
@@ -205,6 +234,36 @@ const Page = () => {
                         <i className="fa-solid fa-envelope"></i>
                       </div>
                     </div>
+                  </div>
+
+                  {/* TAGS Main Div -------------------------------------- */}
+                  <div className="sign_In_Input_Outer">
+                    <label htmlFor="tags">Blog Tags</label>
+                    <div className="sign_In_Input">
+                      <input
+                        id="tags"
+                        value={data}
+                        type="text"
+                        placeholder="Add Tags"
+                        onKeyDown={handlekeydown}
+                        onChange={(e) => setdata(e.target.value)}
+                        className={`w-full mb-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
+                      />
+                      <i className="fa-solid fa-chart-line"></i>
+                    </div>
+                    {tags?.length >= 1 && (
+                      <div className="border rounded-lg p-4 flex gap-3 flex-wrap overflow-hidden">
+                        {tags.map((v, i) => (
+                          <div key={i} className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full">
+                            <h2 className="text-sm text-indigo-600">{v}</h2>
+                            <i
+                              className="fa-solid fa-x text-xs text-gray-500 hover:text-gray-600 cursor-pointer"
+                              onClick={() => handleDel(i)}
+                            ></i>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Main Div -------------------------------------- */}

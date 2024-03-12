@@ -3,14 +3,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-// ASIDE LINKS ADDED
+// ASIDE LINKS ADDED => icon chart-simple
 var adminNavLinks = [
-  { href: "/dashboard", lable: "Dashboard", icon: "fa-solid fa-chart-simple" },
-  { href: "/dashboard/category", lable: "Category", icon: "fa-solid fa-list" },
+  { href: "/dashboard", lable: "Dashboard", icon: "fa-clone" },
+  {
+    lable: "Category",
+    href: "/dashboard/category",
+    icon: "fa-paper-plane",
+  },
+  {
+    lable: "Profile",
+    href: "/dashboard/profile",
+    icon: "fa-paste",
+  },
   {
     href: "/dashboard/blogs",
     lable: "Blogs",
-    icon: "fa-solid fa-headphones-simple",
+    icon: "fa-folder-closed",
   },
 ];
 
@@ -49,27 +58,30 @@ const Aside = () => {
         transition: ".6s",
         width: toggle ? "200px" : "48px",
       }}
-      className={`mt-4 overflow-hidden flex flex-col justify-between ${
-        toggle ? "pr-4" : "pr-0"
-      }`}
+      className={`overflow-hidden flex flex-col justify-between h-full py-2`}
     >
       <div className="flex flex-col relative">
         <div className="flex flex-1 flex-col justify-between h-full my-4">
-          <ul className="text-sm">
+          <h2 className="px-4 mb-3 text-gray-600 font-semibold text-sm">
+            MENU
+          </h2>
+          <ul className="text-sm border-b mb-4 pb-2 w-full">
             {adminNavLinks.map((v, i) => {
               return (
                 <ul key={i}>
                   <Link
                     href={v.href}
-                    className={`relative py-1 px-4 flex items-center rounded-none lg:rounded-r-full hover:bg-[#3e1e9707] group cursor-pointer ${
+                    className={`relative py-2 mb-2 px-4 flex items-center hover:bg-[#9481ce10] group cursor-pointer ${
                       pathname === v.href
-                        ? "group cursor-pointer lg:bg-[#F6F5FD] md:bg-transparent"
+                        ? "group cursor-pointer border-r-[3px] border-r-[#3e1e97b1]"
                         : ""
                     }`}
                   >
                     <i
                       className={`${v.icon} text-base ${
-                        pathname === v.href ? "text-[#3E1E97]" : "text-gray-500"
+                        pathname === v.href
+                          ? "text-[#3E1E97] fa-solid"
+                          : "text-gray-500 fa-regular"
                       }`}
                     ></i>
                     <div
@@ -90,6 +102,9 @@ const Aside = () => {
               );
             })}
           </ul>
+          <h2 className="px-3 mb-1.5 text-gray-600 font-semibold text-sm">
+            OTHERS
+          </h2>
         </div>
       </div>
 

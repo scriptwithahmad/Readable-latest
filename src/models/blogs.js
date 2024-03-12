@@ -33,6 +33,10 @@ const blogSchema = new mongoose.Schema(
       required: [true, "Meta Description Required!"],
       trim: true,
     },
+    tags: {
+      type: Array,
+      trim: true,
+    },
     featuredImage: {
       url: {
         type: String,
