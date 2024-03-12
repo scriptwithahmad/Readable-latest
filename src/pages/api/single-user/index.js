@@ -10,9 +10,10 @@ export default async function handler(req, res) {
 
     const singleUser = await userModel.findById(id, { password: false });
 
-    const foundPosts = await blogsModel
-      .find({ author: singleUser.id }, { desc: 0, metaDesc: 0, subTitle: 0 })
-      // .populate("author", "fullName photo email");
+    const foundPosts = await blogsModel.find(
+      { author: singleUser.id },
+      { desc: 0, metaDesc: 0, subTitle: 0 }
+    );
 
     if (!singleUser) {
       res.status(400).json({

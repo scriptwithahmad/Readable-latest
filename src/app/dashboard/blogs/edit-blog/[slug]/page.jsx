@@ -26,6 +26,8 @@ const Page = ({ params }) => {
     },
   });
 
+  const [newTags, setNewtags] = useState([]);
+
   useEffect(() => {
     const fetchSingleBlog = async () => {
       const res = await axios.get(`/api/get-blogs/${params.slug}`);
@@ -136,6 +138,30 @@ const Page = ({ params }) => {
     fetchCatgories();
   }, []);
 
+  // TAGS FUNCTIONS
+  const [data, setdata] = useState();
+  const [tags, setTags] = useState([]);
+
+  const addTag = (e) => {
+    e.preventDefault();
+    var copy = newTags;
+    copy.push(data);
+    setTags(copy);
+    setdata("");
+  };
+
+  const handlekeydown = (e) => {
+    if (e.key === "Enter") {
+      addTag(e);
+    }
+  };
+
+  const handleDel = (i) => {
+    const updatetags = [...newTags];
+    updatetags.splice(i, 1);
+    setNewtags(updatetags);
+  };
+
   return (
     <>
       <Toaster />
@@ -197,6 +223,46 @@ const Page = ({ params }) => {
                         <i className="fa-solid fa-envelope"></i>
                       </div>
                     </div>
+                  </div>
+
+                  {/* TAGS Main Div -------------------------------------- */}
+                  <div className="sign_In_Input_Outer">
+                    <label htmlFor="tags">Blog Tags</label>
+                    <div className="sign_In_Input">
+                      <input
+                        id="tags"
+                        type="text"
+                        value={formData.tags}
+                        placeholder="Add Tags"
+                        onKeyDown={handlekeydown}
+                        onChange={(e) => setdata(e.target.value)}
+                      />
+                      {/* <input
+                        type="text"
+                        value={data}
+                        placeholder="Add Tags"
+                        onKeyDown={handlekeydown}
+                        onChange={(e) => setdata(e.target.value)}
+                        className={`w-full mb-4 border-none text-[14px] text-gray-500 bg-[#F5F6F8] placeholder:text-sm  rounded-md px-4 border-gray-300 focus:outline-none focus:border-indigo-500`}
+                      /> */}
+                      <i className="fa-solid fa-chart-line"></i>
+                    </div>
+                    {newTags?.length >= 1 && (
+                      <div className="border rounded-lg p-4 flex gap-3 flex-wrap overflow-hidden">
+                        {newTags.map((v, i) => (
+                          <div
+                            key={i}
+                            className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full"
+                          >
+                            <h2 className="text-sm text-indigo-600">{v}</h2>
+                            <i
+                              className="fa-solid fa-x text-xs text-gray-500 hover:text-gray-600 cursor-pointer"
+                              onClick={() => handleDel(i)}
+                            ></i>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Main Div -------------------------------------- */}
