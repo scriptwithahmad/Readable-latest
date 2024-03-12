@@ -1,44 +1,23 @@
-"use client";
-import axios from "axios";
 import Link from "next/link";
-import { useQuery } from "react-query";
-import queryString from "query-string";
-import React, { useEffect, useState } from "react";
 import { format, render, cancel, register } from "timeago.js";
-// import BlogCard from "./BlogCard";
+import BlogCard from "./BlogCard";
 
-const BlogLists = () => {
-  const [filterByName, setFilterByName] = useState({
-    keyword: "",
-    page: 1,
-  });
+async function getData() {
+  const res = await fetch("https://readable-blogging.vercel.app/api/get-blogs");
 
-  const { data, isLoading, isError, refetch } = useQuery(
-    ["blog", filterByName],
-    async () => {
-      var res = await axios.get(
-        `https://readable-blogging.vercel.app/api/get-blogs?${queryString.stringify(
-          filterByName
-        )}`
-      );
-      return res.data.message.data;
-    }
-  );
+  return res.json();
+}
 
-  const [categories, setCategories] = useState([]);
+async function getCategories() {
+  const res = await fetch("https://readable-blogging.vercel.app/api/category");
 
-  const fetchCategories = async () => {
-    try {
-      const { data } = await axios.get("/api/category");
-      setCategories(data.getcat);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
+  return res.json();
+}
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+const BlogLists = async () => {
+  const data = await getData();
+  const total = data?.message?.count;
+  const categories = await getCategories();
 
   return (
     <>
@@ -46,7 +25,7 @@ const BlogLists = () => {
       <div className="standardWidth px-3 2xl:px-0">
         <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
-            {categories?.map((data, index) => {
+            {categories?.getcat?.map((data, index) => {
               return (
                 <button
                   key={index}
@@ -86,7 +65,7 @@ const BlogLists = () => {
         </div>
       </div>
 
-      {/* <BlogCard /> */}
+      <BlogCard />
 
       {/* BLog Card ends ------------------------------------------------- */}
 
@@ -96,7 +75,7 @@ const BlogLists = () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {data?.map((v, i) => {
+          {data?.message?.data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[320px]">

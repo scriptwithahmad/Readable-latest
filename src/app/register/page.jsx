@@ -49,7 +49,7 @@ const Register = () => {
           <div className=" flex items-center gap-2 mb-4">
             <img
               alt="Logo Here"
-              className=" w-8"
+              className="w-8"
               src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1706707781/ulogo_hclp4i.png"
             />
             <h2 className="text-slate-700 text-xl font-bold">Readable</h2>
