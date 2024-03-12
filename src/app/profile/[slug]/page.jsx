@@ -7,26 +7,17 @@ const nunito = Nunito({
 });
 
 const Page = async ({ params }) => {
-
   const getSingleUser = async () => {
     const { data } = await axios.get(
       `https://readable-blogging.vercel.app/api/single-user?id=${params?.slug}`
     );
-    // console.log(data?.message);
-    return data?.message;
+    return data;
   };
 
-  const getUserProfile = async () => {
-    const { data } = await axios.get(
-      `https://readable-blogging.vercel.app/api/user-posts?id=${params?.slug}`
-    );
-    return data?.foundPosts;
-  };
-
-  const userDetail = await getUserProfile();
-  const singleUser = await getSingleUser();
-  console.log(singleUser);
-  const userProfilePosts = userDetail?.length;
+  // const userDetail = await getUserProfile();
+  const userDetail = await getSingleUser();
+  console.log(userDetail);
+  const userPostsNum = userDetail?.foundPosts.length;
 
   return (
     <>
@@ -45,7 +36,7 @@ const Page = async ({ params }) => {
             alt="user profile"
             className="w-32 h-32 object-cover border-[8px] border-[#FAB85C] rounded-full -translate-y-12"
             src={
-              userDetail[0]?.author?.photo ||
+              userDetail?.singleUser?.photo ||
               "https://media.dev.to/cdn-cgi/image/width=320,height=320,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1320336%2Fc601d462-6b3a-47ac-b0ae-889c5fc913d1.png"
             }
           />
@@ -54,7 +45,7 @@ const Page = async ({ params }) => {
           <h1
             className={`${nunito.className} mb-2 text-2xl font-bold text-slate-700`}
           >
-            {userDetail[0]?.author?.fullName}
+            {userDetail?.singleUser?.fullName}
           </h1>
           <p className="text-center my-2 text-slate-600">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ad iure
@@ -68,7 +59,7 @@ const Page = async ({ params }) => {
             </div>
             <div className="flex items-center gap-2 text-slate-700">
               <i className="fa-solid fa-location-dot text-sm"></i>
-              <h2 className="text-sm">{userDetail[0]?.author?.email}</h2>
+              <h2 className="text-sm">{userDetail?.singleUser?.email}</h2>
             </div>
           </div>
         </div>
@@ -79,7 +70,7 @@ const Page = async ({ params }) => {
         <div className="col-span-1 bg-white p-5 text-sm rounded-lg">
           <div className="flex items-center gap-2 text-slate-600 mb-2">
             <i className="fa-solid fa-location-dot text-gray-500"></i>
-            <p>{userProfilePosts} posts published</p>
+            <p>{userPostsNum} posts published</p>
           </div>
           <div className="flex items-center gap-2 text-slate-600">
             <i className="fa-solid fa-comment text-gray-500"></i>
@@ -98,7 +89,7 @@ const Page = async ({ params }) => {
           <div className=" py-6">
             <table className="text-sm w-full text-left text-gray-500">
               <tbody>
-                {userDetail?.map((v, i) => {
+                {userDetail?.foundPosts?.map((v, i) => {
                   return (
                     <tr
                       key={i}
