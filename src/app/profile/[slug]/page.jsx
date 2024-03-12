@@ -7,12 +7,14 @@ const nunito = Nunito({
 });
 
 const Page = async ({ params }) => {
-  // const getSingleUser = async () => {
-  //   const { data } = await axios.get(
-  //     `https://readable-blogging.vercel.app/api/single-user?id=${params?.slug}`
-  //   );
-  //   return data?.singleUser;
-  // };
+
+  const getSingleUser = async () => {
+    const { data } = await axios.get(
+      `https://readable-blogging.vercel.app/api/single-user?id=${params?.slug}`
+    );
+    // console.log(data?.message);
+    return data?.message;
+  };
 
   const getUserProfile = async () => {
     const { data } = await axios.get(
@@ -22,7 +24,8 @@ const Page = async ({ params }) => {
   };
 
   const userDetail = await getUserProfile();
-  // const singleUser = await getSingleUser();
+  const singleUser = await getSingleUser();
+  console.log(singleUser);
   const userProfilePosts = userDetail?.length;
 
   return (

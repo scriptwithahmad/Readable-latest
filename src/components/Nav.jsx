@@ -66,7 +66,7 @@ const Nav = () => {
       <Toaster />
       {/* ===================== Navbar For Desktop ==========================================  */}
       <div
-        className={`pt-5 pb-4 z-50 px-4 2xl:px-0 ${
+        className={`pt-5 pb-4 z-50 2xl:px-0 ${
           scrolled ? "border-b bg-[#f6f6ff] sticky top-0" : ""
         }`}
       >
