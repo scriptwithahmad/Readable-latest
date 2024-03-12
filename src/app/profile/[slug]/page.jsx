@@ -16,7 +16,7 @@ const Page = async ({ params }) => {
 
   // const userDetail = await getUserProfile();
   const userDetail = await getSingleUser();
-  console.log(userDetail);
+
   const userPostsNum = userDetail?.foundPosts.length;
 
   return (
@@ -89,19 +89,19 @@ const Page = async ({ params }) => {
           <div className=" py-6">
             <table className="text-sm w-full text-left text-gray-500">
               <tbody>
-                {userDetail?.foundPosts?.map((v, i) => {
-                  return (
+                {userPostsNum > 0 ? (
+                  userDetail?.foundPosts?.map((v, i) => (
                     <tr
                       key={i}
                       className="bg-white border-b pb-2 border-gray-100"
                     >
                       <td className="py-3">
-                        <span className=" whitespace-nowrap text-xs">
+                        <span className="whitespace-nowrap text-xs">
                           {format(new Date(v.createdAt), "en_US")}
                         </span>
                       </td>
                       <td className="py-3 px-4">
-                        <h2 className=" text-sm line-clamp-1">{v?.title}</h2>
+                        <h2 className="text-sm line-clamp-1">{v?.title}</h2>
                       </td>
                       <td className="py-3">
                         <h2 className="px-3 py-1 text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">
@@ -109,8 +109,14 @@ const Page = async ({ params }) => {
                         </h2>
                       </td>
                     </tr>
-                  );
-                })}
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="3" className="py-3 text-center">
+                      Blog not posted yet
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
