@@ -30,7 +30,7 @@ const Page = async ({ params }) => {
         />
       </div>
 
-      <div className="bg-white -translate-y-12 rounded-lg max-w-[1000px] m-auto">
+      <div className="bg-white -translate-y-12 rounded-lg max-w-[1000px] lg:m-auto mx-4">
         <div className="flex items-center justify-center">
           <img
             alt="user profile"
@@ -52,13 +52,13 @@ const Page = async ({ params }) => {
             architecto voluptate in. Placeat laboriosam quo nihil dolorum at
             corporis.
           </p>
-          <div className="flex items-center gap-4 p-4 w-full justify-center">
+          <div className="flex items-center md:flex-row flex-col gap-2 md:gap-4 p-4 w-full justify-center">
             <div className="flex items-center gap-2 text-slate-700">
-              <i className="fa-solid fa-location-dot text-sm"></i>
+              <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
               <h2 className=" text-sm">Faisalabad Punjab, Pakistan</h2>
             </div>
             <div className="flex items-center gap-2 text-slate-700">
-              <i className="fa-solid fa-location-dot text-sm"></i>
+              <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
               <h2 className="text-sm">{userDetail?.singleUser?.email}</h2>
             </div>
           </div>
@@ -66,18 +66,18 @@ const Page = async ({ params }) => {
       </div>
 
       {/* Post div */}
-      <div className="grid grid-cols-3 max-w-[1000px] m-auto gap-5 -translate-y-7">
-        <div className="col-span-1 bg-white p-5 text-sm rounded-lg">
-          <div className="flex items-center gap-2 text-slate-600 mb-2">
-            <i className="fa-solid fa-location-dot text-gray-500"></i>
+      <div className="grid lg:grid-cols-3 md:grid-cols-3 max-w-[1000px] lg:m-auto mx-4 gap-5 -translate-y-7">
+        <div className="lg:col-span-1 md:col-span-1 bg-white py-4 px-3 text-sm rounded-lg h-fit">
+          <div className="flex items-center gap-2 mb-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md p-2 cursor-pointer transition-all">
+            <i className="fa-solid fa-location-dot"></i>
             <p>{userPostsNum} posts published</p>
           </div>
-          <div className="flex items-center gap-2 text-slate-600">
-            <i className="fa-solid fa-comment text-gray-500"></i>
+          <div className="flex items-center gap-2 p-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md cursor-pointer transition-all">
+            <i className="fa-solid fa-comment"></i>
             <p>3 comments written</p>
           </div>
         </div>
-        <div className="col-span-2 bg-white p-4 rounded-lg">
+        <div className="lg:col-span-2 md:col-span-2 bg-white p-4 rounded-lg">
           <div className=" flex items-center gap-3 border-b-2 pb-2">
             <span className=" text-indigo-500 font-medium relative">
               Your Blogs
@@ -93,7 +93,7 @@ const Page = async ({ params }) => {
                   userDetail?.foundPosts?.map((v, i) => (
                     <tr
                       key={i}
-                      className="bg-white border-b pb-2 border-gray-100"
+                      className="bg-white hover:bg-gray-50 border-b pb-2 border-gray-100"
                     >
                       <td className="py-3">
                         <span className="whitespace-nowrap text-xs">
