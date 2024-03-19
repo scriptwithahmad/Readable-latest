@@ -20,7 +20,7 @@ const DHome = () => {
             </h2>
             <p className="text-[#004b50] leading-5 my-4">
               If you are going to use a passage of Lorem Ipsum, you need to be
-              sure there isn't anything.
+              sure there isnt anything.
             </p>
             <button>Go Now</button>
           </div>
