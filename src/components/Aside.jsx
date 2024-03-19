@@ -62,7 +62,7 @@ const Aside = () => {
         <div className="flex flex-1 flex-col justify-between h-full my-4">
           <img
             alt="Image Here"
-            src="/images/logo.png"
+            src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRhUf_q7p5OOMOCgU1_GdeNnbWW0RtKpW05Kh_NJujvJgCG5bLo"
             className={`${toggle ? "pl-5" : "pl-2"} w-16 mb-4`}
           />
           <h2
