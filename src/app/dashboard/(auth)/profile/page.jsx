@@ -10,7 +10,6 @@ const nunito = Nunito({
   subsets: ["latin"],
 });
 
-
 const Page = () => {
   const { user } = useContext(AuthContext);
 
@@ -24,7 +23,7 @@ const Page = () => {
   return (
     <>
       <div className=" grid lg:grid-cols-3 max-w-[1100px] m-auto grid-cols-1">
-        <div className="bg-white globalShadow2 lg:col-span-1 rounded-lg px-8 py-8 flex flex-col items-center justify-center h-fit lg:mb-0 mb-5">
+        <div className="bg-white globalShadow3 border-dotted lg:col-span-1 rounded-lg px-8 py-8 flex flex-col items-center justify-center h-fit lg:mb-0 mb-5">
           <div className="w-36 h-36 rounded-full">
             <img
               alt="Image Here"
@@ -71,7 +70,7 @@ const Page = () => {
           {/* Cards Here ------------------------- */}
           <div className="grid grid-cols-2 gap-5">
             {/* Card 01 --------------------------- */}
-            <div className="bg-white p-4 rounded-lg globalShadow2">
+            <div className="bg-white p-4 rounded-lg globalShadow3 border-dotted">
               <div className=" flex items-center justify-between">
                 <div>
                   <h2 className=" text-slate-700 text-sm">Products</h2>
@@ -83,7 +82,7 @@ const Page = () => {
               </div>
             </div>
             {/* Card 02 --------------------------- */}
-            <div className="bg-white p-4 rounded-lg globalShadow2">
+            <div className="bg-white p-4 rounded-lg globalShadow3 border-dotted">
               <div className=" flex items-center justify-between">
                 <div>
                   <h2 className=" text-slate-700 text-sm">Blogs</h2>
@@ -96,7 +95,7 @@ const Page = () => {
             </div>
           </div>
           {/* Bio Section ------------------------ */}
-          <div className="bg-white px-5 py-6 rounded-lg my-5 globalShadow2">
+          <div className="bg-white px-5 py-6 rounded-lg my-5 globalShadow3 border-dotted">
             <h2 className="text-slate-700 font-semibold mb-2">Bio</h2>
             <p className=" text-slate-500 text-sm leading-[1.5]">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora,
@@ -105,24 +104,24 @@ const Page = () => {
             </p>
           </div>
           {/* Posts Section ----------------------- */}
-          <div className="bg-white px-5 py-6 rounded-lg globalShadow2">
-            <div className=" flex items-center gap-3 border-b-2 pb-2">
+          <div className="bg-white py-6 rounded-lg globalShadow3 border-dotted">
+            <div className=" flex mx-5 items-center gap-3 border-b-2 pb-2">
               <span className=" text-indigo-500 font-medium relative">
                 Your Blogs
                 <span className=" before:-bottom-[10px] before:left-0 before:absolute before:h-0.5 before:w-full before:bg-indigo-400 before:rounded-full"></span>
               </span>
               <span className="text-slate-500 relative">Users</span>
             </div>
-            <div className=" py-6">
+            <div className="py-6">
               <table className="text-sm w-full text-left text-gray-500">
                 <tbody>
                   {userDetail?.map((v, i) => {
                     return (
                       <tr
                         key={i}
-                        className="bg-white border-b pb-2 border-gray-100"
+                        className="bg-white hover:bg-gray-50 border-b pb-2 border-gray-100"
                       >
-                        <td className="py-3">
+                        <td className="py-3 pl-5">
                           <span className=" whitespace-nowrap text-xs">
                             {format(new Date(v.createdAt), "en_US")}
                           </span>
@@ -130,8 +129,10 @@ const Page = () => {
                         <td className="py-3 px-4">
                           <h2 className=" text-sm line-clamp-1">{v?.title}</h2>
                         </td>
-                        <td className="py-3">
-                          <h2 className="px-3 py-1 text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">{v?.category}</h2>
+                        <td className="py-3 pr-5">
+                          <h2 className="px-3 py-1 text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">
+                            {v?.category}
+                          </h2>
                         </td>
                       </tr>
                     );

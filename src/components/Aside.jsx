@@ -28,8 +28,6 @@ const Aside = () => {
 
   const [toggle, setToggle] = useState(true);
 
-  const { user } = useContext(AuthContext);
-
   // set the Toggle Value False if window width should be md, or sm -------
   useEffect(() => {
     const handleResize = () => {
@@ -56,32 +54,43 @@ const Aside = () => {
     <aside
       style={{
         transition: ".6s",
-        width: toggle ? "200px" : "48px",
+        width: toggle ? "200px" : "70px",
       }}
-      className={`overflow-hidden flex flex-col justify-between h-full py-2`}
+      className={`overflow-hidden flex flex-col justify-between h-full py-2 bg-white min-h-screen border-dotted border-r`}
     >
       <div className="flex flex-col relative">
         <div className="flex flex-1 flex-col justify-between h-full my-4">
-          <h2 className="px-4 mb-3 text-gray-600 font-semibold text-sm">
-            MENU
+          <img
+            alt="Image Here"
+            src="/images/logo.png"
+            className={`${toggle ? "pl-5" : "pl-2"} w-16 mb-4`}
+          />
+          <h2
+            className={`${
+              toggle
+                ? "font-semibold text-slate-400 text-xs px-6 my-2"
+                : "hidden"
+            }`}
+          >
+            OVERVIEW
           </h2>
-          <ul className="text-sm border-b mb-4 pb-2 w-full">
+          <ul className="text-sm mb-4 w-full">
             {adminNavLinks.map((v, i) => {
               return (
-                <ul key={i}>
+                <ul key={i} className="my-2">
                   <Link
                     href={v.href}
-                    className={`relative py-2 mb-2 px-4 flex items-center hover:bg-[#9481ce10] group cursor-pointer ${
+                    className={`group relative flex cursor-pointer items-center mx-2 py-2 rounded-lg hover:bg-[#F6F7F8] ${
                       pathname === v.href
-                        ? "group cursor-pointer border-r-[3px] border-r-[#3e1e97b1]"
+                        ? "group cursor-pointer bg-[#ECF8F4]"
                         : ""
-                    }`}
+                    } ${toggle ? "px-4" : "pl-4"}`}
                   >
                     <i
                       className={`${v.icon} text-base ${
                         pathname === v.href
-                          ? "text-[#3E1E97] fa-solid"
-                          : "text-gray-500 fa-regular"
+                          ? "text-[#00a76f] fa-solid"
+                          : "text-[#637381] fa-regular"
                       }`}
                     ></i>
                     <div
@@ -91,8 +100,8 @@ const Aside = () => {
                       }}
                       className={`ml-3 ${
                         pathname === v.href
-                          ? "text-[#3E1E97] font-medium"
-                          : "text-gray-600"
+                          ? "font-medium text-green-500"
+                          : "text-[#637381]"
                       }`}
                     >
                       {v.lable}
@@ -102,8 +111,14 @@ const Aside = () => {
               );
             })}
           </ul>
-          <h2 className="px-3 mb-1.5 text-gray-600 font-semibold text-sm">
-            OTHERS
+          <h2
+            className={`${
+              toggle
+                ? "font-semibold text-slate-400 text-xs px-6 my-2"
+                : "hidden"
+            }`}
+          >
+            OVERVIEW
           </h2>
         </div>
       </div>

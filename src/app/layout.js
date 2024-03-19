@@ -34,17 +34,13 @@ export default function RootLayout({ children }) {
           <Context>
             {privateRoutes ? (
               <>
-                <div className="max-h-screen flex gap-4 flex-col h-screen overflow-hidden">
-                  <div className="w-full bg-white">
-                    <Dnav />
+                <div className="flex">
+                  <div>
+                    <Aside />
                   </div>
-                  <div className="flex flex-1">
-                    <div className=" bg-white rounded-lg">
-                      <Aside />
-                    </div>
-                    <div className="overflow-y-auto max-h-[90vh] max-w-[100vw] overflow-x-auto flex-1 bg-[#F4F7FE] px-4">
-                      {children}
-                    </div>
+                  <div className="flex-1">
+                    <Dnav />
+                    <div className="my-3 px-8">{children}</div>
                   </div>
                 </div>
               </>

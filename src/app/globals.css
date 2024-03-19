@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --body-bg: #f6f6ff;
+  /* --body-bg: #f6f6ff; */
+  --body-bg: #fff;
   --body-text: #1e293b;
   --standard-width: 1300px;
   --accent-color: #0077ff;
@@ -39,6 +40,10 @@ h1 {
 
 .globalShadow2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.globalShadow3 {
+  box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px,
+    rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
 }
 
 .globalHeroText {
@@ -420,7 +425,6 @@ h1 {
   }
 }
 
-
 /*====================================
           Not Focus somting like that
 =====================================*/
@@ -454,4 +458,24 @@ h1 {
 .four_zero_four_bg h1 {
   font-size: 80px;
   font-weight: bold;
+}
+
+/* Slider CSS Here ------------------------------------ */
+
+/* Slide here ------------ */
+.swiper {
+  width: 400px;
+  height: 255px;
+}
+
+.swiper-slide {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: covers;
 }
