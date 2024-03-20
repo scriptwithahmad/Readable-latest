@@ -1,7 +1,7 @@
 import axios from "axios";
 import Comment from "@/components/Comment";
 import { Suspense } from "react";
-// import RecentBlogs from "@/components/RecentBlogs";
+import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
@@ -11,6 +11,17 @@ const getSingleBlog = async (slug) => {
   return data.singleBlog;
 };
 
+const colors = [
+  "orange",
+  "purple",
+  "green",
+  "red",
+  "orange",
+  "purple",
+  "green",
+  "cyan",
+];
+
 const page = async ({ params }) => {
   const blog = await getSingleBlog(params.slug);
 
@@ -19,16 +30,32 @@ const page = async ({ params }) => {
       {/* Single Page Here ---------------------------------- */}
       <Suspense fallback={<h1>Loading......</h1>}>
         <div className=" max-w-[800px] m-auto py-4 px-3 2xl:px-0 my-4">
-          <h1 className=" text-2xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
+          <h1 className=" text-3xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
             {blog?.title}
           </h1>
+
+          <div className="flex gap-3">
+            {blog?.tags?.map((tag, i) => (
+              <div
+                key={i}
+                className={`px-3 py-1 rounded flex items-center hover:bg-purple-50 cursor-pointer `}
+              >
+                <span
+                  className={`text-${colors[i % colors.length]}-500 text-sm`}
+                >
+                  #
+                </span>
+                <h2 className="text-sm">{tag}</h2>
+              </div>
+            ))}
+          </div>
 
           {/* Author Here ---------------------------- */}
           <div className=" flex items-center gap-2 my-8">
             <div className=" h-12 w-12 rounded-full">
               <img
                 alt="Image here"
-                className=" h-full w-full object-cover rounded-full border border-gray-100"
+                className="h-full w-full object-cover rounded-full border border-gray-100"
                 src={
                   blog?.author?.photo ||
                   "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
@@ -63,7 +90,7 @@ const page = async ({ params }) => {
       <Comment blogID={blog?._id} />
 
       {/* Recent Blogs -------------------------------------- */}
-      {/* <RecentBlogs /> */}
+      <RecentBlogs />
     </>
   );
 };

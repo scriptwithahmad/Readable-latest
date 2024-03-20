@@ -41,7 +41,7 @@ const Dnav = () => {
             {user ? (
               <div className="flex py-2 group relative items-center gap-2 pr-4">
                 <ul className="flex items-center gap-5">
-                  <li className=" animate-spin">
+                  <li className="svgAnim">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5em"
@@ -66,15 +66,14 @@ const Dnav = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5em"
                       height="1.5em"
-                      viewBox="0 0 256 256"
+                      viewBox="0 0 24 24"
                     >
-                      <g fill="currentColor">
-                        <path
-                          d="M136 108a52 52 0 1 1-52-52a52 52 0 0 1 52 52"
-                          opacity={0.2}
-                        ></path>
-                        <path d="M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07"></path>
-                      </g>
+                      <circle cx={12} cy={6} r={4} fill="currentColor"></circle>
+                      <path
+                        fill="currentColor"
+                        d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                        opacity={0.5}
+                      ></path>
                     </svg>
                   </li>
                   <li>

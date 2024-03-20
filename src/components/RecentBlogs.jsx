@@ -27,13 +27,15 @@ const RecentBlogs = async () => {
             return (
               <div key={i}>
                 <div className="w-full h-[180px]">
-                  <img
-                    src={v?.featuredImage?.url}
-                    alt={v?.featuredImage?.altText}
-                    className=" h-full w-full object-cover"
-                  ></img>
+                  <Link className="cursor-pointer" href={`/blog/${v.slug}`}>
+                    <img
+                      src={v?.featuredImage?.url}
+                      alt={v?.featuredImage?.altText}
+                      className=" h-full w-full object-cover"
+                    ></img>
+                  </Link>
                 </div>
-                <div className="border-b-4 pb-1 border-[#2386ff6d]">
+                <div className="">
                   <div className="flex items-center justify-between mt-3">
                     <h3 className="accentColor text-xs">{v?.category}</h3>
                     <span className="text-slate-600 flex items-center gap-2 text-xs">
@@ -51,12 +53,6 @@ const RecentBlogs = async () => {
                       dangerouslySetInnerHTML={{ __html: v?.desc }}
                       className="text-sm mt-2 text-gray-500 line-clamp-2"
                     ></main>
-                    <Link href={`/blog/${v.slug}`}>
-                      <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
-                        Read More
-                        <i className="fa-solid fa-arrow-right"></i>
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>

@@ -176,7 +176,7 @@ const Page = () => {
           />
         </div>
         <div className="sign_In_Inner">
-          <div className=" w-full  md:w-[90%] lg:w-[50%] ">
+          <div className=" w-full  md:w-[90%] lg:w-[50%] border-dotted border rounded-lg globalShadow3">
             <div className=" bg-white rounded-lg p-[20px] lg:p-[50px] enrollNow ">
               <h2 className=" text-[#0177FF] font-semibold text-3xl mb-5">
                 Write Blog

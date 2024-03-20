@@ -1,4 +1,5 @@
 "use client";
+import AnimateSvg from "@/components/icons/AnimateSvg";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
@@ -71,7 +72,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="bg-white max-w-7xl m-auto p-5 rounded-lg">
+      <div className="globalShadow3 border-dotted max-w-7xl m-auto p-5 rounded-lg">
         <form onSubmit={addNewCategory}>
           <div className=" mb-4 text-2xl font-semibold">
             Add
@@ -80,7 +81,6 @@ const Page = () => {
           <div className=" flex items-center flex-wrap gap-4 mt-10">
             <input
               required
-              autoFocus
               type="text"
               name="name"
               value={formData.name}
@@ -90,10 +90,10 @@ const Page = () => {
             />
             <button
               type="submit"
-              className=" mt-4 w-fit bg-indigo-500 text-white font-light hover:bg-indigo-600 flex items-center gap-2 px-5 py-2 rounded-lg transition duration-300 cursor-pointer"
+              className=" mt-4 w-fit bg-indigo-500 text-sm text-white font-light hover:bg-indigo-600 flex items-center gap-2 px-5 py-2 rounded-lg transition duration-300 cursor-pointer"
             >
               <i className="fa fa-plus"></i>
-              {loading ? "Adding..." : "Add"}
+              {loading ? <AnimateSvg /> : "Add"}
             </button>
           </div>
           <p className="errorPara">{error}</p>
