@@ -30,7 +30,7 @@ const Page = async ({ params }) => {
         />
       </div>
 
-      <div className="bg-white -translate-y-12 rounded-lg max-w-[1000px] lg:m-auto mx-4">
+      <div className="bg-[#fff] border border-dotted globalShadow3 -translate-y-12 rounded-lg max-w-[1000px] lg:m-auto mx-4">
         <div className="flex items-center justify-center">
           <img
             alt="user profile"
@@ -67,7 +67,7 @@ const Page = async ({ params }) => {
 
       {/* Post div */}
       <div className="grid lg:grid-cols-3 md:grid-cols-3 max-w-[1000px] lg:m-auto mx-4 gap-5 -translate-y-7">
-        <div className="lg:col-span-1 md:col-span-1 bg-white py-4 px-3 text-sm rounded-lg h-fit">
+        <div className="lg:col-span-1 md:col-span-1 globalShadow3 py-4 px-3 text-sm rounded-lg h-fit">
           <div className="flex items-center gap-2 mb-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md p-2 cursor-pointer transition-all">
             <i className="fa-solid fa-location-dot"></i>
             <p>{userPostsNum} posts published</p>
@@ -77,7 +77,7 @@ const Page = async ({ params }) => {
             <p>3 comments written</p>
           </div>
         </div>
-        <div className="lg:col-span-2 md:col-span-2 bg-white p-4 rounded-lg">
+        <div className="lg:col-span-2 md:col-span-2 globalShadow3 p-4 rounded-lg">
           <div className=" flex items-center gap-3 border-b-2 pb-2">
             <span className=" text-indigo-500 font-medium relative">
               Your Blogs

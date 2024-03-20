@@ -72,7 +72,7 @@ const Comment = ({ blogID }) => {
         onSubmit={HandleSubmit}
         className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-6 border-b pb-3"
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between md:flex-row flex-col">
           <h2 className="text-2xl font-semibold text-slate-700">
             Top comments {"(" + totalCommentNum + ")"}
           </h2>
@@ -119,7 +119,7 @@ const Comment = ({ blogID }) => {
       </form>
 
       {/* Listed Comments Here ------------------ */}
-      <div className={`py-0 px-3 transition-all 2xl:px-0 my-6 overflow-hidden`}>
+      <div className={`py-0 px-3 transition-all 2xl:px-0 my-6`}>
         {comments?.map((v, i) => {
           return (
             <div key={i} className={`flex items-start  gap-4 my-4`}>

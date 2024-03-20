@@ -1,10 +1,10 @@
 import axios from "axios";
-import Comment from "@/components/Comment";
 import { Suspense } from "react";
 import Link from "next/link";
+import Comment from "@/components/Comment";
 
 // import RelatedUserPosts from "@/components/RelatedUserPosts";
-// import RecentBlogs from "@/components/RecentBlogs";
+import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
@@ -33,12 +33,12 @@ const page = async ({ params }) => {
 
     return res.json();
   };
+
   const blog = await getSingleBlog(params.slug);
   const userID = blog?.author?._id;
 
   const userRealatedData = await getUserRelatedPosts();
   const postLength = userRealatedData?.foundPosts.length;
-  console.log(userRealatedData?.foundPosts);
 
   return (
     <>
@@ -102,6 +102,7 @@ const page = async ({ params }) => {
         </div>
       </Suspense>
 
+      {/* Related Posts For User --------------------------- */}
       <div className="bg-gray-50 py-12">
         <div className="max-w-[800px] m-auto px-3 md:px-0 border-b pb-8">
           <img
@@ -127,15 +128,15 @@ const page = async ({ params }) => {
             atque pariatur libero?
           </p>
           <Link
-            href={"#"}
-            className="text-white bg-gray-700 px-4 py-1.5 rounded-full"
+            href={`/profile/${userID}`}
+            className="text-white bg-gray-700 px-4 py-1.5 rounded-full hover:bg-gray-800"
           >
             Profile
           </Link>
         </div>
         <div className="max-w-[800px] m-auto px-3 md:px-0 py-6">
           <h1 className="text-gray-700 font-semibold">
-            More from fatfish and JavaScript in Plain English
+            More from {userRealatedData?.foundPosts[0]?.author?.fullName}
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
             {userRealatedData?.foundPosts.map((v, i) => {
@@ -148,17 +149,19 @@ const page = async ({ params }) => {
                   />
                   <div className="flex gap-2 items-center my-3">
                     <img
-                      src={v?.author?.photo}
                       alt="avatar"
+                      src={v?.author?.photo}
                       className="w-8 h-8 rounded-full object-cover"
                     />
                     <h2 className="text-gray-600 text-sm font-semibold">
                       {v?.author?.fullName}
                     </h2>
                   </div>
-                  <h2 className="font-semibold text-[18px] text-gray-700 line-clamp-2 hover:text-gray-800 cursor-pointer">
-                    {v.title}
-                  </h2>
+                  <Link href={`/blog/${v.slug}`}>
+                    <h2 className="font-semibold text-[18px] text-gray-700 line-clamp-2 hover:text-gray-800 cursor-pointer">
+                      {v.title}
+                    </h2>
+                  </Link>
                 </div>
               );
             })}
@@ -169,7 +172,7 @@ const page = async ({ params }) => {
       <Comment blogID={blog?._id} />
 
       {/* Recent Blogs -------------------------------------- */}
-      {/* <RecentBlogs /> */}
+      <RecentBlogs />
     </>
   );
 };
