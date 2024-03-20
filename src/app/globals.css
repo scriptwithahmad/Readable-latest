@@ -433,7 +433,7 @@ h1 {
 }
 
 .cards:hover > .card:not(:hover) {
-  filter: blur(2px);
+  filter: blur(1px);
 }
 
 /*====================================

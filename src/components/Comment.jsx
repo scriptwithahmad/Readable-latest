@@ -5,9 +5,12 @@ import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import Ripple from "material-ripple-effects";
 
 const Comment = ({ blogID }) => {
   const { user } = useContext(AuthContext);
+
+  const ripple = new Ripple();
 
   const [formData, setFormData] = useState({
     content: "",
@@ -59,38 +62,55 @@ const Comment = ({ blogID }) => {
     fetchCatgories();
   }, []);
 
+  const [height, setheight] = useState(false);
+
   return (
-    <>
+    <div className="max-w-[800px] m-auto">
       <Toaster />
       {/* Post New Comment Here ------------------ */}
       <form
         onSubmit={HandleSubmit}
         className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-6 border-b pb-3"
       >
-        <h2 className="text-2xl font-semibold text-slate-700">
-          Top comments {"(" + totalCommentNum + ")"}
-        </h2>
-        <div className="my-4 flex gap-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-slate-700">
+            Top comments {"(" + totalCommentNum + ")"}
+          </h2>
+          <span
+            onClick={() => setheight(!height)}
+            className="px-3 py-1 rounded text-sm hover:underline cursor-pointer"
+          >
+            {height ? "Submit Comment" : "Write Comment"}
+          </span>
+        </div>
+        <div
+          className={`my-4 flex gap-2 md:gap-4 ${
+            height
+              ? "h-full opacity-100 transition-all"
+              : " h-0 opacity-0 transition-all"
+          }`}
+        >
           <img
             alt="Image here"
-            src={user?.photo}
-            className="w-10 h-10 border rounded-full object-cover"
+            src={user?.photo || "/images/user.webp"}
+            className="w-10 h-10 rounded-full object-cover border"
           />
-          <div>
+          <div className="w-full flex gap-2 flex-col">
             <textarea
               rows="4"
               required
-              cols="90"
+              cols="33"
               id="content"
               name="content"
               value={formData.content}
-              className="p-4 text-sm mb-2 rounded-md outline-none"
               onChange={handleAddressChange}
               placeholder="Post Your Thought..."
+              className="p-4 text-sm mb-2 rounded-md outline-none border focus:ring-2"
             ></textarea>
             <button
               type="submit"
-              className="w-fit border px-4 py-1 bg-indigo-500 text-white rounded hover:bg-indigo-600"
+              onMouseUp={(e) => ripple.create(e, "light")}
+              className="w-fit px-4 py-1 bg-indigo-500 text-white rounded hover:bg-indigo-600"
             >
               Post
             </button>
@@ -99,10 +119,10 @@ const Comment = ({ blogID }) => {
       </form>
 
       {/* Listed Comments Here ------------------ */}
-      <div className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-6 cards">
+      <div className={`py-0 px-3 transition-all 2xl:px-0 my-6 overflow-hidden`}>
         {comments?.map((v, i) => {
           return (
-            <div key={i} className="flex items-start gap-4 my-4 card">
+            <div key={i} className={`flex items-start  gap-4 my-4`}>
               <div className="w-10 h-10">
                 <img
                   alt="Image here"
@@ -117,7 +137,7 @@ const Comment = ({ blogID }) => {
                       {v?.author?.fullName}
                     </h2>
                     {/* Hovered Main Div ------------------------ */}
-                    <div className="globalShadow2 min-w-48 px-3 py-4 rounded-lg z-10 absolute top-10 left-2 opacity-0 group-hover:opacity-100 group-hover:text-red-500 group-hover:bg-white transition-all">
+                    <div className="globalShadow2 min-w-48 px-3 py-4 rounded-lg z-10 absolute top-10 left-2 opacity-0 hidden group-hover:block group-hover:opacity-100 group-hover:text-red-500 group-hover:bg-white transition-all">
                       <div class="mb-4 flex items-center gap-2">
                         <img
                           alt="img alt"
@@ -154,7 +174,7 @@ const Comment = ({ blogID }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
