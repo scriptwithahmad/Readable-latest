@@ -25,23 +25,35 @@ const Comment = ({ blogID }) => {
     });
   };
 
-  const HandleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (!user) {
+        return toast.error("Login First To Comment");
+      }
+
       const blogId = blogID;
       const userId = user?._id;
-      var submitionData = {
+      const submissionData = {
         ...formData,
         author: userId,
         blogPost: blogId,
       };
-      var res = await axios.post(`/api/comments`, submitionData);
-      if (res?.data?.success) {
-        toast.success("Comment Added Successfully 😎");
-        window.location.reload();
-      }
+
+      await toast.promise(axios.post(`/api/comments`, submissionData), {
+        loading: "Saving...",
+        success: () => {
+          setTimeout(() => {
+            toast.success("Comment Added Successfully 😎");
+            window.location.reload();
+          }, 1300);
+        },
+        error: (error) => {
+          toast.error(error?.response?.data?.message || "Could not save.");
+        },
+      });
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error.message);
     }
   };
 
@@ -64,12 +76,42 @@ const Comment = ({ blogID }) => {
 
   const [height, setheight] = useState(false);
 
+  const openModel = async (v) => {
+    try {
+      const id = v?._id;
+      const userId = v?.author?._id;
+      const loginUserId = user?._id;
+
+      if (userId === loginUserId) {
+        if (window.confirm("Do you wnat to Delete this Comment") === true) {
+          const res = await fetch(`/api/comments?id=${id}`, {
+            method: "DELETE",
+          });
+          if (
+            toast.success("Comment Deleted Successfully!", {
+              duration: 1000,
+            })
+          ) {
+            window.location.reload();
+          } else {
+            toast.error("Something went Wrong");
+          }
+        }
+      } else {
+        return alert("your are not authorized");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
+  };
+
   return (
     <div className="max-w-[800px] m-auto">
       <Toaster />
       {/* Post New Comment Here ------------------ */}
       <form
-        onSubmit={HandleSubmit}
+        onSubmit={handleSubmit}
         className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-6 border-b pb-3"
       >
         <div className="flex items-center justify-between md:flex-row flex-col">
@@ -133,7 +175,7 @@ const Comment = ({ blogID }) => {
               <div className="border rounded-lg py-3 px-2 w-full relative">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="group">
-                    <h2 className="text-slate-600 font-semibold hover:bg-slate-200 px-2 py-0.5 rounded-md hover:text-gray-700 cursor-pointer">
+                    <h2 className="text-slate-600 whitespace-nowrap font-semibold hover:bg-slate-200 px-2 py-0.5 rounded-md hover:text-gray-700 cursor-pointer">
                       {v?.author?.fullName}
                     </h2>
                     {/* Hovered Main Div ------------------------ */}
@@ -162,9 +204,17 @@ const Comment = ({ blogID }) => {
                       </div>
                     </div>
                   </div>
-                  <span className="text-slate-500 text-xs">
-                    {format(new Date(v.createdAt), "en_US")}
-                  </span>
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-slate-500 text-xs">
+                      {format(new Date(v.createdAt), "en_US")}
+                    </span>
+                    <div className="relative">
+                      <i
+                        className="fa-solid fa-ellipsis cursor-pointer text-gray-500 rounded-lg hover:text-gray-600"
+                        onClick={() => openModel(v)}
+                      ></i>
+                    </div>
+                  </div>
                 </div>
                 <p className="text-gray-500 text-sm leading-[1.5] px-2">
                   {v?.content}
