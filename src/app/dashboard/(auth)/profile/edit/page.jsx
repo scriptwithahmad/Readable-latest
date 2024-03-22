@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
   const router = useRouter();
@@ -302,4 +302,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
