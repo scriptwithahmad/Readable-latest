@@ -38,6 +38,10 @@ h1 {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
 
+.profileBoxShadow {
+  box-shadow: #eee 0px 0px 0px 8px;
+}
+
 .globalShadow2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

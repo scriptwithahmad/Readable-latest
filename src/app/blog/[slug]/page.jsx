@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { format } from "timeago.js";
 import Comment from "@/components/Comment";
+import BlogListLoader from "@/components/BlogListLoader";
+import RecentBlogLoader from "@/components/RecentBlogLoader";
 
 // import RelatedUserPosts from "@/components/RelatedUserPosts";
 import RecentBlogs from "@/components/RecentBlogs";
@@ -44,68 +46,64 @@ const page = async ({ params }) => {
   return (
     <>
       {/* Single Page Here ---------------------------------- */}
-      <Suspense fallback={<h1>Loading......</h1>}>
-        <div className=" max-w-[800px] m-auto py-4 px-3 2xl:px-0 my-4 border-b pb-4">
-          <h1 className=" text-3xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
-            {blog?.title}
-          </h1>
+      <div className=" max-w-[800px] m-auto py-4 px-3 2xl:px-0 my-4 border-b pb-4">
+        <h1 className=" text-3xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
+          {blog?.title}
+        </h1>
 
-          <div className="flex gap-x-3 gap-y-2 flex-wrap my-4 md:my-0">
-            {blog?.tags?.map((tag, i) => (
-              <div
-                key={i}
-                className={`px-3 py-1 rounded flex items-center hover:bg-purple-50 cursor-pointer `}
-              >
-                <span
-                  className={`text-${colors[i % colors.length]}-500 text-sm`}
-                >
-                  #
-                </span>
-                <h2 className="text-sm">{tag}</h2>
-              </div>
-            ))}
-          </div>
-
-          {/* Author Here ---------------------------- */}
-          <div className=" flex items-center gap-2 my-8">
-            <div className="h-12 w-12 rounded-full hover:ring-[4px] hover:ring-gray-200 cursor-pointer">
-              <Link href={`/profile/${userID}`}>
-                <img
-                  alt="Image here"
-                  className="h-full w-full object-cover rounded-full border border-gray-100"
-                  src={
-                    blog?.author?.photo ||
-                    "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
-                  }
-                />
-              </Link>
+        <div className="flex gap-x-3 gap-y-2 flex-wrap my-4 md:my-0">
+          {blog?.tags?.map((tag, i) => (
+            <div
+              key={i}
+              className={`md:px-3 md:py-1 px-2 py-1 rounded flex items-center hover:bg-purple-50 cursor-pointer `}
+            >
+              <span className={`text-${colors[i % colors.length]}-500 text-sm`}>
+                #
+              </span>
+              <h2 className="text-sm">{tag}</h2>
             </div>
-            <div>
-              <Link href={`/profile/${userID}`}>
-                <h3 className="text-sm text-gray-700 font-bold">
-                  {blog?.author?.fullName}
-                </h3>
-              </Link>
-              <span className="text-xs text-gray-600">{blog.category}</span>
-            </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="w-full h-56 md:h-[500px] mt-8">
-            <img
-              alt="image here"
-              src={blog.featuredImage.url}
-              className=" w-full h-full object-cover"
-            />
+        {/* Author Here ---------------------------- */}
+        <div className=" flex items-center gap-2 my-8">
+          <div className="h-12 w-12 rounded-full hover:ring-[4px] hover:ring-gray-200 cursor-pointer">
+            <Link href={`/profile/${userID}`}>
+              <img
+                alt="Image here"
+                className="h-full w-full object-cover rounded-full border border-gray-100"
+                src={
+                  blog?.author?.photo ||
+                  "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
+                }
+              />
+            </Link>
           </div>
-          {/* Description ------------------------------ */}
-          <div className=" my-8">
-            <main
-              dangerouslySetInnerHTML={{ __html: blog?.desc }}
-              className="mt-2 text-gray-500 leading-[1.5]"
-            ></main>
+          <div>
+            <Link href={`/profile/${userID}`}>
+              <h3 className="text-sm text-gray-700 font-bold">
+                {blog?.author?.fullName}
+              </h3>
+            </Link>
+            <span className="text-xs text-gray-600">{blog.category}</span>
           </div>
         </div>
-      </Suspense>
+
+        <div className="w-full h-56 md:h-[500px] mt-8">
+          <img
+            alt="image here"
+            src={blog.featuredImage.url}
+            className=" w-full h-full object-cover"
+          />
+        </div>
+        {/* Description ------------------------------ */}
+        <div className=" my-8">
+          <main
+            dangerouslySetInnerHTML={{ __html: blog?.desc }}
+            className="mt-2 text-gray-500 leading-[1.5]"
+          ></main>
+        </div>
+      </div>
 
       {/* Related Posts For User --------------------------- */}
       <div className="bg-gray-50 py-12">
@@ -143,8 +141,8 @@ const page = async ({ params }) => {
           <h1 className="text-gray-700 font-semibold">
             More from {userRealatedData?.foundPosts[0]?.author?.fullName}
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
-            {userRealatedData?.foundPosts.map((v, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5 border-b pb-4 mb-5">
+            {userRealatedData?.foundPosts.slice(0, 4).map((v, i) => {
               return (
                 <div key={i}>
                   <img
@@ -184,13 +182,22 @@ const page = async ({ params }) => {
               );
             })}
           </div>
+          <Link href={`/profile/${userID}`}>
+            <button className="border px-5 py-2 rounded-full text-gray-500 text-sm hover:text-gray-600 hover:bg-gray-100">
+              See all from {userRealatedData?.foundPosts[0]?.author?.fullName}
+            </button>
+          </Link>
         </div>
       </div>
 
-      <Comment blogID={blog?._id} />
+      <Suspense fallback={<h1>Loading......</h1>}>
+        <Comment blogID={blog?._id} />
+      </Suspense>
 
       {/* Recent Blogs -------------------------------------- */}
-      <RecentBlogs />
+      <Suspense fallback={<RecentBlogLoader />}>
+        <RecentBlogs />
+      </Suspense>
     </>
   );
 };

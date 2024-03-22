@@ -27,9 +27,8 @@ const Page = () => {
           <div className="w-36 h-36 rounded-full">
             <img
               alt="Image Here"
-              className=" rounded-full w-full h-full object-cover"
-              // src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1709627651/blog-image/5partner_hsrody.png"
               src={user?.photo}
+              className=" rounded-full w-full h-full object-cover profileBoxShadow"
             ></img>
           </div>
 

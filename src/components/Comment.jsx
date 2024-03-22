@@ -212,8 +212,8 @@ const Comment = ({ blogID }) => {
                     </span>
                     <div className="relative">
                       <i
-                        className="fa-solid fa-ellipsis cursor-pointer text-gray-500 rounded-lg hover:text-gray-600"
                         onClick={() => openModel(v)}
+                        className="fa-solid fa-ellipsis cursor-pointer text-gray-500 rounded-lg hover:text-gray-600"
                       ></i>
                     </div>
                   </div>

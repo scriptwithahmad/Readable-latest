@@ -19,6 +19,8 @@ const Page = async ({ params }) => {
 
   const userPostsNum = userDetail?.foundPosts.length;
 
+  // console.log(userDetail?.singleUser?.skills)
+
   return (
     <>
       {/* Backgorund Image */}
@@ -30,7 +32,7 @@ const Page = async ({ params }) => {
         />
       </div>
 
-      <div className="bg-[#fff] border border-dotted globalShadow3 -translate-y-12 rounded-lg max-w-[1000px] lg:m-auto mx-4">
+      <div className="bg-[#fff] border border-dotted globalShadow3 -translate-y-12 rounded-lg max-w-[1100px] lg:m-auto mx-4">
         <div className="flex items-center justify-center">
           <img
             alt="user profile"
@@ -47,15 +49,13 @@ const Page = async ({ params }) => {
           >
             {userDetail?.singleUser?.fullName}
           </h1>
-          <p className="text-center my-2 text-slate-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ad iure
-            architecto voluptate in. Placeat laboriosam quo nihil dolorum at
-            corporis.
+          <p className="text-center my-2 text-sm leading-6 text-slate-500">
+            {userDetail?.singleUser?.bio}
           </p>
           <div className="flex items-center md:flex-row flex-col gap-2 md:gap-4 p-4 w-full justify-center">
             <div className="flex items-center gap-2 text-slate-700">
               <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
-              <h2 className=" text-sm">Faisalabad Punjab, Pakistan</h2>
+              <h2 className=" text-sm">{userDetail?.singleUser?.location}</h2>
             </div>
             <div className="flex items-center gap-2 text-slate-700">
               <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
@@ -66,19 +66,34 @@ const Page = async ({ params }) => {
       </div>
 
       {/* Post div */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-3 max-w-[1000px] lg:m-auto mx-4 gap-5 -translate-y-7">
-        <div className="lg:col-span-1 md:col-span-1 globalShadow3 py-4 px-3 text-sm rounded-lg h-fit">
-          <div className="flex items-center gap-2 mb-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md p-2 cursor-pointer transition-all">
-            <i className="fa-solid fa-location-dot"></i>
-            <p>{userPostsNum} posts published</p>
+      <div className="grid lg:grid-cols-3 md:grid-cols-3 max-w-[1100px] lg:m-auto mx-4 gap-5 -translate-y-7">
+        <div className="lg:col-span-1 md:col-span-1 text-sm rounded-lg h-fit">
+          <div className="globalShadow3 bg-white px-3 py-4 mb-5 rounded-lg">
+            <div className="flex items-center gap-2 mb-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md p-2 cursor-pointer transition-all">
+              <i class="fa-solid fa-book-open-reader"></i>
+              <p>{userPostsNum} posts published</p>
+            </div>
+            <div className="flex items-center gap-2 p-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md cursor-pointer transition-all">
+              <i className="fa-solid fa-comments"></i>
+              <p>3 comments written</p>
+            </div>
+            <div className="flex items-center gap-2 p-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md cursor-pointer transition-all">
+              <i className="fa-solid fa-hashtag"></i>
+              <p>18 tags followed</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 p-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md cursor-pointer transition-all">
-            <i className="fa-solid fa-comment"></i>
-            <p>3 comments written</p>
+          <div className="globalShadow3 bg-white px-3 py-4 rounded-lg">
+            <h2 className="text-gray-600 text-lg font-semibold border-b mb-2 pb-2">
+              Skill & Languages
+            </h2>
+            <p className="text-gray-500 text-sm leading-[1.6]">
+              {userDetail?.singleUser?.skills}
+            </p>
           </div>
         </div>
-        <div className="lg:col-span-2 md:col-span-2 globalShadow3 p-4 rounded-lg">
-          <div className=" flex items-center gap-3 border-b-2 pb-2">
+
+        <div className="lg:col-span-2 md:col-span-2 globalShadow3 py-4 rounded-lg">
+          <div className=" flex items-center gap-3 border-b-2 pb-2 mx-4">
             <span className=" text-indigo-500 font-medium relative">
               Your Blogs
               <span className=" before:-bottom-[10px] before:left-0 before:absolute before:h-0.5 before:w-full before:bg-indigo-400 before:rounded-full"></span>
@@ -86,7 +101,7 @@ const Page = async ({ params }) => {
             <span className="text-slate-500 relative">Comments</span>
           </div>
           {/* Blog Listed */}
-          <div className=" py-6">
+          <div className="py-6">
             <table className="text-sm w-full text-left text-gray-500">
               <tbody>
                 {userPostsNum > 0 ? (
@@ -95,7 +110,7 @@ const Page = async ({ params }) => {
                       key={i}
                       className="bg-white hover:bg-gray-50 border-b pb-2 border-gray-100"
                     >
-                      <td className="py-3">
+                      <td className="py-3 px-4">
                         <span className="whitespace-nowrap text-xs">
                           {format(new Date(v.createdAt), "en_US")}
                         </span>
@@ -103,8 +118,8 @@ const Page = async ({ params }) => {
                       <td className="py-3 px-4">
                         <h2 className="text-sm line-clamp-1">{v?.title}</h2>
                       </td>
-                      <td className="py-3">
-                        <h2 className="px-3 py-1 text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">
+                      <td className="px-3 pr-4">
+                        <h2 className="px-3 py-1 whitespace-nowrap text-xs w-fit rounded-full bg-indigo-50 text-indigo-500">
                           {v?.category}
                         </h2>
                       </td>

@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password Required!"],
     },
+    bio: {
+      type: String,
+    },
+    location: {
+      type: String,
+    },
+    skills: {
+      type: Array,
+      trim: true,
+    },
     isAdmin: {
       type: Boolean,
       default: false,
