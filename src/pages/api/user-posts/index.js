@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     }
 
     var foundPosts = await blogsModel
-      .find({ author: id }, { desc: 0, metaDesc: 0, subTitle: 0 })
+      .find({ author: id }, { desc: 0, metaDesc: 0 })
       .populate("author", "fullName photo email");
 
     if (!foundPosts) {

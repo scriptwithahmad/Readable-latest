@@ -36,22 +36,22 @@ const RecentBlogs = async () => {
                   </Link>
                 </div>
                 <div className="">
-                  <div className="flex items-center justify-between mt-3">
-                    <h3 className="accentColor text-xs">{v?.category}</h3>
-                    <span className="text-slate-600 flex items-center gap-2 text-xs">
+                  <div className="flex items-center justify-between mt-4">
+                    <h3 className="text-xs text-gray-500">{v?.category}</h3>
+                    <span className="text-slate-600 flex items-center gap-1 text-xs">
                       <i className="fa-regular fa-clock text-xs"></i>
                       {format(new Date(v.createdAt), "en_US")}
                     </span>
                   </div>
-                  <div className="my-2">
+                  <div className="my-3">
                     <Link href={`/blog/${v.slug}`}>
-                      <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">
+                      <h1 className="text-lg my-2 line-clamp-2 font-semibold text-gray-700 leading-[1.4] hover:text-gray-800 cursor-pointer">
                         {v?.title}
                       </h1>
                     </Link>
                     <main
                       dangerouslySetInnerHTML={{ __html: v?.desc }}
-                      className="text-sm mt-2 text-gray-500 line-clamp-2"
+                      className="text-sm text-gray-500 line-clamp-2"
                     ></main>
                   </div>
                 </div>

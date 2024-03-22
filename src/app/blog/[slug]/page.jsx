@@ -1,6 +1,7 @@
 import axios from "axios";
-import { Suspense } from "react";
 import Link from "next/link";
+import { Suspense } from "react";
+import { format } from "timeago.js";
 import Comment from "@/components/Comment";
 
 // import RelatedUserPosts from "@/components/RelatedUserPosts";
@@ -67,20 +68,24 @@ const page = async ({ params }) => {
 
           {/* Author Here ---------------------------- */}
           <div className=" flex items-center gap-2 my-8">
-            <div className=" h-12 w-12 rounded-full">
-              <img
-                alt="Image here"
-                className="h-full w-full object-cover rounded-full border border-gray-100"
-                src={
-                  blog?.author?.photo ||
-                  "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
-                }
-              />
+            <div className="h-12 w-12 rounded-full hover:ring-[4px] hover:ring-gray-200 cursor-pointer">
+              <Link href={`/profile/${userID}`}>
+                <img
+                  alt="Image here"
+                  className="h-full w-full object-cover rounded-full border border-gray-100"
+                  src={
+                    blog?.author?.photo ||
+                    "https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
+                  }
+                />
+              </Link>
             </div>
             <div>
-              <h3 className="text-sm text-gray-700 font-bold">
-                {blog?.author?.fullName}
-              </h3>
+              <Link href={`/profile/${userID}`}>
+                <h3 className="text-sm text-gray-700 font-bold">
+                  {blog?.author?.fullName}
+                </h3>
+              </Link>
               <span className="text-xs text-gray-600">{blog.category}</span>
             </div>
           </div>
@@ -147,21 +152,34 @@ const page = async ({ params }) => {
                     alt={v?.featuredImage?.altText}
                     className="object-cover h-52 w-full"
                   />
-                  <div className="flex gap-2 items-center my-3">
-                    <img
-                      alt="avatar"
-                      src={v?.author?.photo}
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
-                    <h2 className="text-gray-600 text-sm font-semibold">
-                      {v?.author?.fullName}
-                    </h2>
+                  <div className="flex gap-2 items-center justify-between my-3">
+                    <div className="flex items-center gap-2">
+                      <img
+                        alt="avatar"
+                        src={v?.author?.photo}
+                        className="w-6 h-6 rounded-full object-cover"
+                      />
+                      <h2 className="text-gray-600 text-sm font-semibold">
+                        {v?.author?.fullName}
+                      </h2>
+                    </div>
+                    <div className="flex items-center gap-2 justify-between text-xs text-gray-500">
+                      <h3>{v?.category}</h3>
+                      <span>--</span>
+                      <h3 className="text-slate-500 text-xs">
+                        {format(new Date(v.createdAt), "en_US")}
+                      </h3>
+                    </div>
                   </div>
                   <Link href={`/blog/${v.slug}`}>
-                    <h2 className="font-semibold text-[18px] text-gray-700 line-clamp-2 hover:text-gray-800 cursor-pointer">
+                    <h1 className="font-bold text-gray-700 line-clamp-1 hover:text-gray-800 cursor-pointer">
                       {v.title}
-                    </h2>
+                    </h1>
                   </Link>
+                  <p className="text-sm text-gray-500 line-clamp-2 my-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quaerat aut ipsa error nihil cumque.
+                  </p>
                 </div>
               );
             })}

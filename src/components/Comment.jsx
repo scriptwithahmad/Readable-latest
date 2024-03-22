@@ -120,9 +120,11 @@ const Comment = ({ blogID }) => {
           </h2>
           <span
             onClick={() => setheight(!height)}
-            className="px-3 py-1 rounded text-sm hover:underline cursor-pointer"
+            className={`px-3 py-1 rounded text-gray-600 text-sm hover:bg-gray-50 cursor-pointer ${
+              height ? "bg-gray-100" : ""
+            }`}
           >
-            {height ? "Submit Comment" : "Write Comment"}
+            {height ? "Hide Comment" : "Write Comment"}
           </span>
         </div>
         <div
