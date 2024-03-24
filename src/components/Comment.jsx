@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { useQuery } from "react-query";
 import Ripple from "material-ripple-effects";
 
 const Comment = ({ blogID }) => {
@@ -45,7 +46,10 @@ const Comment = ({ blogID }) => {
         success: () => {
           setTimeout(() => {
             toast.success("Comment Added Successfully 😎");
-            window.location.reload();
+            refetch();
+            setFormData({
+              content: "",
+            });
           }, 1300);
         },
         error: (error) => {
@@ -57,22 +61,16 @@ const Comment = ({ blogID }) => {
     }
   };
 
-  const [comments, setComments] = useState([]);
-  const totalCommentNum = comments.length;
-
-  const fetchCatgories = async () => {
-    try {
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["comments"],
+    async () => {
       const blogId = blogID;
-      const { data } = await axios.get(`/api/comments/?blogPost=${blogId}`);
-      setComments(data?.data);
-    } catch (error) {
-      console.error("Error fetching courses:", error);
+      var res = await axios.get(`/api/comments/?blogPost=${blogId}`);
+      return res?.data?.data;
     }
-  };
+  );
 
-  useEffect(() => {
-    fetchCatgories();
-  }, []);
+  const totalCommentNum = data?.length;
 
   const [height, setheight] = useState(false);
 
@@ -92,7 +90,7 @@ const Comment = ({ blogID }) => {
               duration: 1000,
             })
           ) {
-            window.location.reload();
+            refetch();
           } else {
             toast.error("Something went Wrong");
           }
@@ -163,10 +161,10 @@ const Comment = ({ blogID }) => {
       </form>
 
       {/* Listed Comments Here ------------------ */}
-      <div className={`py-0 px-3 transition-all 2xl:px-0 my-6`}>
-        {comments?.map((v, i) => {
+      <div className={`py-0 px-3 transition-all 2xl:px-0 my-6 cards`}>
+        {data?.map((v, i) => {
           return (
-            <div key={i} className={`flex items-start  gap-4 my-4`}>
+            <div key={i} className={`flex items-start  gap-4 my-4 card`}>
               <div className="w-10 h-10">
                 <img
                   alt="Image here"

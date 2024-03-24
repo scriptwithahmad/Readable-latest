@@ -434,10 +434,11 @@ h1 {
 =====================================*/
 .cards .card:hover {
   transition: all 0.2s linear;
+  opacity: 1;
 }
 
 .cards:hover > .card:not(:hover) {
-  filter: blur(1px);
+  opacity: 0.5;
 }
 
 /*====================================
