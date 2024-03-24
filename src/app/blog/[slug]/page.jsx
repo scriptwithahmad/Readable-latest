@@ -5,8 +5,6 @@ import { format } from "timeago.js";
 import Comment from "@/components/Comment";
 import BlogListLoader from "@/components/BlogListLoader";
 import RecentBlogLoader from "@/components/RecentBlogLoader";
-
-// import RelatedUserPosts from "@/components/RelatedUserPosts";
 import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
@@ -125,10 +123,7 @@ const page = async ({ params }) => {
             </span>
           </div>
           <p className=" text-sm text-gray-600 mb-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aut
-            ipsa error nihil cumque, a adipisci explicabo itaque id. Tenetur,
-            maiores reprehenderit! Assumenda voluptates porro in accusantium
-            atque pariatur libero?
+            {userRealatedData?.foundPosts[0]?.author?.bio}
           </p>
           <Link
             href={`/profile/${userID}`}

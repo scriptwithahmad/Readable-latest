@@ -29,7 +29,7 @@ const Dnav = () => {
 
   return (
     <>
-      <div className="bg-[#ffffffde] backdrop-blur-sm sticky top-0">
+      <div className="bg-[#ffffffbe] backdrop-blur-lg z-[99] sticky top-0">
         <div className="flex items-center justify-between py-3 px-8">
           <div className="flex items-center gap-4">
             <div className="rounded-full flex items-center justify-center h-8 w-8 hover:bg-gray-100 cursor-pointer">
