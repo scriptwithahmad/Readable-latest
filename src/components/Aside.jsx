@@ -30,6 +30,11 @@ var adminNavLinks = [
     label: "Blogs",
     icon: <FileSvg />,
   },
+  {
+    href: "/dashboard/write",
+    label: "Write",
+    icon: <FileSvg />,
+  },
 ];
 
 const Aside = () => {
@@ -65,7 +70,7 @@ const Aside = () => {
         transition: ".6s",
         width: toggle ? "200px" : "70px",
       }}
-      className={`overflow-hidden flex flex-col justify-between h-full py-2 bg-white min-h-screen border-dotted border-r`}
+      className={`overflow-hidden flex flex-col justify-between py-2 bg-white min-h-screen border-dotted border-r`}
     >
       <div className="flex flex-col relative">
         <div className="flex flex-1 flex-col justify-between h-full my-4">

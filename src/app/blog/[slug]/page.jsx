@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { format } from "timeago.js";
 import Comment from "@/components/Comment";
+import RecentBlogs from "@/components/RecentBlogs";
 import BlogListLoader from "@/components/BlogListLoader";
 import RecentBlogLoader from "@/components/RecentBlogLoader";
-import RecentBlogs from "@/components/RecentBlogs";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
@@ -41,6 +41,18 @@ const page = async ({ params }) => {
   const userRealatedData = await getUserRelatedPosts();
   const postLength = userRealatedData?.foundPosts.length;
 
+  // Function to calculate reading time based on number of words
+  const calculateReadingTime = (content) => {
+    const words = content.split(/\s+/).filter((word) => word !== "");
+    const wordCount = words.length;
+    const averageReadingSpeed = 500; // Adjust this value as needed
+    const readingTime = Math.ceil(wordCount / averageReadingSpeed);
+    return readingTime;
+  };
+
+  // Calculate reading time for the current blog post
+  const readingTime = calculateReadingTime(blog?.desc);
+
   return (
     <>
       {/* Single Page Here ---------------------------------- */}
@@ -48,7 +60,7 @@ const page = async ({ params }) => {
         <h1 className=" text-3xl md:text-4xl  font-bold text-gray-800 leading-[1.2] my-2 lg:my-4">
           {blog?.title}
         </h1>
-
+        {/* Tags here ----------- */}
         <div className="flex gap-x-3 gap-y-2 flex-wrap my-4 md:my-0">
           {blog?.tags?.map((tag, i) => (
             <div
@@ -78,12 +90,37 @@ const page = async ({ params }) => {
             </Link>
           </div>
           <div>
-            <Link href={`/profile/${userID}`}>
-              <h3 className="text-sm text-gray-700 font-bold">
+            <Link
+              className="flex items-center gap-2"
+              href={`/profile/${userID}`}
+            >
+              <h3 className="text-sm text-gray-800 font-medium">
                 {blog?.author?.fullName}
-              </h3>
+              </h3>{" "}
+              <span className="text-gray-500">·</span>
+              <span className="text-xs text-gray-500">{blog.category}</span>
             </Link>
-            <span className="text-xs text-gray-600">{blog.category}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-gray-500">
+                {format(new Date(blog.createdAt), "en_US")}
+              </span>
+              <span className="text-gray-500">·</span>
+              <p className="text-xs text-gray-500">{readingTime} min read</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Actions, share, like and much more ----------- */}
+        <div className="border-y py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-sm">
+              <i className="fa-solid fa-hands-clapping text-gray-400"></i>
+              <span className="text-gray-700">10</span>
+            </div>
+            <i id="comment" className="fa-solid fa-comment text-gray-400 cursor-pointer text-sm"></i>
+          </div>
+          <div>
+          <i class="fa-solid fa-ellipsis text-gray-400 hover:text-gray-500 cursor-pointer"></i>
           </div>
         </div>
 
@@ -95,7 +132,7 @@ const page = async ({ params }) => {
           />
         </div>
         {/* Description ------------------------------ */}
-        <div className=" my-8">
+        <div className="my-8">
           <main
             dangerouslySetInnerHTML={{ __html: blog?.desc }}
             className="mt-2 text-gray-500 leading-[1.5]"

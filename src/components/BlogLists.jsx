@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { format, render, cancel, register } from "timeago.js";
 import BlogCard from "./BlogCard";
+import { format, render, cancel, register } from "timeago.js";
 
 async function getData() {
   const res = await fetch("https://readable-blogging.vercel.app/api/get-blogs");
@@ -18,6 +18,15 @@ const BlogLists = async () => {
   const data = await getData();
   const total = data?.message?.count;
   const categories = await getCategories();
+
+  // Function to calculate reading time based on number of words
+  const calculateReadingTime = (desc) => {
+    const words = desc.split(/\s+/).filter((word) => word !== "");
+    const wordCount = words.length;
+    const averageReadingSpeed = 500; // Adjust this value as needed
+    const readingTime = Math.ceil(wordCount / averageReadingSpeed);
+    return readingTime;
+  };
 
   return (
     <>
@@ -76,15 +85,18 @@ const BlogLists = async () => {
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
           {data?.message?.data?.map((v, i) => {
+            const readingTimes = calculateReadingTime(v.desc);
             return (
               <div key={i}>
-                <div className="w-full h-[320px]">
-                  <img
-                    src={v?.featuredImage?.url}
-                    alt={v?.featuredImage?.altText}
-                    className=" h-full w-full object-cover"
-                  ></img>
-                </div>
+                <Link href={`/blog/${v.slug}`}>
+                  <div className="w-full h-[320px]">
+                    <img
+                      src={v?.featuredImage?.url}
+                      alt={v?.featuredImage?.altText}
+                      className=" h-full w-full object-cover"
+                    ></img>
+                  </div>
+                </Link>
                 <div className="border-b-4 pb-1 border-[#2386ff6d]">
                   <div className="flex items-center justify-between mt-3">
                     <h3 className="accentColor text-sm">{v?.category}</h3>
@@ -103,12 +115,14 @@ const BlogLists = async () => {
                       dangerouslySetInnerHTML={{ __html: v?.desc }}
                       className="text-sm mt-2 text-gray-500 line-clamp-2"
                     ></main>
-                    <Link href={`/blog/${v.slug}`}>
-                      <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
-                        Read More
-                        <i className="fa-solid fa-arrow-right"></i>
-                      </button>
-                    </Link>
+                    <div className="flex items-center justify-between my-4 text-sm">
+                      <Link href={`/blog/${v.slug}`}>
+                        <button className="flex items-center justify-center gap-2 text-gray-600 hover:text-indigo-700 transition-all">
+                          Read More
+                        </button>
+                      </Link>
+                      <p className="text-gray-600">{readingTimes} minutes</p>
+                    </div>
                   </div>
                 </div>
               </div>
