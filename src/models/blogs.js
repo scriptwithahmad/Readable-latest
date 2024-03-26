@@ -51,6 +51,16 @@ const blogSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
     },
+    likes: {
+      type: Number,
+      default: 0, // Default value for number of likes
+    },
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
   },
   { timestamps: true }
 );

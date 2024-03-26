@@ -6,6 +6,7 @@ import Comment from "@/components/Comment";
 import RecentBlogs from "@/components/RecentBlogs";
 import BlogListLoader from "@/components/BlogListLoader";
 import RecentBlogLoader from "@/components/RecentBlogLoader";
+import LikePost from "@/components/LikePost";
 
 const getSingleBlog = async (slug) => {
   const { data } = await axios.get(
@@ -36,8 +37,9 @@ const page = async ({ params }) => {
   };
 
   const blog = await getSingleBlog(params.slug);
+  const blogID = blog?._id
   const userID = blog?.author?._id;
-
+  const postlikes = blog?.likes
   const userRealatedData = await getUserRelatedPosts();
   const postLength = userRealatedData?.foundPosts.length;
 
@@ -111,7 +113,7 @@ const page = async ({ params }) => {
         </div>
 
         {/* Actions, share, like and much more ----------- */}
-        <div className="border-y py-4 flex items-center justify-between">
+        {/* <div className="border-y py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm">
               <i className="fa-solid fa-hands-clapping text-gray-400"></i>
@@ -127,7 +129,9 @@ const page = async ({ params }) => {
             <i className="fa-brands fa-instagram text-gray-500 cursor-pointer hover:text-gray-600"></i>
             <i className="fa-solid fa-ellipsis text-gray-500 cursor-pointer hover:text-gray-600"></i>
           </div>
-        </div>
+        </div> */}
+
+        <LikePost blogID={blogID} postlikes={postlikes} />
 
         <div className="w-full h-56 md:h-[500px] mt-8">
           <img
@@ -167,12 +171,17 @@ const page = async ({ params }) => {
           <p className=" text-sm text-gray-600 mb-6">
             {userRealatedData?.foundPosts[0]?.author?.bio}
           </p>
-          <Link
-            href={`/profile/${userID}`}
-            className="text-white bg-gray-700 px-4 py-1.5 rounded-full hover:bg-gray-800"
-          >
-            Profile
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href={`/profile/${userID}`}
+              className="text-white bg-gray-700 px-4 py-1.5 rounded-full hover:bg-gray-800"
+            >
+              Profile
+            </Link>
+            <button className="text-gray-600 border border-gray-500 px-4 py-1.5 rounded-full hover:text-gray-700">
+              Follow
+            </button>
+          </div>
         </div>
         <div className="max-w-[800px] m-auto px-3 md:px-0 py-6">
           <h1 className="text-gray-700 font-semibold">
