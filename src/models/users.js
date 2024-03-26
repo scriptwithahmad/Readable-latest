@@ -45,6 +45,18 @@ const userSchema = new mongoose.Schema(
       ref: "blogs",
       required: false,
     },
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
   },
 
   { timestamps: true }

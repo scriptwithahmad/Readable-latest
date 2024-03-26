@@ -13,6 +13,9 @@
 body {
   color: var(--body-text);
   background: var(--body-bg);
+}
+
+html {
   scroll-behavior: smooth;
 }
 

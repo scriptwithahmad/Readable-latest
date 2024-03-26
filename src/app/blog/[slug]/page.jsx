@@ -117,10 +117,15 @@ const page = async ({ params }) => {
               <i className="fa-solid fa-hands-clapping text-gray-400"></i>
               <span className="text-gray-700">10</span>
             </div>
-            <i id="comment" className="fa-solid fa-comment text-gray-400 cursor-pointer text-sm"></i>
+            <Link href={"#comment"}>
+              <i className="fa-solid fa-comment text-gray-400 cursor-pointer text-sm"></i>
+            </Link>
           </div>
-          <div>
-          <i class="fa-solid fa-ellipsis text-gray-400 hover:text-gray-500 cursor-pointer"></i>
+          <div className="flex items-center gap-5">
+            <i className="fa-brands fa-linkedin-in text-gray-500 cursor-pointer hover:text-gray-600"></i>
+            <i className="fa-brands fa-x-twitter text-gray-500 cursor-pointer hover:text-gray-600"></i>
+            <i className="fa-brands fa-instagram text-gray-500 cursor-pointer hover:text-gray-600"></i>
+            <i className="fa-solid fa-ellipsis text-gray-500 cursor-pointer hover:text-gray-600"></i>
           </div>
         </div>
 
@@ -146,7 +151,7 @@ const page = async ({ params }) => {
           <img
             alt="image here"
             className="h-[70px] w-[70px] rounded-full object-cover mb-4"
-            src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1709715982/blog-image/download_yofegq.jpg"
+            src={userRealatedData?.foundPosts[0]?.author?.photo}
           />
           <h1 className="text-gray-700 font-semibold text-lg mb-2">
             Written By {userRealatedData?.foundPosts[0]?.author?.fullName}
@@ -222,9 +227,9 @@ const page = async ({ params }) => {
         </div>
       </div>
 
-      <Suspense fallback={<h1>Loading......</h1>}>
+      <div id="comment">
         <Comment blogID={blog?._id} />
-      </Suspense>
+      </div>
 
       {/* Recent Blogs -------------------------------------- */}
       <Suspense fallback={<RecentBlogLoader />}>

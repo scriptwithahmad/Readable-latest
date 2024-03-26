@@ -32,7 +32,7 @@ const BlogLists = async () => {
     <>
       {/* seraching Tabs ------------------------------------------------- */}
       <div className="standardWidth px-3 2xl:px-0">
-        <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#FFFFFF] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
+        <div className="my-8 flex lg:flex-row flex-col items-center justify-between gap-2 bg-[#f5f5f5] rounded-2xl md:rounded-full py-2 md:py-4 px-2 md:px-6 overflow-hidden">
           <div className="heroFilterSection flex items-center gap-1 md:gap-4 border-none md:border-r px-3 pt-3 md:pr-10 w-full lg:w-[70%] 2xl:overflow-x-visible overflow-x-auto pb-4">
             {categories?.getcat?.map((data, index) => {
               return (
@@ -59,7 +59,7 @@ const BlogLists = async () => {
               );
             })}
           </div>
-          <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
+          <div className="bg-white rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
             <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
             <input
               type="search"

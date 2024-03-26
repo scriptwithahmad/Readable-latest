@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { JWTVerify } from "./helpers/jwt";
 
 export async function middleware(req, res) {
-  const publicRoutes = ["/login", "/register"];
+  const publicRoutes = ["/", "/login", "/register"];
 
   var pathname = req.nextUrl.pathname;
   var token = req.cookies.get("AccessToken")?.value;
@@ -37,5 +37,5 @@ export async function middleware(req, res) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/dashboard", "/dashboard/:path*"],
+  matcher: ["/login", "/register", "/dashboard", "/dashboard/:path*"],
 };

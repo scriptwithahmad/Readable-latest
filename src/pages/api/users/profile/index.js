@@ -10,7 +10,9 @@ export default async function handler(req, res) {
     var id = (await JWTVerify(token)) || req.query.id;
     // var id = JSON.parse(atob(req.cookies.AccessToken.split(".")[1])).id
 
-    const foundUser = await userModel.findById(id, { password: false });
+    const foundUser = await userModel
+      .findById(id, { password: false })
+      .populate("followers", "fullName photo");
 
     if (!foundUser) {
       res.status(400).json({
