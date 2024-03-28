@@ -1,12 +1,12 @@
 "use client";
-import axios from "axios";
-import { format } from "timeago.js";
-import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
-import React, { useContext, useEffect, useState } from "react";
-import Link from "next/link";
-import { useQuery } from "react-query";
+import axios from "axios";
 import Ripple from "material-ripple-effects";
+import Link from "next/link";
+import { useContext, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { useQuery } from "react-query";
+import { format } from "timeago.js";
 
 const Comment = ({ blogID }) => {
   const { user } = useContext(AuthContext);
@@ -113,7 +113,7 @@ const Comment = ({ blogID }) => {
         className="max-w-[800px] m-auto py-0 px-3 2xl:px-0 my-6 border-b pb-3"
       >
         <div className="flex items-center justify-between md:flex-row flex-col">
-          <h2 className="text-2xl font-semibold text-slate-700">
+          <h2 className="border-l-4 border-[#2386FF] pl-4 text-2xl font-semibold">
             Top comments {"(" + totalCommentNum + ")"}
           </h2>
           <span

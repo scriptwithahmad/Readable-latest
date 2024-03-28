@@ -4,7 +4,7 @@ import Link from "next/link";
 import { format } from "timeago.js";
 import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 const Follow = ({ blog, userRealatedData }) => {
@@ -16,6 +16,26 @@ const Follow = ({ blog, userRealatedData }) => {
 
   const [isFollow, setIsFollow] = useState(false);
 
+  useEffect(() => {
+    // Check if userRelatedData and foundPosts are defined
+    if (
+      userRealatedData &&
+      userRealatedData.foundPosts &&
+      userRealatedData.foundPosts.length > 0
+    ) {
+      const author = userRealatedData.foundPosts[0].author;
+
+      // Check if author and followers array are defined
+      if (author && author?.followers) {
+        // Check if the current user is already following the blog author
+        const isUserFollowing = author.followers.includes(user?._id);
+        setIsFollow(isUserFollowing);
+      }
+    }
+  }, [userRealatedData, user]);
+
+  console.log(blog?.author);
+
   const followHandler = async () => {
     try {
       // Send a PATCH request to your API endpoint to like the post
@@ -23,7 +43,7 @@ const Follow = ({ blog, userRealatedData }) => {
         _id: user?._id,
       });
       toast.success(response?.data?.message);
-      setIsFollow(true);
+      setIsFollow(!isFollow);
     } catch (error) {
       console.error(error);
       toast.error(error?.response);
@@ -76,7 +96,7 @@ const Follow = ({ blog, userRealatedData }) => {
                     : "hover:bg-gray-50 ring-1 ring-blue-500 text-blue-500 hover:ring-2 hover:ring-blue-300"
                 }`}
               >
-                Follow
+                {isFollow ? "Unfollow" : "Follow"}
               </button>
             </div>
           </div>
