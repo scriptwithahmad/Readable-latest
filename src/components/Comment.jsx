@@ -117,6 +117,7 @@ const Comment = ({ blogID }) => {
             Top comments {"(" + totalCommentNum + ")"}
           </h2>
           <span
+            onMouseUp={(e) => ripple.create(e, "dark")}
             onClick={() => setheight(!height)}
             className={`px-3 py-1 rounded text-gray-600 text-sm hover:bg-gray-50 cursor-pointer ${
               height ? "bg-gray-100" : ""

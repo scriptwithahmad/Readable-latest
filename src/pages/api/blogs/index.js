@@ -64,12 +64,10 @@ export default async function handler(req, res) {
 
         // Check if the user has already liked the post
         if (blog.likedBy.includes(userId)) {
-          return res
-            .status(400)
-            .json({
-              success: false,
-              message: "You have already liked this post",
-            });
+          return res.status(400).json({
+            success: false,
+            message: "You have already liked this post",
+          });
         }
 
         // Update the blog post to increment likes and add userId to likedBy array
