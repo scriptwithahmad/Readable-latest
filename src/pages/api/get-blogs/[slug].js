@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       try {
         const singleBlog = await BlogModel.findOne({
           slug: req.query.slug,
-        }).populate("author", "fullName email photo");
+        }).populate("author", "fullName email photo followers");
         res.status(200).json({
           success: true,
           singleBlog,
