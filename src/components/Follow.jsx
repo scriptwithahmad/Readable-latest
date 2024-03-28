@@ -16,34 +16,23 @@ const Follow = ({ blog, userRealatedData }) => {
 
   const [isFollow, setIsFollow] = useState(false);
 
-  useEffect(() => {
-    // Check if userRelatedData and foundPosts are defined
-    if (
-      userRealatedData &&
-      userRealatedData.foundPosts &&
-      userRealatedData.foundPosts.length > 0
-    ) {
-      const author = userRealatedData.foundPosts[0].author;
+  const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
 
-      // Check if author and followers array are defined
-      if (author && author?.followers) {
-        // Check if the current user is already following the blog author
-        const isUserFollowing = author.followers.includes(user?._id);
-        setIsFollow(isUserFollowing);
-      }
-    }
-  }, [userRealatedData, user]);
-
-  console.log(blog?.author);
+  console.log(userFollowExistsinDB);
 
   const followHandler = async () => {
     try {
+      const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
+
+      if (userFollowExistsinDB) {
+        return toast.error("your already follow this user");
+      }
+
       // Send a PATCH request to your API endpoint to like the post
       const response = await axios.post(`/api/users/follow?id=${blogUserID}`, {
         _id: user?._id,
       });
       toast.success(response?.data?.message);
-      setIsFollow(!isFollow);
     } catch (error) {
       console.error(error);
       toast.error(error?.response);
@@ -91,12 +80,12 @@ const Follow = ({ blog, userRealatedData }) => {
                 onClick={followHandler}
                 onMouseUp={(e) => ripple.create(e, "dark")}
                 className={`px-4 py-1.5 rounded-full ${
-                  !isFollow
+                  !userFollowExistsinDB
                     ? "bg-gray-700 text-white hover:bg-gray-500"
                     : "hover:bg-gray-50 ring-1 ring-blue-500 text-blue-500 hover:ring-2 hover:ring-blue-300"
                 }`}
               >
-                {isFollow ? "Unfollow" : "Follow"}
+                {userFollowExistsinDB ? "Unfollow" : "Follow"}
               </button>
             </div>
           </div>
