@@ -27,7 +27,7 @@ const DHome = () => {
           <div className=" w-[30%]">
             <svg
               viewBox="0 0 480 350"
-              class="MuiBox-root css-uwwqev"
+              className="MuiBox-root css-uwwqev"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>

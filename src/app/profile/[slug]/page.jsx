@@ -19,7 +19,7 @@ const Page = async ({ params }) => {
 
   const userPostsNum = userDetail?.foundPosts.length;
 
-  // console.log(userDetail?.singleUser?.skills)
+  console.log(userDetail?.singleUser?.skills == false);
 
   return (
     <>
@@ -53,10 +53,12 @@ const Page = async ({ params }) => {
             {userDetail?.singleUser?.bio}
           </p>
           <div className="flex items-center md:flex-row flex-col gap-2 md:gap-4 p-4 w-full justify-center">
-            <div className="flex items-center gap-2 text-slate-700">
-              <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
-              <h2 className=" text-sm">{userDetail?.singleUser?.location}</h2>
-            </div>
+            {userDetail?.singleUser?.location ? (
+              <div className="flex items-center gap-2 text-slate-700">
+                <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
+                <h2 className=" text-sm">{userDetail?.singleUser?.location}</h2>
+              </div>
+            ) : null}
             <div className="flex items-center gap-2 text-slate-700">
               <i className="fa-solid fa-location-dot text-sm text-slate-500"></i>
               <h2 className="text-sm">{userDetail?.singleUser?.email}</h2>
@@ -70,7 +72,7 @@ const Page = async ({ params }) => {
         <div className="lg:col-span-1 md:col-span-1 text-sm rounded-lg h-fit">
           <div className="globalShadow3 bg-white px-3 py-4 mb-5 rounded-lg">
             <div className="flex items-center gap-2 mb-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md p-2 cursor-pointer transition-all">
-              <i class="fa-solid fa-book-open-reader"></i>
+              <i className="fa-solid fa-book-open-reader"></i>
               <p>{userPostsNum} posts published</p>
             </div>
             <div className="flex items-center gap-2 p-2 hover:bg-indigo-100 text-gray-500 hover:text-indigo-500 rounded-md cursor-pointer transition-all">
@@ -82,14 +84,20 @@ const Page = async ({ params }) => {
               <p>18 tags followed</p>
             </div>
           </div>
-          <div className="globalShadow3 bg-white px-3 py-4 rounded-lg">
-            <h2 className="text-gray-600 text-lg font-semibold border-b mb-2 pb-2">
-              Skill & Languages
-            </h2>
-            <p className="text-gray-500 text-sm leading-[1.6]">
-              {userDetail?.singleUser?.skills}
-            </p>
-          </div>
+          {userDetail?.singleUser?.skills &&
+            userDetail.singleUser.skills.length > 0 && (
+              <div className="globalShadow3 bg-white px-3 py-4 rounded-lg">
+                <h2 className="text-gray-600 text-lg font-semibold border-b mb-2 pb-2">
+                  Skill & Languages
+                </h2>
+                <p className="text-gray-500 text-sm leading-[1.6]">
+                  {/* Display the skills here */}
+                  {userDetail?.singleUser?.skills.map((skill, index) => (
+                    <span key={index}>{skill}</span>
+                  ))}
+                </p>
+              </div>
+            )}
         </div>
 
         <div className="lg:col-span-2 md:col-span-2 globalShadow3 py-4 rounded-lg">

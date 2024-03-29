@@ -112,32 +112,13 @@ const page = async ({ params }) => {
           </div>
         </div>
 
-        {/* Actions, share, like and much more ----------- */}
-        {/* <div className="border-y py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-sm">
-              <i className="fa-solid fa-hands-clapping text-gray-400"></i>
-              <span className="text-gray-700">10</span>
-            </div>
-            <Link href={"#comment"}>
-              <i className="fa-solid fa-comment text-gray-400 cursor-pointer text-sm"></i>
-            </Link>
-          </div>
-          <div className="flex items-center gap-5">
-            <i className="fa-brands fa-linkedin-in text-gray-500 cursor-pointer hover:text-gray-600"></i>
-            <i className="fa-brands fa-x-twitter text-gray-500 cursor-pointer hover:text-gray-600"></i>
-            <i className="fa-brands fa-instagram text-gray-500 cursor-pointer hover:text-gray-600"></i>
-            <i className="fa-solid fa-ellipsis text-gray-500 cursor-pointer hover:text-gray-600"></i>
-          </div>
-        </div> */}
-
         <LikePost blogID={blogID} postlikes={postlikes} />
 
         <div className="w-full h-56 md:h-[500px] mt-8">
           <img
             alt="image here"
             src={blog.featuredImage.url}
-            className=" w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
         {/* Description ------------------------------ */}

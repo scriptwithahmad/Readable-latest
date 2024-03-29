@@ -1,11 +1,12 @@
 "use client";
 import axios from "axios";
 import Link from "next/link";
+import { useContext } from "react";
 import { format } from "timeago.js";
 import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
-import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import Image from "next/image";
 
 const Follow = ({ blog, userRealatedData }) => {
   const ripple = new Ripple();
@@ -14,16 +15,11 @@ const Follow = ({ blog, userRealatedData }) => {
   const blogUserID = blog?.author?._id;
   const postLength = userRealatedData?.foundPosts.length;
 
-  const [isFollow, setIsFollow] = useState(false);
-
   const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
-
-  console.log(userFollowExistsinDB);
 
   const followHandler = async () => {
     try {
       const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
-
       if (userFollowExistsinDB) {
         return toast.error("your already follow this user");
       }
@@ -34,8 +30,11 @@ const Follow = ({ blog, userRealatedData }) => {
       });
       toast.success(response?.data?.message);
     } catch (error) {
-      console.error(error);
-      toast.error(error?.response);
+      if (error?.response?.data?.message) {
+        toast.error("login first!");
+      } else {
+        toast.error(error?.response);
+      }
     }
   };
 
@@ -47,11 +46,14 @@ const Follow = ({ blog, userRealatedData }) => {
         <div className="max-w-[800px] m-auto px-3 md:px-0 border-b pb-8">
           <div className="flex justify-between items-start">
             <div>
-              <img
+              <Image
+                width={400}
+                height={400}
+                priority="true"
                 alt="image here"
                 className="h-[70px] w-[70px] rounded-full object-cover mb-4"
                 src={userRealatedData?.foundPosts[0]?.author?.photo}
-              />
+              ></Image>
               <h1 className="text-gray-700 font-semibold text-lg mb-2">
                 Written By {userRealatedData?.foundPosts[0]?.author?.fullName}
               </h1>
@@ -98,18 +100,24 @@ const Follow = ({ blog, userRealatedData }) => {
             {userRealatedData?.foundPosts.slice(0, 4).map((v, i) => {
               return (
                 <div key={i}>
-                  <img
+                  <Image
+                    width={800}
+                    height={800}
+                    priority="true"
                     src={v?.featuredImage?.url}
                     alt={v?.featuredImage?.altText}
                     className="object-cover h-52 w-full"
-                  />
+                  ></Image>
                   <div className="flex gap-2 items-center justify-between my-3">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
+                        width={500}
+                        height={500}
                         alt="avatar"
+                        priority="true"
                         src={v?.author?.photo}
                         className="w-6 h-6 rounded-full object-cover"
-                      />
+                      ></Image>
                       <h2 className="text-gray-600 text-sm font-semibold">
                         {v?.author?.fullName}
                       </h2>

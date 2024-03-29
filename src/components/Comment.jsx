@@ -181,13 +181,13 @@ const Comment = ({ blogID }) => {
                     </h2>
                     {/* Hovered Main Div ------------------------ */}
                     <div className="globalShadow2 min-w-48 px-3 py-4 rounded-lg z-10 absolute top-10 left-2 opacity-0 hidden group-hover:block group-hover:opacity-100 group-hover:text-red-500 group-hover:bg-white transition-all">
-                      <div class="mb-4 flex items-center gap-2">
+                      <div className="mb-4 flex items-center gap-2">
                         <img
                           alt="img alt"
                           src={v?.author?.photo}
-                          class="h-8 w-8 rounded-full object-cover"
+                          className="h-8 w-8 rounded-full object-cover"
                         />
-                        <h2 class="text-lg font-medium text-slate-700 whitespace-nowrap">
+                        <h2 className="text-lg font-medium text-slate-700 whitespace-nowrap">
                           {v?.author?.fullName}
                         </h2>
                       </div>
@@ -197,9 +197,9 @@ const Comment = ({ blogID }) => {
                       >
                         Profile
                       </Link>
-                      <div class="mt-2">
-                        <span class="text-xs text-slate-500">JOIN</span>
-                        <h2 class="text-sm font-medium text-slate-700">
+                      <div className="mt-2">
+                        <span className="text-xs text-slate-500">JOIN</span>
+                        <h2 className="text-sm font-medium text-slate-700">
                           {format(new Date(v?.author?.createdAt), "en_US")}
                         </h2>
                       </div>
