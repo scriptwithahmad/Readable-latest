@@ -19,8 +19,6 @@ const Page = async ({ params }) => {
 
   const userPostsNum = userDetail?.foundPosts.length;
 
-  console.log(userDetail?.singleUser?.skills == false);
-
   return (
     <>
       {/* Backgorund Image */}

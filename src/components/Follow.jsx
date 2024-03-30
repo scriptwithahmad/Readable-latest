@@ -15,6 +15,8 @@ const Follow = ({ blog, userRealatedData }) => {
   const blogUserID = blog?.author?._id;
   const postLength = userRealatedData?.foundPosts.length;
 
+  const ifUserAndBlogUserSame = blogUserID == user?._id;
+
   const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
 
   const followHandler = async () => {
@@ -38,10 +40,29 @@ const Follow = ({ blog, userRealatedData }) => {
     }
   };
 
+  const unfollowHandler = async () => {
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow?id=${blogUserID}`,
+        {
+          _id: user?._id,
+        }
+      );
+      toast.success(response?.data?.message);
+    } catch (error) {
+      console.log(error);
+      if (error?.response?.data?.message) {
+        toast.error("Login first!");
+      } else {
+        toast.error(error?.response?.data?.message || "An error occurred.");
+      }
+    }
+  };
+
   return (
     <>
       <Toaster />
-      {/* Related Posts For User --------------------------- */}
+      {/* Related Posts For User and Follow Buton --------------------------- */}
       <div className="bg-gray-50 py-12">
         <div className="max-w-[800px] m-auto px-3 md:px-0 border-b pb-8">
           <div className="flex justify-between items-start">
@@ -78,17 +99,25 @@ const Follow = ({ blog, userRealatedData }) => {
               >
                 Profile
               </Link>
-              <button
-                onClick={followHandler}
-                onMouseUp={(e) => ripple.create(e, "dark")}
-                className={`px-4 py-1.5 rounded-full ${
-                  !userFollowExistsinDB
-                    ? "bg-gray-700 text-white hover:bg-gray-500"
-                    : "hover:bg-gray-50 ring-1 ring-blue-500 text-blue-500 hover:ring-2 hover:ring-blue-300"
-                }`}
-              >
-                {userFollowExistsinDB ? "Unfollow" : "Follow"}
-              </button>
+              {!ifUserAndBlogUserSame ? (
+                !userFollowExistsinDB ? (
+                  <button
+                    onClick={followHandler}
+                    onMouseUp={(e) => ripple.create(e, "dark")}
+                    className={`px-4 py-1.5 rounded-full bg-gray-700  text-white hover:bg-gray-500 transition-all`}
+                  >
+                    Follow
+                  </button>
+                ) : (
+                  <button
+                    onClick={unfollowHandler}
+                    onMouseUp={(e) => ripple.create(e, "dark")}
+                    className={`px-4 py-1.5 rounded-full border border-gray-400/60 text-gray-600 hover:border-gray-500/80 transition-all`}
+                  >
+                    Unfollow
+                  </button>
+                )
+              ) : null}
             </div>
           </div>
         </div>

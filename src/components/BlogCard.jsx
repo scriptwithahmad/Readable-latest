@@ -11,6 +11,15 @@ async function getData() {
 const BlogCard = async () => {
   const blogCard = await getData();
 
+  // Function to calculate reading time based on number of words
+  const calculateReadingTime = (desc) => {
+    const words = desc.split(/\s+/).filter((word) => word !== "");
+    const wordCount = words.length;
+    const averageReadingSpeed = 500; // Adjust this value as needed
+    const readingTime = Math.ceil(wordCount / averageReadingSpeed);
+    return readingTime;
+  };
+
   return (
     <>
       {/* BLog Card start here -------------------------------------------------- */}
@@ -19,12 +28,13 @@ const BlogCard = async () => {
           Recent Posts:
         </h1>
         {blogCard?.message?.data?.slice(0, 1).map((v, i) => {
+          const readingTimes = calculateReadingTime(v.desc);
           return (
             <section
               key={i}
               className=" flex md:flex-row flex-col items-center gap-5 lg:gap-12"
             >
-              <div className="lg:w-1/2 lg:h-[450px]  h-[260px] w-full md:w-[300px]">
+              <div className="lg:w-1/2 lg:h-[450px] h-[260px] w-full md:w-[300px]">
                 <img
                   src={v?.featuredImage?.url}
                   alt={v?.featuredImage?.altText}
@@ -42,6 +52,9 @@ const BlogCard = async () => {
                       <i className="fa-regular text-gray-400 fa-clock lg:text-[15px]"></i>
                       {format(new Date(v.createdAt), "en_US")}
                     </span>
+                    <p className="text-gray-500 text-sm">
+                      - {readingTimes} min read
+                    </p>
                   </div>
                   <div>
                     <Link href={`/blog/${v.slug}`}>
@@ -51,7 +64,7 @@ const BlogCard = async () => {
                     </Link>
 
                     <Link href={`/blog/${v.slug}`}>
-                      <button className="btn flex items-center justify-center gap-2 my-4 px-4 py-1.5">
+                      <button className="btn flex items-center justify-center gap-2 my-6 px-4 py-1.5">
                         Read More
                         <i className="fa-solid fa-arrow-right"></i>
                       </button>
@@ -60,7 +73,7 @@ const BlogCard = async () => {
                 </div>
 
                 <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
-                  <div className=" w-36 md:w-48 lg:w-48 lg:h-32">
+                  <div className=" w-36 md:w-48 lg:w-96 lg:h-32">
                     <img
                       className=" h-full w-full object-cover"
                       src={blogCard?.message?.data[1]?.featuredImage?.url}

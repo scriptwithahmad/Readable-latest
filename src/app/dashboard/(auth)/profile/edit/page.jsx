@@ -274,7 +274,6 @@ const Page = () => {
                 </label>
                 <textarea
                   rows="4"
-                  required
                   cols="40"
                   id="skills"
                   name="skills"
