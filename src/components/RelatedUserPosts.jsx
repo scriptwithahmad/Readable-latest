@@ -41,7 +41,7 @@ const RelatedUserPosts = () => {
               200 + Likes
             </span>
           </div>
-          <p className=" text-sm text-gray-600 mb-6">
+          <p className="text-sm text-gray-600 mb-6">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aut
             ipsa error nihil cumque, a adipisci explicabo itaque id. Tenetur,
             maiores reprehenderit! Assumenda voluptates porro in accusantium

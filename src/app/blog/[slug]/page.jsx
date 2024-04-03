@@ -43,6 +43,8 @@ const page = async ({ params }) => {
   const postlikes = blog?.likes;
   const userRealatedData = await getUserRelatedPosts();
 
+  console.log(userRealatedData?.foundPosts)
+
   // Function to calculate reading time based on number of words
   const calculateReadingTime = (content) => {
     const words = content.split(/\s+/).filter((word) => word !== "");

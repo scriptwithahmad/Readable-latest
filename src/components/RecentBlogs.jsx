@@ -8,7 +8,7 @@ const getRecentBlogs = async () => {
   const { data } = await axios.get(
     "https://readable-blogging.vercel.app/api/get-blogs/?limit=3"
   );
-  return data.message;
+  return data?.message;
 };
 
 const RecentBlogs = async () => {
@@ -23,11 +23,11 @@ const RecentBlogs = async () => {
         </h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card Map Here ------ */}
-          {recentBlog.data?.map((v, i) => {
+          {recentBlog?.data?.map((v, i) => {
             return (
               <div key={i}>
                 <div className="w-full h-[180px]">
-                  <Link className="cursor-pointer" href={`/blog/${v.slug}`}>
+                  <Link className="cursor-pointer" href={`/blog/${v?.slug}`}>
                     <img
                       src={v?.featuredImage?.url}
                       alt={v?.featuredImage?.altText}
@@ -40,11 +40,11 @@ const RecentBlogs = async () => {
                     <h3 className="text-xs text-gray-500">{v?.category}</h3>
                     <span className="text-slate-600 flex items-center gap-1 text-xs">
                       <i className="fa-regular fa-clock text-xs"></i>
-                      {format(new Date(v.createdAt), "en_US")}
+                      {format(new Date(v?.createdAt), "en_US")}
                     </span>
                   </div>
                   <div className="my-3">
-                    <Link href={`/blog/${v.slug}`}>
+                    <Link href={`/blog/${v?.slug}`}>
                       <h1 className="text-lg my-2 line-clamp-2 font-semibold text-gray-700 leading-[1.4] hover:text-gray-800 cursor-pointer">
                         {v?.title}
                       </h1>

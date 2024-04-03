@@ -33,21 +33,23 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
     <>
       <Toaster />
       {/* Actions, share, like and much more ----------- */}
-      <div className="border-y py-4 flex items-center justify-between">
+      <div className="border-y py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2">
             <i
-              onClick={likeHandler}
               disabled={isLiked}
-              className={`fa-heart cursor-pointer active:scale-125 ${
-                isLiked ? "text-gray-400 fa-regular" : "text-red-400 fa-solid"
+              className={` ${
+                isLiked
+                  ? "heart is-active"
+                  : "fa-regular fa-heart text-gray-400 py-4 cursor-pointer hover:text-gray-500"
               }`}
+              onClick={likeHandler}
             ></i>
 
-            <span className="text-gray-700">{postlikes}</span>
+            <span className="text-gray-600">{postlikes}</span>
           </div>
           <Link href={"#comment"}>
-            <i className="fa-solid fa-comment text-gray-400 cursor-pointer text-sm"></i>
+            <i className="fa-solid fa-comment text-gray-400 cursor-pointer"></i>
           </Link>
         </div>
         <div className="flex items-center gap-5">
@@ -62,3 +64,23 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
 };
 
 export default LikePost;
+
+// const LikePost = () => {
+//   const [isActive, setIsActive] = useState(false);
+
+//   const handleClick = () => {
+//     setIsActive(!isActive);
+//   };
+//   return (
+//     <>
+//       <div className="placement">
+//         <div
+//           className={`heart ${isActive ? "is-active" : ""}`}
+//           onClick={handleClick}
+//         >like</div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default LikePost;

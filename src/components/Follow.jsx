@@ -1,7 +1,8 @@
 "use client";
 import axios from "axios";
+// import { useQuery } from "react-query";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { format } from "timeago.js";
 import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
@@ -12,31 +13,40 @@ const Follow = ({ blog, userRealatedData }) => {
   const ripple = new Ripple();
   const { user } = useContext(AuthContext);
 
+  const [totalLikes, setTotalLikes] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    userRealatedData?.foundPosts.forEach((post) => {
+      total += post.likes;
+    });
+    setTotalLikes(total);
+  }, [userRealatedData]);
+
   const blogUserID = blog?.author?._id;
+  const [isFollowing, setIsFollowing] = useState(false);
   const postLength = userRealatedData?.foundPosts.length;
 
   const ifUserAndBlogUserSame = blogUserID == user?._id;
 
-  const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
+  useEffect(() => {
+    setIsFollowing(blog?.author?.followers.includes(user?._id));
+  }, [blog, user]);
 
   const followHandler = async () => {
     try {
-      const userFollowExistsinDB = blog?.author?.followers.includes(user?._id);
-      if (userFollowExistsinDB) {
-        return toast.error("your already follow this user");
+      if (isFollowing) {
+        return toast.error("You are already following this user.");
       }
 
-      // Send a PATCH request to your API endpoint to like the post
       const response = await axios.post(`/api/users/follow?id=${blogUserID}`, {
         _id: user?._id,
       });
       toast.success(response?.data?.message);
+      setIsFollowing(true); // Update state to indicate that the user is now following
     } catch (error) {
-      if (error?.response?.data?.message) {
-        toast.error("login first!");
-      } else {
-        toast.error(error?.response);
-      }
+      console.error("Error following user:", error);
+      toast.error("An error occurred while following the user.");
     }
   };
 
@@ -49,13 +59,10 @@ const Follow = ({ blog, userRealatedData }) => {
         }
       );
       toast.success(response?.data?.message);
+      setIsFollowing(false); // Update state to indicate that the user is now unfollowing
     } catch (error) {
-      console.log(error);
-      if (error?.response?.data?.message) {
-        toast.error("Login first!");
-      } else {
-        toast.error(error?.response?.data?.message || "An error occurred.");
-      }
+      console.error("Error unfollowing user:", error);
+      toast.error("An error occurred while unfollowing the user.");
     }
   };
 
@@ -65,7 +72,7 @@ const Follow = ({ blog, userRealatedData }) => {
       {/* Related Posts For User and Follow Buton --------------------------- */}
       <div className="bg-gray-50 py-12">
         <div className="max-w-[800px] m-auto px-3 md:px-0 border-b pb-8">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-start md:flex-row flex-col">
             <div>
               <Image
                 width={400}
@@ -83,7 +90,7 @@ const Follow = ({ blog, userRealatedData }) => {
                   {postLength} Posts
                 </span>
                 <span className="text-sm text-gray-600 hover:underline cursor-pointer">
-                  200 + Likes
+                  {totalLikes} + Likes
                 </span>
               </div>
               <p className=" text-sm text-gray-600 mb-6">
@@ -95,29 +102,23 @@ const Follow = ({ blog, userRealatedData }) => {
               <Link
                 href={`/profile/${blog?.author?._id}`}
                 onMouseUp={(e) => ripple.create(e, "dark")}
-                className="text-white bg-gray-700 px-4 py-1.5 rounded-full hover:bg-gray-800"
+                className="text-white bg-gray-600 px-4 py-1.5 rounded-full hover:bg-gray-700"
               >
                 Profile
               </Link>
-              {!ifUserAndBlogUserSame ? (
-                !userFollowExistsinDB ? (
-                  <button
-                    onClick={followHandler}
-                    onMouseUp={(e) => ripple.create(e, "dark")}
-                    className={`px-4 py-1.5 rounded-full bg-gray-700  text-white hover:bg-gray-500 transition-all`}
-                  >
-                    Follow
-                  </button>
-                ) : (
-                  <button
-                    onClick={unfollowHandler}
-                    onMouseUp={(e) => ripple.create(e, "dark")}
-                    className={`px-4 py-1.5 rounded-full border border-gray-400/60 text-gray-600 hover:border-gray-500/80 transition-all`}
-                  >
-                    Unfollow
-                  </button>
-                )
-              ) : null}
+              {!ifUserAndBlogUserSame && (
+                <button
+                  onClick={isFollowing ? unfollowHandler : followHandler}
+                  onMouseUp={(e) => ripple.create(e, "dark")}
+                  className={`px-4 py-1.5 rounded-full ${
+                    isFollowing
+                      ? "border text-gray-500"
+                      : "bg-gray-600 text-white hover:bg-gray-700"
+                  } border-gray-400/60 text-gray-600 hover:border-gray-500/80 transition-all`}
+                >
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </button>
+              )}
             </div>
           </div>
         </div>
