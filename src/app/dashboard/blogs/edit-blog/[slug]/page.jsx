@@ -168,8 +168,11 @@ const Page = ({ params }) => {
 
       <div className="signIn_Outer_Div">
         <div className="sign_In_Inner">
-          <div className=" w-full  md:w-[90%] lg:w-[50%] ">
-            <div className=" bg-white rounded-lg p-[20px] lg:p-[50px] enrollNow ">
+          <div className="w-full md:w-[90%] lg:w-[80%] border-dotted border rounded-lg globalShadow3">
+            <div className=" bg-white rounded-lg p-[20px] lg:p-[50px]">
+              <h2 className=" text-green-500 font-semibold text-3xl mb-6">
+                Update Blog
+              </h2>
               <div className="sign_In_Form">
                 <form onSubmit={HandleSubmit}>
                   <div className=" grid grid-cols-1">

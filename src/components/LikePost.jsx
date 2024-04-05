@@ -1,11 +1,13 @@
 "use client";
-import React, { useContext, useState } from "react";
-import Link from "next/link";
-import { AuthContext } from "@/context/AuthContext";
 import axios from "axios";
+import Link from "next/link";
+import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
+import { AuthContext } from "@/context/AuthContext";
+import React, { useContext, useState } from "react";
 
 const LikePost = ({ blogID, initialLikes, postlikes }) => {
+  const ripple = new Ripple();
   const { user } = useContext(AuthContext);
   const [likes, setLikes] = useState(initialLikes);
 
@@ -19,9 +21,10 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
         postId: blogID,
         userId: userID,
       });
-      // Update likes count and toggle isLiked state
-      setLikes(likes + 1);
-      setIsLiked(true);
+      if (response?.data?.success) {
+        setIsLiked(true);
+        setLikes(likes + 1);
+      }
       toast.success(response.data.message); // Show success message
     } catch (error) {
       console.error(error?.response?.data?.message);
@@ -36,15 +39,19 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
       <div className="border-y py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <i
-              disabled={isLiked}
-              className={` ${
-                isLiked
-                  ? "heart is-active"
-                  : "fa-regular fa-heart text-gray-400 py-4 cursor-pointer hover:text-gray-500"
-              }`}
+            <div
               onClick={likeHandler}
-            ></i>
+              onMouseUp={(e) => ripple.create(e, "dark")}
+              className={`bg-gray-50 rounded-full h-8 w-8 hover:bg-gray-100 ${
+                isLiked && " scale-110 ping"
+              }`}
+            >
+              <i
+                className={`fa-solid fa-heart p-2 rounded-full cursor-pointer text-gray-400 ${
+                  isLiked && "text-red-500 likeBtn"
+                }`}
+              ></i>
+            </div>
 
             <span className="text-gray-600">{postlikes}</span>
           </div>
@@ -64,23 +71,3 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
 };
 
 export default LikePost;
-
-// const LikePost = () => {
-//   const [isActive, setIsActive] = useState(false);
-
-//   const handleClick = () => {
-//     setIsActive(!isActive);
-//   };
-//   return (
-//     <>
-//       <div className="placement">
-//         <div
-//           className={`heart ${isActive ? "is-active" : ""}`}
-//           onClick={handleClick}
-//         >like</div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default LikePost;

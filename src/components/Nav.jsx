@@ -157,27 +157,36 @@ const Nav = () => {
                   <p className="text-[14px] capitalize font-medium">
                     {user.fullName}
                   </p>
-                  <span className="text-[11px] cursor-pointer text-red-500 hover:text-red-600">
+                  <span className="text-[11px] cursor-pointer text-blue-500">
                     {user.isAdmin ? "Admin" : "User"}
                   </span>
                 </div>
 
                 {/* Profile Model Here --------------------- */}
                 <div
-                  className={`shade pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 opacity-0 group-hover:top-[100%] transition-all duration-500 bg-white absolute -left-4 top-[130%] overflow-hidden rounded-md h-fit min-w-[100px] z-[1000000]`}
+                  className={`globalShadow2 border border-dotted pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 opacity-0 group-hover:top-[100%] transition-all duration-500 absolute -left-4 top-[130%] overflow-hidden rounded-md h-fit min-w-[100px] z-[1000000]`}
                 >
                   <ul className="px-4 py-5">
                     <li className="flex flex-col gap-2">
-                      <Link
-                        className="text-xs text-gray-600 hover:text-orange-600 flex items-center gap-2"
-                        href="/dashboard"
-                      >
-                        <i className="fa-solid fa-chart-simple"></i> Dashboard
-                      </Link>
+                      {user?.isAdmin ? (
+                        <Link
+                          className="text-xs text-gray-600 hover:text-blue-600 flex items-center gap-2"
+                          href="/dashboard"
+                        >
+                          <i className="fa-solid fa-chart-simple"></i> Dashboard
+                        </Link>
+                      ) : (
+                        <Link
+                          className="text-xs text-gray-600 hover:text-blue-600 flex items-center gap-2"
+                          href="/dashboard/user-blogs"
+                        >
+                          <i className="fa-solid fa-chart-simple"></i> Dashboard
+                        </Link>
+                      )}
 
                       <button
                         onClick={handleLogout}
-                        className="text-xs text-gray-600 hover:text-red-600 flex items-center gap-2"
+                        className="text-xs text-gray-600 hover:text-blue-700 flex items-center gap-2"
                       >
                         <i className="fa-solid fa-right-from-bracket"></i>
                         Logout
@@ -201,7 +210,7 @@ const Nav = () => {
           transition: ".3s",
           left: `${mobNavPosstion === true ? 0 : -100}%`,
         }}
-        className="absolute top-0 z-50 bg-[#fff] w-1/2 h-screen overflow-hidden"
+        className="absolute top-0 z-50 bg-[#fff] bg-gradient-to-tr from-purple-100 to-sky-100 w-[50%] h-screen overflow-hidden"
       >
         <nav
           style={{

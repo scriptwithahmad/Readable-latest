@@ -49,8 +49,8 @@ h1 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .globalShadow3 {
-  box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px,
-    rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+  box-shadow: #919eab33 0px 0px 2px 0px,
+    #919eab1f 0px 12px 24px -4px;
 }
 
 .globalHeroText {
@@ -410,19 +410,19 @@ h1 {
 
 @media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 44%;
+    bottom: 46%;
   }
 }
 @media screen and (max-width: 768px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 45%;
+    bottom: 43%;
   }
 }
 @media screen and (max-width: 425px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 51.5%;
+    bottom: 46.5%;
   }
 }
 @media screen and (max-width: 375px) {
@@ -524,35 +524,29 @@ h1 {
 
 /* Like BUton */
 .likeBtn {
-  cursor: pointer;
-  transform: scale(1);
-  color: #0077ff;
-  position: relative;
-  animation: likeAnim both 0.8s ease-in infinite;
-}
-
-.likeBtn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #000;
-  height: 4px;
-  width: 4px;
-  border-radius: 100%;
+  animation: likeAnim both 0.8s ease-in 1;
 }
 
 @keyframes likeAnim {
   0% {
-    color: gray;
     transform: scale(1);
   }
   50% {
-    color: red;
-    transform: scale(1.5);
+    transform: scale(0.8);
   }
   100% {
-    color: gray;
     transform: scale(1);
+  }
+}
+
+.ping {
+  animation: ping 0.4s cubic-bezier(0, 0, 0.2, 1) 1;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
 }

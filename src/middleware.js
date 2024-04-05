@@ -22,7 +22,6 @@ export async function middleware(req, res) {
     );
     singleUserProfile = await singleUserProfile.json();
     const userRights = singleUserProfile?.singleUser?.isAdmin;
-    console.log(userRights);
 
     const restrictedRoutesForUser = [
       "/dashboard",

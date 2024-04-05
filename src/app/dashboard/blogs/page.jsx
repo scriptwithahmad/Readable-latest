@@ -27,9 +27,7 @@ const Page = () => {
     ["blog", filterByName],
     async () => {
       var res = await axios.get(
-        `/api/get-blogs?${queryString.stringify(
-          filterByName
-        )}`
+        `/api/get-blogs?${queryString.stringify(filterByName)}`
       );
       return res.data.message.data;
     }
@@ -82,170 +80,167 @@ const Page = () => {
     <>
       <Toaster />
       {/* TABLE STARTED ---------------------------------------------------------------------------  */}
-      <div className="w-full">
-        <div className="overflow-x-auto w-full border-dotted globalShadow3 rounded-2xl">
-          <div className="bg-white p-4 flex justify-between items-center flex-col gap-3 lg:flex-row w-full">
-            <h2 className="text-2xl font-semibold">
-              All <span className="text-indigo-600">Products</span>
-            </h2>
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="">
-                  <input
-                    type="search"
-                    name="keyword"
-                    value={filterByName.keyword}
-                    onChange={searchInputHanler}
-                    onKeyDown={handleKeyPress}
-                    placeholder="eg: Blog, Category..."
-                    className="relative border border-gray-200 text-gray-400 text-sm pl-3 px-2 py-[6px] lg:w-[12vw] w-[45vw] rounded-full focus:ring-2 transition-colors focus:outline-none focus:text-gray-400 placeholder:text-gray-400"
-                  />
-                  <span>
-                    {loading ? (
-                      <i className="fa-solid fa-spinner absolute top-[30%] right-3 text-xs text-gray-500 dashboardSearchSlide"></i>
-                    ) : null}{" "}
-                  </span>
-                </div>
-                <i
-                  title="Add Product"
-                  className="absolute top-1/2 -translate-y-1/2 right-3 border-l pl-2 cursor-pointer text-gray-400 hover:text-gray-500 bx bx-search-alt-2"
-                ></i>
+      <div className="border-dotted globalShadow3 rounded-2xl overflow-x-auto">
+        <div className="bg-white p-4 flex justify-between items-center flex-col gap-3 lg:flex-row w-full">
+          <h2 className="text-2xl font-semibold">
+            All <span className="text-indigo-600">Blogs</span>
+          </h2>
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <div className="">
+                <input
+                  type="search"
+                  name="keyword"
+                  value={filterByName.keyword}
+                  onChange={searchInputHanler}
+                  onKeyDown={handleKeyPress}
+                  placeholder="eg: Blog, Category..."
+                  className="relative border border-gray-200 text-gray-400 text-sm pl-3 px-2 py-[6px] lg:w-[12vw] w-[45vw] rounded-full focus:ring-2 transition-colors focus:outline-none focus:text-gray-400 placeholder:text-gray-400"
+                />
+                <span>
+                  {loading ? (
+                    <i className="fa-solid fa-spinner absolute top-[30%] right-3 text-xs text-gray-500 dashboardSearchSlide"></i>
+                  ) : null}{" "}
+                </span>
               </div>
-              <div className=" bg-blue-500 h-8 w-8 flex items-center justify-center rounded-full hover:bg-blue-600">
-                <Link href="/write" title="Add Product" className="text-white">
-                  <i className="fa-solid fa-plus"></i>
-                </Link>
-              </div>
+              <i
+                title="Add Product"
+                className="absolute top-1/2 -translate-y-1/2 right-3 border-l pl-2 cursor-pointer text-gray-400 hover:text-gray-500 bx bx-search-alt-2"
+              ></i>
+            </div>
+            <div className=" bg-blue-500 h-8 w-8 flex items-center justify-center rounded-full hover:bg-blue-600">
+              <Link href="/write" title="Add Product" className="text-white">
+                <i className="fa-solid fa-plus"></i>
+              </Link>
             </div>
           </div>
-          <table className="text-sm min-w-[1000px] w-full text-left text-gray-500">
-            <thead className="text-xs text-gray-700 bg-gray-50">
-              <tr>
-                {tableHeader.map((value, index) => {
-                  return (
-                    <th
-                      scope="col"
-                      key={index}
-                      className={`px-6 py-3 text-${value.align}`}
-                    >
-                      {value.lable}
-                    </th>
-                  );
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {data?.map((v, i) => {
+        </div>
+        <table className="text-sm w-full min-w-[1000px] text-left text-gray-500">
+          <thead className="text-xs text-gray-700 bg-gray-50">
+            <tr>
+              {tableHeader.map((value, index) => {
                 return (
-                  <tr key={i} className="bg-white border-b border-gray-100">
-                    <td
-                      scope="row"
-                      className="px-6 flex items-center py-2 font-medium text-gray-600"
-                    >
-                      <div className=" flex items-center">
-                        <div className="w-12 h-12 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                          <img
-                            alt="Image Here"
-                            src={v.featuredImage?.url}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-
-                        <div className="flex flex-col gap-0.5">
-                          <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
-                            {v.title}
-                          </h2>
-                          <span className=" text-xs text-gray-500 font-light">
-                            {format(new Date(v.createdAt), "en_US")}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className=" flex items-center">
-                        <div className="w-8 h-8 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                          <img
-                            alt="Image Here"
-                            src={v.author?.photo}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-
-                        <div className="flex flex-col gap-0.5">
-                          <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
-                            {v.author.fullName}
-                          </h2>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-2"> {v.category} </td>
-                    <td className="px-6 py-2 text-lg text-center">
-                      <Link href={`/blog/${v.slug}`}>
-                        <i
-                          title="View"
-                          className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
-                        ></i>
-                      </Link>
-                      <Link href={`/dashboard/blogs/edit-blog/${v.slug}`}>
-                        <i
-                          title="Edit"
-                          className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
-                        ></i>
-                      </Link>
-                      <i
-                        title="Delete"
-                        onClick={() => delPost(v.slug)}
-                        className="fa fa-solid fa-trash px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-red-400 text-sm"
-                      ></i>
-                    </td>
-                  </tr>
+                  <th
+                    scope="col"
+                    key={index}
+                    className={`px-6 py-3 text-${value.align}`}
+                  >
+                    {value.lable}
+                  </th>
                 );
               })}
-            </tbody>
-          </table>
-          {/* Pagination start  ----------- */}
-          {/* <div className=" flex items-center justify-end pr-10 gap-5 w-full py-5 border-b border-gray-100 bg-gray-50">
-            <span className=" whitespace-nowrap flex items-center justify-center text-sm text-slate-500">
-              {productData?.page} of {productData?.ending} to{" "}
-              {productData?.TotalProducts}
-            </span>
-            <div className="flex border gap-4 px-4 py-1 rounded-full">
-              <button disabled={productData?.starting == 1}>
-                <i
-                  onClick={() => {
-                    setFilterByName({
-                      ...filterByName,
-                      page: filterByName.page - 1,
-                    });
-                  }}
-                  className={`fa-solid fa-angle-left p-1 text-orange-600 text-xs border-r pr-4 ${
-                    productData?.starting == 1
-                      ? "cursor-not-allowed text-slate-300"
-                      : "cursor-pointer hover:text-orange-500"
-                  }`}
-                ></i>
-              </button>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((v, i) => {
+              return (
+                <tr key={i} className="bg-white border-b border-gray-100">
+                  <td
+                    scope="row"
+                    className="px-6 flex items-center py-2 font-medium text-gray-600"
+                  >
+                    <div className=" flex items-center">
+                      <div className="w-12 h-12 mr-3 border border-gray-100 rounded-full overflow-hidden">
+                        <img
+                          alt="Image Here"
+                          src={v.featuredImage?.url}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-              <button
-                disabled={productData?.ending >= productData?.TotalProducts}
-              >
-                <i
-                  onClick={() => {
-                    setFilterByName({
-                      ...filterByName,
-                      page: filterByName.page + 1,
-                    });
-                  }}
-                  className={`fa-solid fa-angle-right text-orange-600 text-xs p-1 ${
-                    productData?.ending >= productData?.TotalProducts
-                      ? "cursor-not-allowed text-slate-300"
-                      : "cursor-pointer hover:text-orange-500"
-                  }`}
-                ></i>
-              </button>
-            </div>
-          </div> */}
-        </div>
+                      <div className="flex flex-col gap-0.5">
+                        <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
+                          {v.title}
+                        </h2>
+                        <span className=" text-xs text-gray-500 font-light">
+                          {format(new Date(v.createdAt), "en_US")}
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div className=" flex items-center">
+                      <div className="w-8 h-8 mr-3 border border-gray-100 rounded-full overflow-hidden">
+                        <img
+                          alt="Image Here"
+                          src={v.author?.photo}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      <div className="flex flex-col gap-0.5">
+                        <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
+                          {v.author.fullName}
+                        </h2>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2"> {v.category} </td>
+                  <td className="px-6 py-2 text-lg text-center">
+                    <Link href={`/blog/${v.slug}`}>
+                      <i
+                        title="View"
+                        className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
+                      ></i>
+                    </Link>
+                    <Link href={`/dashboard/blogs/edit-blog/${v.slug}`}>
+                      <i
+                        title="Edit"
+                        className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
+                      ></i>
+                    </Link>
+                    <i
+                      title="Delete"
+                      onClick={() => delPost(v.slug)}
+                      className="fa fa-solid fa-trash px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-red-400 text-sm"
+                    ></i>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        {/* <div className=" flex items-center justify-end pr-10 gap-5 w-full py-5 border-b border-gray-100 bg-gray-50">
+          <span className=" whitespace-nowrap flex items-center justify-center text-sm text-slate-500">
+            {productData?.page} of {productData?.ending} to{" "}
+            {productData?.TotalProducts}
+          </span>
+          <div className="flex border gap-4 px-4 py-1 rounded-full">
+            <button disabled={productData?.starting == 1}>
+              <i
+                onClick={() => {
+                  setFilterByName({
+                    ...filterByName,
+                    page: filterByName.page - 1,
+                  });
+                }}
+                className={`fa-solid fa-angle-left p-1 text-orange-600 text-xs border-r pr-4 ${
+                  productData?.starting == 1
+                    ? "cursor-not-allowed text-slate-300"
+                    : "cursor-pointer hover:text-orange-500"
+                }`}
+              ></i>
+            </button>
+
+            <button
+              disabled={productData?.ending >= productData?.TotalProducts}
+            >
+              <i
+                onClick={() => {
+                  setFilterByName({
+                    ...filterByName,
+                    page: filterByName.page + 1,
+                  });
+                }}
+                className={`fa-solid fa-angle-right text-orange-600 text-xs p-1 ${
+                  productData?.ending >= productData?.TotalProducts
+                    ? "cursor-not-allowed text-slate-300"
+                    : "cursor-pointer hover:text-orange-500"
+                }`}
+              ></i>
+            </button>
+          </div>
+        </div> */}
       </div>
     </>
   );
