@@ -58,8 +58,8 @@ const BlogCard = async () => {
                   </div>
                   <div>
                     <Link href={`/blog/${v.slug}`}>
-                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4">
-                        {v?.title}
+                      <h1 className="globalBlogCardText overflow-hidden line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4">
+                        {v?.title} aksiek kasdfi sfak
                       </h1>
                     </Link>
 
@@ -73,9 +73,9 @@ const BlogCard = async () => {
                 </div>
 
                 <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
-                  <div className=" w-36 md:w-48 lg:w-96 lg:h-32">
+                  <div className=" w-36 md:w-48 lg:w-96 lg:h-32 h-20">
                     <img
-                      className=" h-full w-full object-cover"
+                      className="h-full w-full object-cover"
                       src={blogCard?.message?.data[1]?.featuredImage?.url}
                       alt={blogCard?.message?.data[1]?.featuredImage?.altText}
                     ></img>

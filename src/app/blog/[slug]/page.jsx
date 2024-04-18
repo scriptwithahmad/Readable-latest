@@ -38,6 +38,7 @@ const page = async ({ params }) => {
   };
 
   const blog = await getSingleBlog(params.slug);
+
   const blogID = blog?._id;
   const userID = blog?.author?._id;
   const postlikes = blog?.likes;
@@ -122,7 +123,7 @@ const page = async ({ params }) => {
           />
         </div>
         {/* Description ------------------------------ */}
-        <div className="my-8">
+        <div className="my-8 singleBlogDesc">
           <main
             dangerouslySetInnerHTML={{ __html: blog?.desc }}
             className="mt-2 text-gray-500 leading-[1.5]"

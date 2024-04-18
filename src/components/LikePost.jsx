@@ -25,7 +25,7 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
         setIsLiked(true);
         setLikes(likes + 1);
       }
-      toast.success(response.data.message); // Show success message
+      toast.success(response.data.message);
     } catch (error) {
       console.error(error?.response?.data?.message);
       toast.error(error?.response?.data?.message);

@@ -37,6 +37,25 @@ h1 {
   }
 }
 
+/* Blog Description Here ------ */
+.singleBlogDesc h2 {
+  font-size: clamp(1.4375rem, 1.3333rem + 0.5556vw, 1.75rem) !important;
+  padding: 10px 0;
+  font-weight: 500;
+  color: #334155;
+}
+.singleBlogDesc h3 {
+  font-size: 18px;
+  padding: 8px 0;
+  color: #475569;
+  font-weight: 400;
+}
+
+.singleBlogDesc p {
+  font-size: 15px;
+  color: #64748b;
+}
+
 .globalShadow {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
@@ -49,8 +68,7 @@ h1 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .globalShadow3 {
-  box-shadow: #919eab33 0px 0px 2px 0px,
-    #919eab1f 0px 12px 24px -4px;
+  box-shadow: #919eab33 0px 0px 2px 0px, #919eab1f 0px 12px 24px -4px;
 }
 
 .globalHeroText {
@@ -166,7 +184,6 @@ h1 {
   box-shadow: 0px 40px 80px 0px rgba(2, 2, 26, 0.14);
   background-color: white;
 }
-
 .sign_In_Google::after {
   position: absolute;
   content: "";
@@ -422,13 +439,13 @@ h1 {
 @media screen and (max-width: 425px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 46.5%;
+    bottom: 43.3%;
   }
 }
 @media screen and (max-width: 375px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 46.4%;
+    bottom: 43.3%;
   }
 }
 

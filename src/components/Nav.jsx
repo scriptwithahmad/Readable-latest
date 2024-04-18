@@ -164,7 +164,7 @@ const Nav = () => {
 
                 {/* Profile Model Here --------------------- */}
                 <div
-                  className={`globalShadow2 border border-dotted pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 opacity-0 group-hover:top-[100%] transition-all duration-500 absolute -left-4 top-[130%] overflow-hidden rounded-md h-fit min-w-[100px] z-[1000000]`}
+                  className={`globalShadow2 bg-white border border-dotted pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 opacity-0 group-hover:top-[100%] transition-all duration-500 absolute -left-4 top-[130%] overflow-hidden rounded-md h-fit min-w-[100px] z-[1000000]`}
                 >
                   <ul className="px-4 py-5">
                     <li className="flex flex-col gap-2">
