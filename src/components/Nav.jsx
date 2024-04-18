@@ -210,7 +210,7 @@ const Nav = () => {
           transition: ".3s",
           left: `${mobNavPosstion === true ? 0 : -100}%`,
         }}
-        className="absolute top-0 z-50 bg-[#fff] bg-gradient-to-tr from-purple-100 to-sky-100 w-[50%] h-screen overflow-hidden"
+        className="fixed top-0 z-50 bg-[#fff] bg-gradient-to-tr from-purple-100 to-sky-100 w-[50%] h-screen overflow-hidden"
       >
         <nav
           style={{

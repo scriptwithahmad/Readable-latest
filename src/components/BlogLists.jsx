@@ -5,7 +5,7 @@ import { format, render, cancel, register } from "timeago.js";
 async function getData() {
   const res = await fetch(
     "https://readable-blogging.vercel.app/api/get-blogs",
-    { next: { revalidate: 60 } }
+    { cache: "no-store" }
   );
 
   return res.json();
