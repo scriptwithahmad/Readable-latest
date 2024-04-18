@@ -3,7 +3,10 @@ import BlogCard from "./BlogCard";
 import { format, render, cancel, register } from "timeago.js";
 
 async function getData() {
-  const res = await fetch("https://readable-blogging.vercel.app/api/get-blogs");
+  const res = await fetch(
+    "https://readable-blogging.vercel.app/api/get-blogs",
+    { next: { revalidate: 60 } }
+  );
 
   return res.json();
 }

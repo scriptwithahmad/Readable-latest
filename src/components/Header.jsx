@@ -5,7 +5,7 @@ const Header = async () => {
         <div className="my-8 md:my-20">
           <div className="flex items-center gap-2">
             <h3 className=" text-slate-600 text-xs md:text-base">Home</h3>
-            <pre className=" text-slate-500 text-xs md:text-base">.</pre>
+            <pre className=" text-slate-500 text-lg">✦</pre>
             <span className="accentColor text-xs md:text-base">
               Blogs And News
             </span>

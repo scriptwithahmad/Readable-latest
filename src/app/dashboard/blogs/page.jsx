@@ -55,8 +55,9 @@ const Page = () => {
   // delete Product by Slug ------------------------------------------------------/
   const delPost = async (slug) => {
     try {
+      console.log(slug);
       if (window.confirm("Do you wnat to Delete this Product") === true) {
-        const res = await fetch(`/api/blogs/${slug}`, {
+        const res = await fetch(`/api/get-blogs/${slug}`, {
           method: "DELETE",
         });
         if (
@@ -109,7 +110,11 @@ const Page = () => {
               ></i>
             </div>
             <div className=" bg-blue-500 h-8 w-8 flex items-center justify-center rounded-full hover:bg-blue-600">
-              <Link href="/write" title="Add Product" className="text-white">
+              <Link
+                title="Add Product"
+                href="/dashboard/write"
+                className="text-white"
+              >
                 <i className="fa-solid fa-plus"></i>
               </Link>
             </div>
