@@ -2,7 +2,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="h-screen w-full bg-gradient-to-tr to-slate-900 from-gray-950 grid justify-self-center">
+    <div className="h-screen overflow-hidden w-full bg-gradient-to-tr to-slate-900 from-gray-950 grid justify-self-center">
       <div className="grid grid-cols-3 h-fit max-w-[1200px] m-auto gap-4">
         <div className="bg-slate-800 p-6 col-span-2 container">
           <div className="w-full mb-5 relative z-[99]">
