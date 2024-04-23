@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Dnav from "@/components/Dnav";
 import Aside from "@/components/Aside";
+import Particles from "@/components/Particles";
 
 const sans = Open_Sans({
   subsets: ["latin"],
@@ -46,7 +47,8 @@ export default function RootLayout({ children }) {
               </>
             ) : (
               <div className={sans.className}>
-                <Nav />
+                {/* <Nav /> */}
+                <Particles />
                 {children}
                 <Footer />
               </div>
