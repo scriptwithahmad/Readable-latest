@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
               </>
             ) : (
               <div className={sans.className}>
-                {/* <Nav /> */}
+                <Nav />
                 <Particles />
                 {children}
                 <Footer />
