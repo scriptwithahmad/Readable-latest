@@ -14,10 +14,10 @@ const firebaseConfig = {
 // // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
+console.log(messaging);
 
 export const generateToken = async () => {
   const permission = await Notification.requestPermission();
-  console.log(permission);
 
   if (permission === "granted") {
     const token = await getToken(messaging, {
