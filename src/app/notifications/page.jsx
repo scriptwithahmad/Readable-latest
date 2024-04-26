@@ -1,12 +1,12 @@
-"use client";
+// "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { generateToken } from "@/firebase";
+// import React, { useEffect, useState } from "react";
+// import { generateToken } from "@/firebase";
 
 const Page = () => {
-  useEffect(() => {
-    generateToken();
-  }, []);
+  // useEffect(() => {
+  //   generateToken();
+  // }, []);
 
   return (
     <>

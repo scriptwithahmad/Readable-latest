@@ -13,8 +13,6 @@ const Follow = ({ blog, userRealatedData }) => {
   const ripple = new Ripple();
   const { user } = useContext(AuthContext);
 
-  console.log(userRealatedData?.foundPosts);
-
   const [totalLikes, setTotalLikes] = useState(0);
 
   useEffect(() => {
