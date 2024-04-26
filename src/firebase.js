@@ -14,7 +14,6 @@ const firebaseConfig = {
 // // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
-console.log(messaging);
 
 export const generateToken = async () => {
   const permission = await Notification.requestPermission();
@@ -24,7 +23,6 @@ export const generateToken = async () => {
       vapidKey:
         "BC4LB8TI3h7AFKw05kob5DEfffz7ji73B60KPvnFKvT8IvstdXw47rrsiDu5-3uCqK8GWDSyAYyPAac2IoPxAKE",
     });
-    console.log(token);
   } else if (permission === "denied") {
     alert("you denied for the notificatiosn");
   }

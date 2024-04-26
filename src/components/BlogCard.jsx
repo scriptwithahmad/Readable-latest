@@ -47,7 +47,7 @@ const BlogCard = async () => {
                     <h3 className="  accentColor text-xs md:text-sm">
                       {v?.category}
                     </h3>
-                    <pre className=" text-slate-400 text-xs md:text-sm">-</pre>
+                    <i className=" text-slate-400 not-italic text-lg">✦</i>
                     <span className="text-slate-500 flex items-center gap-1 text-xs md:text-sm">
                       <i className="fa-regular text-gray-400 fa-clock lg:text-[15px]"></i>
                       {format(new Date(v.createdAt), "en_US")}
@@ -85,9 +85,7 @@ const BlogCard = async () => {
                       <h3 className="accentColor text-[11px] lg:text-sm">
                         {blogCard?.message?.data[1]?.category}
                       </h3>
-                      <pre className=" text-slate-400  text-[11px] lg:text-sm">
-                        -
-                      </pre>
+                      <i className=" text-slate-400 not-italic text-lg">✦</i>
                       <span className="text-slate-500 flex items-center gap-1  text-[11px] lg:text-sm">
                         <i className="fa-regular fa-clock  text-[11px] lg:text-sm"></i>
                         {format(

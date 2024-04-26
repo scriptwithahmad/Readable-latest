@@ -39,9 +39,12 @@ const Follow = ({ blog, userRealatedData }) => {
         return toast.error("You are already following this user.");
       }
 
-      const response = await axios.post(`/api/users/follow?id=${blogUserID}`, {
-        _id: user?._id,
-      });
+      const response = await axios.post(
+        `/api/users/follow?id=${blogUserID}&currentUserID=${user?._id}`,
+        {
+          _id: user?._id,
+        }
+      );
       toast.success(response?.data?.message);
       setIsFollowing(true); // Update state to indicate that the user is now following
     } catch (error) {
