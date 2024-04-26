@@ -13,6 +13,8 @@ const Follow = ({ blog, userRealatedData }) => {
   const ripple = new Ripple();
   const { user } = useContext(AuthContext);
 
+  console.log(userRealatedData?.foundPosts);
+
   const [totalLikes, setTotalLikes] = useState(0);
 
   useEffect(() => {
@@ -94,6 +96,9 @@ const Follow = ({ blog, userRealatedData }) => {
                 </span>
                 <span className="text-sm text-gray-600 hover:underline cursor-pointer">
                   {totalLikes} + Likes
+                </span>
+                <span className="text-sm text-gray-600 hover:underline cursor-pointer">
+                  {totalLikes} + Followers
                 </span>
               </div>
               <p className=" text-sm text-gray-600 mb-6">
