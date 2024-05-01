@@ -37,6 +37,38 @@ h1 {
   }
 }
 
+/* Blog Description Here ------ */
+.singleBlogDesc h2 {
+  font-size: clamp(1.4375rem, 1.3333rem + 0.5556vw, 1.75rem) !important;
+  padding: 10px 0;
+  font-weight: 500;
+  color: #334155;
+}
+.singleBlogDesc h3 {
+  font-size: 18px;
+  padding: 8px 0;
+  color: #475569;
+  font-weight: 400;
+}
+
+.singleBlogDesc p {
+  font-size: 15px;
+  color: #64748b;
+}
+
+pre {
+  padding: 20px;
+  margin: 20px 0px;
+  background: #0e011c;
+  border-radius: 10px;
+}
+
+.singleBlogDesc strong {
+  color: #334155;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .globalShadow {
   box-shadow: 0 20px 30px -6px #61aaee80;
 }
@@ -49,8 +81,7 @@ h1 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .globalShadow3 {
-  box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px,
-    rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+  box-shadow: #919eab33 0px 0px 2px 0px, #919eab1f 0px 12px 24px -4px;
 }
 
 .globalHeroText {
@@ -166,7 +197,6 @@ h1 {
   box-shadow: 0px 40px 80px 0px rgba(2, 2, 26, 0.14);
   background-color: white;
 }
-
 .sign_In_Google::after {
   position: absolute;
   content: "";
@@ -401,7 +431,7 @@ h1 {
   content: "";
   border-radius: 16px;
   position: absolute;
-  bottom: 44%;
+  bottom: 45.5%;
   left: 0;
   height: 3px;
   width: 45%;
@@ -410,25 +440,25 @@ h1 {
 
 @media screen and (max-width: 1024px) {
   .lineCreated::before {
-    bottom: 44%;
+    bottom: 46%;
   }
 }
 @media screen and (max-width: 768px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 45%;
+    bottom: 43%;
   }
 }
 @media screen and (max-width: 425px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 51.5%;
+    bottom: 43.3%;
   }
 }
 @media screen and (max-width: 375px) {
   .lineCreated::before {
     height: 2px;
-    bottom: 46.4%;
+    bottom: 43.3%;
   }
 }
 
@@ -524,35 +554,71 @@ h1 {
 
 /* Like BUton */
 .likeBtn {
-  cursor: pointer;
-  transform: scale(1);
-  color: #0077ff;
-  position: relative;
-  animation: likeAnim both 0.8s ease-in infinite;
-}
-
-.likeBtn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #000;
-  height: 4px;
-  width: 4px;
-  border-radius: 100%;
+  animation: likeAnim both 0.8s ease-in 1;
 }
 
 @keyframes likeAnim {
   0% {
-    color: gray;
     transform: scale(1);
   }
   50% {
-    color: red;
-    transform: scale(1.5);
+    transform: scale(0.8);
   }
   100% {
-    color: gray;
     transform: scale(1);
   }
+}
+
+.ping {
+  animation: ping 0.4s cubic-bezier(0, 0, 0.2, 1) 1;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Border Animation Here ------------- */
+.container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  height: 100%;
+  width: 800px;
+}
+
+.container > div {
+  color: hsl(240, 100%, 100%);
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  width: 1000px;
+  height: 200px;
+  left: -10%;
+  top: 25%;
+  background-image: linear-gradient(#7f1d1d, #1e3a8a);
+  animation: spiral 60s linear infinite;
+}
+
+@keyframes spiral {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3600deg);
+  }
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: #1e293b;
+  background-color: #00001a;
+  border-radius: 8px;
 }

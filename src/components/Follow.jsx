@@ -1,13 +1,12 @@
 "use client";
 import axios from "axios";
-// import { useQuery } from "react-query";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import { format } from "timeago.js";
 import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
-import Image from "next/image";
+import { useContext, useEffect, useState } from "react";
 
 const Follow = ({ blog, userRealatedData }) => {
   const ripple = new Ripple();
@@ -20,6 +19,7 @@ const Follow = ({ blog, userRealatedData }) => {
     userRealatedData?.foundPosts.forEach((post) => {
       total += post.likes;
     });
+
     setTotalLikes(total);
   }, [userRealatedData]);
 

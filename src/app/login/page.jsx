@@ -6,6 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const [isLike, setIsLike] = useState(true);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -49,7 +50,10 @@ export default function Login() {
     <>
       <Toaster />
       <div className="p-8">
-      <i className="fa-solid fa-heart likeBtn"></i>
+        <i
+          onClick={() => setIsLike(!isLike)}
+          className={`fa-solid fa-heart ${isLike && "likeBtn"}`}
+        ></i>
       </div>
       <div className="flex flex-col items-center px-6 py-12 lg:px-8">
         <div className="shadow-2xl rounded-lg px-8 py-8 mt-2 sm:mx-auto w-[500px]">

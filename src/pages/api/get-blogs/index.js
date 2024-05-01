@@ -23,7 +23,8 @@ export default async function handler(req, res) {
         metaTitle: 0,
         metaDesc: 0,
       })
-      .populate("author", "fullName email photo").populate("likedBy" , "fullName photo")
+      .populate("author", "fullName email photo")
+      .populate("likedBy", "fullName photo")
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: -1 });

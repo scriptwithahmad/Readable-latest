@@ -22,10 +22,12 @@ const colors = [
   "purple",
   "green",
   "red",
+  "blue",
   "orange",
   "purple",
   "green",
   "cyan",
+  "blue",
 ];
 
 const page = async ({ params }) => {
@@ -42,8 +44,6 @@ const page = async ({ params }) => {
   const userID = blog?.author?._id;
   const postlikes = blog?.likes;
   const userRealatedData = await getUserRelatedPosts();
-
-  console.log(userRealatedData?.foundPosts)
 
   // Function to calculate reading time based on number of words
   const calculateReadingTime = (content) => {
