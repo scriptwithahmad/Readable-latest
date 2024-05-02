@@ -1,39 +1,74 @@
-import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
 import BellSvg from "./icons/BellSvg";
-import DashboardSvg from "./icons/DashboardSvg";
-import UserSvg from "./icons/UserSvg";
 import FileSvg from "./icons/FileSvg";
+import UserSvg from "./icons/UserSvg";
 import Ripple from "material-ripple-effects";
+import { usePathname } from "next/navigation";
+import DashboardSvg from "./icons/DashboardSvg";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
-// ASIDE LINKS ADDED => icon chart-simple
-var adminNavLinks = [
+// Define navigation links data
+const navLinks = [
   {
-    href: "/dashboard",
-    label: "Dashboard",
-    icon: <DashboardSvg />,
+    role: "admin",
+    links: [
+      {
+        href: "/dashboard",
+        label: "Dashboard",
+        icon: <DashboardSvg />,
+      },
+      {
+        href: "/dashboard/category",
+        label: "Category",
+        icon: <BellSvg />,
+      },
+      {
+        href: "/dashboard/profile",
+        label: "Profile",
+        icon: <UserSvg />,
+      },
+      {
+        href: "/dashboard/blogs",
+        label: "Blogs",
+        icon: <FileSvg />,
+      },
+      {
+        href: "/dashboard/write",
+        label: "Write",
+        icon: <FileSvg />,
+      },
+    ],
   },
   {
-    label: "Category",
-    href: "/dashboard/category",
-    icon: <BellSvg />,
-  },
-  {
-    label: "Profile",
-    href: "/dashboard/profile",
-    icon: <UserSvg />,
-  },
-  {
-    href: "/dashboard/blogs",
-    label: "Blogs",
-    icon: <FileSvg />,
-  },
-  {
-    href: "/dashboard/write",
-    label: "Write",
-    icon: <FileSvg />,
+    role: "user",
+    links: [
+      {
+        href: "/dashboard",
+        label: "Dashboard",
+        icon: <DashboardSvg />,
+      },
+      {
+        href: "/dashboard/category",
+        label: "Category",
+        icon: <BellSvg />,
+      },
+      {
+        href: "/dashboard/profile",
+        label: "Profile",
+        icon: <UserSvg />,
+      },
+      {
+        href: "/dashboard/user-blogs",
+        label: "Blogs",
+        icon: <FileSvg />,
+      },
+      {
+        href: "/dashboard/write",
+        label: "Write",
+        icon: <FileSvg />,
+      },
+    ],
   },
 ];
 
@@ -64,6 +99,13 @@ const Aside = () => {
     };
   }, []);
 
+  const { user } = useContext(AuthContext);
+
+  // Filter navigation links based on user role
+  const filteredLinks =
+    navLinks.find((item) => item.role === (user?.isAdmin ? "admin" : "user"))
+      ?.links || [];
+
   return (
     <aside
       style={{
@@ -91,8 +133,8 @@ const Aside = () => {
             OVERVIEW
           </h2>
           <ul className="text-sm mb-4 w-full">
-            {adminNavLinks.map((v, i) => (
-              <ul key={i} className="my-2">
+            {filteredLinks.map((v, i) => (
+              <li key={i} className="my-2">
                 <Link
                   href={v.href}
                   onMouseUp={(e) => ripple.create(e, "dark")}
@@ -122,7 +164,7 @@ const Aside = () => {
                     {v.label}
                   </div>
                 </Link>
-              </ul>
+              </li>
             ))}
           </ul>
           <h2

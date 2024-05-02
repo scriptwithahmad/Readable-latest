@@ -39,9 +39,12 @@ const Follow = ({ blog, userRealatedData }) => {
         return toast.error("You are already following this user.");
       }
 
-      const response = await axios.post(`/api/users/follow?id=${blogUserID}`, {
-        _id: user?._id,
-      });
+      const response = await axios.post(
+        `/api/users/follow?id=${blogUserID}&currentUserID=${user?._id}`,
+        {
+          _id: user?._id,
+        }
+      );
       toast.success(response?.data?.message);
       setIsFollowing(true); // Update state to indicate that the user is now following
     } catch (error) {
@@ -91,6 +94,9 @@ const Follow = ({ blog, userRealatedData }) => {
                 </span>
                 <span className="text-sm text-gray-600 hover:underline cursor-pointer">
                   {totalLikes} + Likes
+                </span>
+                <span className="text-sm text-gray-600 hover:underline cursor-pointer">
+                  {totalLikes} + Followers
                 </span>
               </div>
               <p className=" text-sm text-gray-600 mb-6">

@@ -4,10 +4,9 @@ import Link from "next/link";
 import Ripple from "material-ripple-effects";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "@/context/AuthContext";
-import React, { useContext, useState } from "react";
-import users from "@/models/users";
+import React, { useContext, useEffect, useState } from "react";
 
-const LikePost = ({ blogID, initialLikes, postlikes }) => {
+const LikePost = ({ blogID, postlikes, initialLikes, blog }) => {
   const ripple = new Ripple();
   const { user } = useContext(AuthContext);
   const [likes, setLikes] = useState(initialLikes);
@@ -15,7 +14,19 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
   const [isLiked, setIsLiked] = useState(false);
   const userID = user?._id;
 
-  const users = user?.followers;
+  const [postRemainsLiked, setPostRemainsLiked] = useState(false);
+
+  useEffect(() => {
+    const checkUserLikePost = () => {
+      return blog.likedBy.includes(userID);
+    };
+
+    const result = checkUserLikePost();
+
+    if (result) {
+      setPostRemainsLiked(true);
+    }
+  }, [userID, blog]);
 
   const likeHandler = async () => {
     try {
@@ -24,6 +35,7 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
         postId: blogID,
         userId: userID,
       });
+
       if (response?.data?.success) {
         setIsLiked(true);
         setLikes(likes + 1);
@@ -52,7 +64,7 @@ const LikePost = ({ blogID, initialLikes, postlikes }) => {
               <i
                 className={`fa-solid fa-heart p-2 rounded-full cursor-pointer text-gray-400 ${
                   isLiked && "text-red-500 likeBtn"
-                }`}
+                } ${postRemainsLiked && "text-red-500"}`}
               ></i>
             </div>
 

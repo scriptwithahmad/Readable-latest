@@ -56,6 +56,10 @@ h1 {
   color: #64748b;
 }
 
+.singleBlogDesc img {
+  margin: 20px 0px;
+}
+
 pre {
   padding: 20px;
   margin: 20px 0px;

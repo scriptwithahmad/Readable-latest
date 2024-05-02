@@ -176,9 +176,9 @@ const Page = () => {
           />
         </div>
         <div className="sign_In_Inner">
-          <div className=" w-full  md:w-[90%] lg:w-[80%] border-dotted border rounded-lg globalShadow3">
-            <div className=" bg-white rounded-lg p-[20px] lg:p-[50px] enrollNow ">
-              <h2 className=" text-[#0177FF] font-semibold text-3xl mb-5">
+          <div className="w-full md:w-[90%] lg:w-[80%] border-dotted border rounded-lg globalShadow3">
+            <div className=" bg-white rounded-lg p-[20px] lg:p-[50px]">
+              <h2 className=" text-green-500 font-semibold text-3xl mb-6">
                 Write Blog
               </h2>
               <div className="sign_In_Form">
@@ -254,7 +254,10 @@ const Page = () => {
                     {tags?.length >= 1 && (
                       <div className="border rounded-lg p-4 flex gap-3 flex-wrap overflow-hidden">
                         {tags.map((v, i) => (
-                          <div key={i} className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full">
+                          <div
+                            key={i}
+                            className="bg-indigo-50 px-5 py-1.5 flex items-center gap-2 rounded-full"
+                          >
                             <h2 className="text-sm text-indigo-600">{v}</h2>
                             <i
                               className="fa-solid fa-x text-xs text-gray-500 hover:text-gray-600 cursor-pointer"

@@ -40,6 +40,7 @@ const page = async ({ params }) => {
   };
 
   const blog = await getSingleBlog(params.slug);
+
   const blogID = blog?._id;
   const userID = blog?.author?._id;
   const postlikes = blog?.likes;
@@ -114,7 +115,7 @@ const page = async ({ params }) => {
           </div>
         </div>
 
-        <LikePost blogID={blogID} postlikes={postlikes} />
+        <LikePost blog={blog} blogID={blogID} postlikes={postlikes} />
 
         <div className="w-full h-56 md:h-[500px] mt-8">
           <img
@@ -124,7 +125,7 @@ const page = async ({ params }) => {
           />
         </div>
         {/* Description ------------------------------ */}
-        <div className="my-8">
+        <div className="my-8 singleBlogDesc">
           <main
             dangerouslySetInnerHTML={{ __html: blog?.desc }}
             className="mt-2 text-gray-500 leading-[1.5]"
@@ -135,6 +136,7 @@ const page = async ({ params }) => {
       {/* Follow Buton */}
       <Follow blog={blog} userRealatedData={userRealatedData} />
 
+      {/* Comment Component */}
       <div id="comment">
         <Comment blogID={blog?._id} />
       </div>

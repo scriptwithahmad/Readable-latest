@@ -47,7 +47,7 @@ const BlogCard = async () => {
                     <h3 className="  accentColor text-xs md:text-sm">
                       {v?.category}
                     </h3>
-                    <pre className=" text-slate-400 text-xs md:text-sm">-</pre>
+                    <i className=" text-slate-400 not-italic text-lg">✦</i>
                     <span className="text-slate-500 flex items-center gap-1 text-xs md:text-sm">
                       <i className="fa-regular text-gray-400 fa-clock lg:text-[15px]"></i>
                       {format(new Date(v.createdAt), "en_US")}
@@ -58,7 +58,7 @@ const BlogCard = async () => {
                   </div>
                   <div>
                     <Link href={`/blog/${v.slug}`}>
-                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4 min-h-20">
+                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4 min-h-[70px]">
                         {v?.title}
                       </h1>
                     </Link>
@@ -73,7 +73,7 @@ const BlogCard = async () => {
                 </div>
 
                 <div className=" mt-4 lg:mt-6 flex items-center justify-cente gap-4">
-                  <div className=" w-36 md:w-48 lg:w-96 lg:h-32 border">
+                  <div className=" w-36 md:w-48 lg:w-96 lg:h-32 h-20">
                     <img
                       className="h-full w-full object-cover"
                       src={blogCard?.message?.data[1]?.featuredImage?.url}
@@ -85,9 +85,7 @@ const BlogCard = async () => {
                       <h3 className="accentColor text-[11px] lg:text-sm">
                         {blogCard?.message?.data[1]?.category}
                       </h3>
-                      <pre className=" text-slate-400  text-[11px] lg:text-sm">
-                        -
-                      </pre>
+                      <i className=" text-slate-400 not-italic text-lg">✦</i>
                       <span className="text-slate-500 flex items-center gap-1  text-[11px] lg:text-sm">
                         <i className="fa-regular fa-clock  text-[11px] lg:text-sm"></i>
                         {format(
