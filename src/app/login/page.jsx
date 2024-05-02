@@ -50,7 +50,7 @@ export default function Login() {
     <>
       <Toaster />
       <div className="flex flex-col items-center px-6 py-12 lg:px-8">
-        <div className="shadow-2xl rounded-lg px-8 py-8 mt-2 sm:mx-auto w-[500px]">
+        <div className="shadow-2xl rounded-lg px-8 py-8 mt-2 sm:mx-auto w-full md:w-[500px]">
           <div className=" flex items-center gap-2 mb-4">
             <img
               alt="Logo Here"

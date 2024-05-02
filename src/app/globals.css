@@ -95,11 +95,6 @@ pre {
   font-size: clamp(1rem, 0.6721rem + 1.6143vw, 2.125rem);
 }
 
-#logo {
-  font-size: 24px;
-  color: #0077ff;
-}
-
 /* Scrolls in Hero Filter section */
 
 .heroFilterSection {

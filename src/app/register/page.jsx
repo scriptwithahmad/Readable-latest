@@ -44,7 +44,7 @@ const Register = () => {
     <>
       <Toaster />
       <div className="flex items-center flex-col px-6 py-12 lg:px-8">
-        <div className="globalShadow rounded-lg px-6 py-8 mt-2 sm:mx-auto w-[500px]">
+        <div className="globalShadow rounded-lg px-6 py-8 mt-2 sm:mx-auto w-full md:w-[500px]">
           <div className=" flex items-center gap-2 mb-4">
             <img
               alt="Logo Here"
