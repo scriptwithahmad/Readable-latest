@@ -21,7 +21,7 @@ const Footer = () => {
               src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1713427098/blog-image/favicon_jcqo9l.png"
             />
             <span
-              className={`${Meriend.className} self-center text-2xl font-semibold whitespace-nowrap dark:text-white`}
+              className={`${Meriend.className} self-center text-gray-600 text-2xl font-semibold whitespace-nowrap dark:text-white`}
             >
               Readable
             </span>
@@ -33,13 +33,16 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:underline me-4 md:me-6">
-                Privacy Policy
+              <Link href="/register" className="hover:underline me-4 md:me-6">
+                Create account
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:underline me-4 md:me-6">
-                Licensing
+              <Link
+                href="/dashboard/write"
+                className="hover:underline me-4 md:me-6"
+              >
+                Create Post
               </Link>
             </li>
             <li>

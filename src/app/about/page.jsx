@@ -1,16 +1,18 @@
+import Link from "next/link";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <div class="bg-white relative   flex items-center  n justify-center overflow-hidden z-50 ">
+      <div class="bg-white relative flex items-center justify-center overflow-hidden">
         <div class="relative mx-auto h-full px-4  pb-20   md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
           <div class="flex flex-col items-center justify-between lg:flex-row py-16">
             <div class=" relative ">
-              <div class=" absolute top-0 -left-48 z-0  opacity-50 ">
+              <div class=" absolute top-0 -left-40 z-0  opacity-50 ">
                 <img
-                  src="https://placehold.co/200x100"
-                  class="w-36 z-0  h-full object-fill fill-y text-y"
+                  // src="https://placehold.co/200x100"
+                  src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1709544537/service2_wplj1o.png"
+                  class="w-36 z-0 h-full object-fill fill-y text-y"
                 />
               </div>
               <div class="lg:max-w-xl lg:pr-5 relative z-40">
@@ -26,18 +28,18 @@ const page = () => {
                   accusantium doloremque it.
                 </p>
                 <div class="mt-10 flex flex-col items-center md:flex-row">
-                  <a
+                  <Link
                     href="/"
-                    class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-green-600 px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto"
+                    class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-blue-600 px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto"
                   >
                     View More
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    href="/register"
                     aria-label=""
                     class="group inline-flex items-center font-semibold text-g1"
                   >
-                    Watch how it works
+                    Want to Join us
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="ml-4 h-6 w-6 transition-transform group-hover:translate-x-2"
@@ -52,7 +54,7 @@ const page = () => {
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       ></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -72,7 +74,10 @@ const page = () => {
                 ></path>
               </svg>
               <div class="abg-orange-400 mx-auto w-fit overflow-hidden rounded-[6rem] rounded-br-none rounded-tl-none">
-                <img src="https://placehold.co/400x400" />
+                <img
+                  alt="Image Here"
+                  src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1708496615/blog-image/blog1_n7eeat.png"
+                />
               </div>
             </div>
           </div>
