@@ -58,7 +58,7 @@ const BlogCard = async () => {
                   </div>
                   <div>
                     <Link href={`/blog/${v.slug}`}>
-                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4 min-h-[70px]">
+                      <h1 className="globalBlogCardText line-clamp-2 hover:text-slate-800 cursor-pointer font-bold text-gray-700 leading-[1.2] mt-2 lg:my-4 min-h-[47px] md:min-h-[70px]">
                         {v?.title}
                       </h1>
                     </Link>
