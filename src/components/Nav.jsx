@@ -44,6 +44,7 @@ const Nav = () => {
   };
 
   const [scrolled, setScrolled] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -148,9 +149,17 @@ const Nav = () => {
           </div>
 
           {/* ===================== Navbar Icons and User Auth ==========================================  */}
-          <div className=" lg:flex gap-4 items-center text-gray-60 hidden">
+          <div className="lg:flex gap-4 items-center text-gray-60 hidden">
+            <div
+              onClick={() => setToggle(true)}
+              className="bg-gray-200/70 flex gap-1.5 px-3 py-1 rounded-lg items-center text-pink-500 hover:text-pink-600 hover:bg-gray-300/60 cursor-pointer"
+            >
+              <i className="fa-solid fa-fire-flame-curved"></i>
+              <span>1</span>
+            </div>
+            {/* <div className="w-[80vw] h-[80vh] bg-red-200 fixed top-0 left-0 "></div> */}
             {user ? (
-              <div className="flex group relative items-center gap-2 pr-4">
+              <div className="flex group relative items-center gap-2 pr-4 border-l pl-2.5">
                 <img
                   src={user.photo}
                   alt="image here"

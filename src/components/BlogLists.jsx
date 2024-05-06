@@ -1,16 +1,17 @@
 import Link from "next/link";
 import BlogCard from "./BlogCard";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
 
+// Fetch All Blogs
 async function getData() {
-  const res = await fetch(
-    "https://readable-blogging.vercel.app/api/get-blogs",
-    { cache: "no-store" }
-  );
+  const res = await fetch(process.env.HOSTING_URL + "/api/get-blogs", {
+    cache: "no-store",
+  });
 
   return res.json();
 }
 
+// Fetch All Categories
 async function getCategories() {
   const res = await fetch("https://readable-blogging.vercel.app/api/category");
 
@@ -69,7 +70,6 @@ const BlogLists = async () => {
               // name="keyword"
               // value={filterByName.keyword}
               // onChange={searchInputHanler}
-              // onKeyDown={handleKeyPress}
               placeholder="eg: Blog, Category..."
               className="bg-transparent outline-none py-1 text-sm w-[180px]"
             />

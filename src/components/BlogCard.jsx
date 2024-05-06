@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Suspense } from "react";
 import { format } from "timeago.js";
 
 async function getData() {
-  const res = await fetch("https://readable-blogging.vercel.app/api/get-blogs");
+  const res = await fetch(process.env.HOSTING_URL + "/api/get-blogs");
 
   return res.json();
 }
