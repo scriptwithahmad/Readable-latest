@@ -157,7 +157,6 @@ const Nav = () => {
               <i className="fa-solid fa-fire-flame-curved"></i>
               <span>1</span>
             </div>
-            {/* <div className="w-[80vw] h-[80vh] bg-red-200 fixed top-0 left-0 "></div> */}
             {user ? (
               <div className="flex group relative items-center gap-2 pr-4 border-l pl-2.5">
                 <img
@@ -221,6 +220,9 @@ const Nav = () => {
             )}
           </div>
         </nav>
+        <div className="bg-[#000000c2] backdrop-blur-sm fixed top-0 left-0 h-screen w-screen grid place-content-center z-50">
+          <div className="w-[60vw] h-[70vh] bg-gray-400 rounded-lg"></div>
+        </div>
       </div>
 
       {/* ===================== Navbar Responive ==========================================  */}
