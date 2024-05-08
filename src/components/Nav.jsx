@@ -220,8 +220,26 @@ const Nav = () => {
             )}
           </div>
         </nav>
-        <div className="bg-[#000000c2] backdrop-blur-sm fixed top-0 left-0 h-screen w-screen grid place-content-center z-50">
-          <div className="w-[60vw] h-[70vh] bg-gray-400 rounded-lg"></div>
+        <div
+          className={`bg-[#0000009d] transition-all backdrop-blur-sm fixed -top-[100%] left-0 h-screen w-screen grid place-content-center z-50 opacity-0 ${
+            toggle && "opacity-100 top-[0px]"
+          }`}
+        >
+          <div
+            className={`w-[60vw] h-[70vh] bg-gray-200 rounded-lg opacity-100 ${
+              toggle && " opacity-100"
+            }`}
+          >
+            <div className="flex justify-between text-gray-500 border-b border-gray-300 p-3">
+              <h2 className="text-lg font-semibold">Title Here</h2>
+              <span
+                onClick={() => setToggle(false)}
+                className="px-2 text-lg hover:bg-gray-200"
+              >
+                x
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
