@@ -80,6 +80,7 @@ const Page = () => {
         <div className="bg-gray-100 rounded-full px-4 my-2 py-1.5 flex items-center gap-2">
           <i className="fa-solid fa-magnifying-glass text-gray-500 text-sm"></i>
           <input
+            list="blogs"
             type="search"
             name="keyword"
             value={filters.keyword}
@@ -87,6 +88,15 @@ const Page = () => {
             placeholder="eg: Blog, Category..."
             className="bg-transparent outline-none py-1 text-sm w-[180px]"
           />
+          <datalist id="blogs">
+            {data?.map((cat, catIndex) => {
+              return (
+                <option key={catIndex} value={cat?.title}>
+                  {cat?.title}
+                </option>
+              );
+            })}
+          </datalist>
         </div>
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
