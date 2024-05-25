@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 export default function Login() {
@@ -54,8 +54,8 @@ export default function Login() {
           <div className=" flex items-center gap-2 mb-4">
             <img
               alt="Logo Here"
-              className=" w-8"
-              src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1706707781/ulogo_hclp4i.png"
+              className=" w-9"
+              src="https://res.cloudinary.com/dmyrswz0r/image/upload/v1713427098/blog-image/favicon_jcqo9l.png"
             />
             <h2 className="text-slate-700 text-xl font-bold">Login</h2>
           </div>

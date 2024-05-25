@@ -228,9 +228,7 @@ const Nav = () => {
         >
           <div
             className={`border-2 w-[60vw] bg-gray-200 rounded-lg opacity-100 delay-500 transition-all ${
-              toggle
-                ? "opacity-100 delay-500 h-[70vh]"
-                : "h-[10vh]"
+              toggle ? "opacity-100 delay-500 h-[70vh]" : "h-[10vh]"
             }`}
           >
             <div className="flex justify-between text-gray-500 border-b border-gray-300 p-3">
