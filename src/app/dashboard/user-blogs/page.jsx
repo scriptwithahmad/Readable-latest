@@ -1,11 +1,12 @@
 "use client";
 import axios from "axios";
 import Link from "next/link";
-import { useQuery } from "react-query";
 import queryString from "query-string";
+import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import React, { useEffect, useState } from "react";
-import { format, render, cancel, register } from "timeago.js";
+import Skeleton from "react-loading-skeleton";
+import { useQuery } from "react-query";
+import { format } from "timeago.js";
 
 const tableHeader = [
   { lable: "Name", align: "left" },
@@ -124,7 +125,7 @@ const Page = () => {
                     <th
                       scope="col"
                       key={index}
-                      className={`px-6 py-3 text-${value.align}`}
+                      className={`px-6 py-3 m-2 text-${value.align}`}
                     >
                       {value.lable}
                     </th>
@@ -133,72 +134,90 @@ const Page = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((v, i) => {
-                return (
-                  <tr key={i} className="bg-white border-b border-gray-100">
-                    <td
-                      scope="row"
-                      className="px-6 flex items-center py-2 font-medium text-gray-600"
-                    >
-                      <div className=" flex items-center">
-                        <div className="w-12 h-12 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                          <img
-                            alt="Image Here"
-                            src={v.featuredImage?.url}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+              {isLoading
+                ? [1, 2, 3, 4, 5].map((v, i) => {
+                    return (
+                      <tr key={i}>
+                        {tableHeader.map((value, index) => {
+                          return (
+                            <th
+                              scope="col"
+                              key={index}
+                              className={`px-6 py-3 text-transparent border rounded-md animate-pulse bg-white/50 text-${value.align}`}
+                            >
+                              {value.lable}
+                            </th>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })
+                : data?.map((v, i) => {
+                    return (
+                      <tr key={i} className="bg-white border-b border-gray-100">
+                        <td
+                          scope="row"
+                          className="px-6 flex items-center py-2 font-medium text-gray-600"
+                        >
+                          <div className=" flex items-center">
+                            <div className="w-12 h-12 mr-3 border border-gray-100 rounded-full overflow-hidden">
+                              <img
+                                alt="Image Here"
+                                src={v.featuredImage?.url}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
 
-                        <div className="flex flex-col gap-0.5">
-                          <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
-                            {v.title}
-                          </h2>
-                          <span className=" text-xs text-gray-500 font-light">
-                            {format(new Date(v.createdAt), "en_US")}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className=" flex items-center">
-                        <div className="w-8 h-8 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                          <img
-                            alt="Image Here"
-                            src={v.author?.photo}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+                            <div className="flex flex-col gap-0.5">
+                              <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
+                                {v.title}
+                              </h2>
+                              <span className=" text-xs text-gray-500 font-light">
+                                {format(new Date(v.createdAt), "en_US")}
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className=" flex items-center">
+                            <div className="w-8 h-8 mr-3 border border-gray-100 rounded-full overflow-hidden">
+                              <img
+                                alt="Image Here"
+                                src={v.author?.photo}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
 
-                        <div className="flex flex-col gap-0.5">
-                          <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
-                            {v.author.fullName}
-                          </h2>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-2"> {v.category} </td>
-                    <td className="px-6 py-2 text-lg text-center">
-                      <Link href={`/blog/${v.slug}`}>
-                        <i
-                          title="View"
-                          className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
-                        ></i>
-                      </Link>
-                      <Link href={`/dashboard/blogs/edit-blog/${v.slug}`}>
-                        <i
-                          title="Edit"
-                          className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
-                        ></i>
-                      </Link>
-                      <i
-                        title="Delete"
-                        onClick={() => delPost(v.slug)}
-                        className="fa fa-solid fa-trash px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-red-400 text-sm"
-                      ></i>
-                    </td>
-                  </tr>
-                );
-              })}
+                            <div className="flex flex-col gap-0.5">
+                              <h2 className=" text-gray-600 leading-[1.5] line-clamp-1">
+                                {v.author.fullName}
+                              </h2>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-2"> {v.category} </td>
+                        <td className="px-6 py-2 text-lg text-center">
+                          <Link href={`/blog/${v.slug}`}>
+                            <i
+                              title="View"
+                              className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
+                            ></i>
+                          </Link>
+                          <Link href={`/dashboard/blogs/edit-blog/${v.slug}`}>
+                            <i
+                              title="Edit"
+                              className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
+                            ></i>
+                          </Link>
+                          <i
+                            title="Delete"
+                            onClick={() => delPost(v.slug)}
+                            className="fa fa-solid fa-trash px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-red-400 text-sm"
+                          ></i>
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </table>
           {/* Pagination start  ----------- */}
