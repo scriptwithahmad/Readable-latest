@@ -20,6 +20,7 @@ async function getCategories() {
 
 const BlogLists = async () => {
   const data = await getData();
+  console.log(data);
   const total = data?.message?.count;
   const categories = await getCategories();
 
@@ -101,13 +102,53 @@ const BlogLists = async () => {
                   </div>
                 </Link>
                 <div className="border-b-4 pb-1 border-[#2386ff6d]">
-                  <div className="flex items-center justify-between mt-3">
-                    <h3 className="accentColor text-sm">{v?.category}</h3>
-                    <span className="text-slate-600 flex items-center gap-2 text-sm">
-                      <i className="fa-regular fa-clock text-sm"></i>
-                      {format(new Date(v.createdAt), "en_US")}
-                    </span>
+                  <div className="flex gap-2 items-center justify-between mt-3 relative">
+                    <div className="flex items-center gap-2 peer">
+                      <img
+                        src={v?.author?.photo}
+                        alt="author image here"
+                        className="h-6 w-6 rounded-full object-cover peer"
+                      />
+                      <h3 className="text-gray-700 text-sm">
+                        {v?.author?.fullName}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-2 justify-between text-xs text-gray-500">
+                      <h3>{v?.category}</h3>
+                      <span>--</span>
+                      <h3 className="text-slate-500 text-xs">
+                        {format(new Date(v.createdAt), "en_US")}
+                      </h3>
+                    </div>
+                    {/* Hovered Main Div ------------------------ */}
+                    <div className="globalShadow2 min-w-48 px-3 py-4 rounded-lg z-10 absolute top-4 left-4 opacity-0 hidden peer-hover:block peer-hover:opacity-100 peer-hover:text-red-500 peer-hover:bg-white transition-all">
+                      <div className="mb-4 flex items-center gap-2">
+                        <img
+                          alt="img alt"
+                          src={v?.author?.photo}
+                          className="h-8 w-8 rounded-full object-cover"
+                        />
+                        <h2 className="text-lg font-medium text-slate-700 whitespace-nowrap">
+                          {v?.author?.fullName}
+                        </h2>
+                      </div>
+                      <Link
+                        href={`/profile/${v?.author?._id}`}
+                        className="rounded text-center inline-block w-full bg-indigo-500 px-4 py-1 text-sm text-white hover:bg-indigo-600"
+                      >
+                        Profile
+                      </Link>
+                      <div className="mt-2">
+                        <span className="text-xs text-slate-500">JOIN</span>
+                        <h2 className="text-sm font-medium text-slate-700">
+                          {format(new Date(v?.author?.createdAt), "en_US")}
+                        </h2>
+                      </div>
+                    </div>
                   </div>
+                  {/* <div className="flex items-center justify-between mt-3">
+                
+                  </div> */}
                   <div className="my-2">
                     <Link href={`/blog/${v.slug}`}>
                       <h1 className="text-2xl line-clamp-1 font-semibold text-gray-700 leading-[1.2] hover:text-[#146ad3] cursor-pointer">

@@ -134,7 +134,9 @@ const page = async ({ params }) => {
       </div>
 
       {/* Follow Buton */}
-      <Follow blog={blog} userRealatedData={userRealatedData} />
+      <Suspense fallback={<h1>Loading Data...</h1>}>
+        <Follow blog={blog} userRealatedData={userRealatedData} />
+      </Suspense>
 
       {/* Comment Component */}
       <div id="comment">

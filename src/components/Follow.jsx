@@ -26,7 +26,6 @@ const Follow = ({ blog, userRealatedData }) => {
   const blogUserID = blog?.author?._id;
   const [isFollowing, setIsFollowing] = useState(false);
   const postLength = userRealatedData?.foundPosts.length;
-
   const ifUserAndBlogUserSame = blogUserID == user?._id;
 
   useEffect(() => {
