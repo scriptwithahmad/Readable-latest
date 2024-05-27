@@ -7,10 +7,10 @@ import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({});
-  const router = useRouter();
-
   const { user, refetch } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ ...user });
+  console.log(formData);
+  const router = useRouter();
 
   const [tempImage, setTempImage] = useState(null);
 
@@ -77,12 +77,6 @@ const Page = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      setFormData(user);
-    }
-  }, [user]);
 
   return (
     <>
